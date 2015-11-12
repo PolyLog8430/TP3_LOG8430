@@ -56,8 +56,11 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ModelPackage.PERSONNE: return createPersonne();
 			case ModelPackage.MODEL: return createModel();
+			case ModelPackage.LOCAL_RESSOURCE: return createLocalRessource();
+			case ModelPackage.EXTERNAL_RESSOURCE: return createExternalRessource();
+			case ModelPackage.RESSOURCE_NAME: return createRessourceName();
+			case ModelPackage.PATH: return createPath();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -68,9 +71,9 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Personne createPersonne() {
-		PersonneImpl personne = new PersonneImpl();
-		return personne;
+	public Model createModel() {
+		ModelImpl model = new ModelImpl();
+		return model;
 	}
 
 	/**
@@ -78,9 +81,39 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Model createModel() {
-		ModelImpl model = new ModelImpl();
-		return model;
+	public LocalRessource createLocalRessource() {
+		LocalRessourceImpl localRessource = new LocalRessourceImpl();
+		return localRessource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExternalRessource createExternalRessource() {
+		ExternalRessourceImpl externalRessource = new ExternalRessourceImpl();
+		return externalRessource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RessourceName createRessourceName() {
+		RessourceNameImpl ressourceName = new RessourceNameImpl();
+		return ressourceName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Path createPath() {
+		PathImpl path = new PathImpl();
+		return path;
 	}
 
 	/**

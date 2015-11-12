@@ -5,9 +5,19 @@
     complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>model.ecore</foreignModel>
   <genPackages prefix="Model" disposableProviderFactory="true" ecorePackage="model.ecore#/">
-    <genClasses ecoreClass="model.ecore#//Personne">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Personne/enfant"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Personne/name"/>
+    <genClasses ecoreClass="model.ecore#//Ressource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Ressource/name"/>
     </genClasses>
+    <genClasses ecoreClass="model.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Model/Ressource"/>
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Model/Command"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//LocalRessource"/>
+    <genClasses ecoreClass="model.ecore#//ExternalRessource"/>
+    <genClasses ecoreClass="model.ecore#//ICommand">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ICommand/Name"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//RessourceName"/>
+    <genClasses ecoreClass="model.ecore#//Path"/>
   </genPackages>
 </genmodel:GenModel>

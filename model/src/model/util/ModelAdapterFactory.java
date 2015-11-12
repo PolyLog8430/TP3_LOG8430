@@ -68,12 +68,32 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	protected ModelSwitch<Adapter> modelSwitch =
 		new ModelSwitch<Adapter>() {
 			@Override
-			public Adapter casePersonne(Personne object) {
-				return createPersonneAdapter();
+			public Adapter caseRessource(Ressource object) {
+				return createRessourceAdapter();
 			}
 			@Override
 			public Adapter caseModel(Model object) {
 				return createModelAdapter();
+			}
+			@Override
+			public Adapter caseLocalRessource(LocalRessource object) {
+				return createLocalRessourceAdapter();
+			}
+			@Override
+			public Adapter caseExternalRessource(ExternalRessource object) {
+				return createExternalRessourceAdapter();
+			}
+			@Override
+			public Adapter caseICommand(ICommand object) {
+				return createICommandAdapter();
+			}
+			@Override
+			public Adapter caseRessourceName(RessourceName object) {
+				return createRessourceNameAdapter();
+			}
+			@Override
+			public Adapter casePath(Path object) {
+				return createPathAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -96,16 +116,16 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link model.Personne <em>Personne</em>}'.
+	 * Creates a new adapter for an object of class '{@link model.Ressource <em>Ressource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see model.Personne
+	 * @see model.Ressource
 	 * @generated
 	 */
-	public Adapter createPersonneAdapter() {
+	public Adapter createRessourceAdapter() {
 		return null;
 	}
 
@@ -120,6 +140,76 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.LocalRessource <em>Local Ressource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.LocalRessource
+	 * @generated
+	 */
+	public Adapter createLocalRessourceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.ExternalRessource <em>External Ressource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.ExternalRessource
+	 * @generated
+	 */
+	public Adapter createExternalRessourceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.ICommand <em>ICommand</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.ICommand
+	 * @generated
+	 */
+	public Adapter createICommandAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.RessourceName <em>Ressource Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.RessourceName
+	 * @generated
+	 */
+	public Adapter createRessourceNameAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.Path <em>Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.Path
+	 * @generated
+	 */
+	public Adapter createPathAdapter() {
 		return null;
 	}
 

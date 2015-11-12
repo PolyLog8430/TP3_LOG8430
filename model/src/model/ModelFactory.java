@@ -22,15 +22,6 @@ public interface ModelFactory extends EFactory {
 	ModelFactory eINSTANCE = model.impl.ModelFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Personne</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Personne</em>'.
-	 * @generated
-	 */
-	Personne createPersonne();
-
-	/**
 	 * Returns a new object of class '<em>Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -38,6 +29,42 @@ public interface ModelFactory extends EFactory {
 	 * @generated
 	 */
 	Model createModel();
+
+	/**
+	 * Returns a new object of class '<em>Local Ressource</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Local Ressource</em>'.
+	 * @generated
+	 */
+	LocalRessource createLocalRessource();
+
+	/**
+	 * Returns a new object of class '<em>External Ressource</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>External Ressource</em>'.
+	 * @generated
+	 */
+	ExternalRessource createExternalRessource();
+
+	/**
+	 * Returns a new object of class '<em>Ressource Name</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ressource Name</em>'.
+	 * @generated
+	 */
+	RessourceName createRessourceName();
+
+	/**
+	 * Returns a new object of class '<em>Path</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Path</em>'.
+	 * @generated
+	 */
+	Path createPath();
 
 	/**
 	 * Returns the package supported by this factory.

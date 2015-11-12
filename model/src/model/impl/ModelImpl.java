@@ -3,15 +3,21 @@
 package model.impl;
 
 import java.util.Collection;
+
+import model.ICommand;
 import model.Model;
 import model.ModelPackage;
-import model.Personne;
+import model.Ressource;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -23,21 +29,32 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link model.impl.ModelImpl#getPersonnes <em>Personnes</em>}</li>
+ *   <li>{@link model.impl.ModelImpl#getRessource <em>Ressource</em>}</li>
+ *   <li>{@link model.impl.ModelImpl#getCommand <em>Command</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	/**
-	 * The cached value of the '{@link #getPersonnes() <em>Personnes</em>}' containment reference list.
+	 * The cached value of the '{@link #getRessource() <em>Ressource</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPersonnes()
+	 * @see #getRessource()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Personne> personnes;
+	protected EList<Ressource> ressource;
+
+	/**
+	 * The cached value of the '{@link #getCommand() <em>Command</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCommand()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ICommand> command;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -63,11 +80,23 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Personne> getPersonnes() {
-		if (personnes == null) {
-			personnes = new EObjectContainmentEList<Personne>(Personne.class, this, ModelPackage.MODEL__PERSONNES);
+	public EList<Ressource> getRessource() {
+		if (ressource == null) {
+			ressource = new EObjectContainmentEList<Ressource>(Ressource.class, this, ModelPackage.MODEL__RESSOURCE);
 		}
-		return personnes;
+		return ressource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ICommand> getCommand() {
+		if (command == null) {
+			command = new EObjectContainmentEList<ICommand>(ICommand.class, this, ModelPackage.MODEL__COMMAND);
+		}
+		return command;
 	}
 
 	/**
@@ -78,8 +107,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.MODEL__PERSONNES:
-				return ((InternalEList<?>)getPersonnes()).basicRemove(otherEnd, msgs);
+			case ModelPackage.MODEL__RESSOURCE:
+				return ((InternalEList<?>)getRessource()).basicRemove(otherEnd, msgs);
+			case ModelPackage.MODEL__COMMAND:
+				return ((InternalEList<?>)getCommand()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -92,8 +123,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.MODEL__PERSONNES:
-				return getPersonnes();
+			case ModelPackage.MODEL__RESSOURCE:
+				return getRessource();
+			case ModelPackage.MODEL__COMMAND:
+				return getCommand();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,9 +140,13 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.MODEL__PERSONNES:
-				getPersonnes().clear();
-				getPersonnes().addAll((Collection<? extends Personne>)newValue);
+			case ModelPackage.MODEL__RESSOURCE:
+				getRessource().clear();
+				getRessource().addAll((Collection<? extends Ressource>)newValue);
+				return;
+			case ModelPackage.MODEL__COMMAND:
+				getCommand().clear();
+				getCommand().addAll((Collection<? extends ICommand>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -123,8 +160,11 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.MODEL__PERSONNES:
-				getPersonnes().clear();
+			case ModelPackage.MODEL__RESSOURCE:
+				getRessource().clear();
+				return;
+			case ModelPackage.MODEL__COMMAND:
+				getCommand().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -138,8 +178,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.MODEL__PERSONNES:
-				return personnes != null && !personnes.isEmpty();
+			case ModelPackage.MODEL__RESSOURCE:
+				return ressource != null && !ressource.isEmpty();
+			case ModelPackage.MODEL__COMMAND:
+				return command != null && !command.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
