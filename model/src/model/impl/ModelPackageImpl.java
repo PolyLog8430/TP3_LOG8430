@@ -223,6 +223,24 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getModel_LocalRessources() {
+		return (EReference)modelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModel_ExternalRessources() {
+		return (EReference)modelEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLocalRessource() {
 		return localRessourceEClass;
 	}
@@ -441,6 +459,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		modelEClass = createEClass(MODEL);
 		createEReference(modelEClass, MODEL__RESSOURCE);
 		createEReference(modelEClass, MODEL__COMMAND);
+		createEReference(modelEClass, MODEL__LOCAL_RESSOURCES);
+		createEReference(modelEClass, MODEL__EXTERNAL_RESSOURCES);
 
 		localRessourceEClass = createEClass(LOCAL_RESSOURCE);
 		createEAttribute(localRessourceEClass, LOCAL_RESSOURCE__PERMISSION);
@@ -520,6 +540,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModel_Ressource(), this.getRessource(), null, "Ressource", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModel_Command(), this.getICommand(), null, "Command", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModel_LocalRessources(), this.getLocalRessource(), null, "LocalRessources", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModel_ExternalRessources(), this.getExternalRessource(), null, "ExternalRessources", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(localRessourceEClass, LocalRessource.class, "LocalRessource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLocalRessource_Permission(), ecorePackage.getEString(), "permission", null, 0, 1, LocalRessource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

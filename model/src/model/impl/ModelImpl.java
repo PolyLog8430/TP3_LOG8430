@@ -4,7 +4,9 @@ package model.impl;
 
 import java.util.Collection;
 
+import model.ExternalRessource;
 import model.ICommand;
+import model.LocalRessource;
 import model.Model;
 import model.ModelPackage;
 import model.Ressource;
@@ -31,6 +33,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link model.impl.ModelImpl#getRessource <em>Ressource</em>}</li>
  *   <li>{@link model.impl.ModelImpl#getCommand <em>Command</em>}</li>
+ *   <li>{@link model.impl.ModelImpl#getLocalRessources <em>Local Ressources</em>}</li>
+ *   <li>{@link model.impl.ModelImpl#getExternalRessources <em>External Ressources</em>}</li>
  * </ul>
  *
  * @generated
@@ -55,6 +59,26 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	 * @ordered
 	 */
 	protected EList<ICommand> command;
+
+	/**
+	 * The cached value of the '{@link #getLocalRessources() <em>Local Ressources</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLocalRessources()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<LocalRessource> localRessources;
+
+	/**
+	 * The cached value of the '{@link #getExternalRessources() <em>External Ressources</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExternalRessources()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ExternalRessource> externalRessources;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -104,6 +128,30 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<LocalRessource> getLocalRessources() {
+		if (localRessources == null) {
+			localRessources = new EObjectContainmentEList<LocalRessource>(LocalRessource.class, this, ModelPackage.MODEL__LOCAL_RESSOURCES);
+		}
+		return localRessources;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ExternalRessource> getExternalRessources() {
+		if (externalRessources == null) {
+			externalRessources = new EObjectContainmentEList<ExternalRessource>(ExternalRessource.class, this, ModelPackage.MODEL__EXTERNAL_RESSOURCES);
+		}
+		return externalRessources;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -111,6 +159,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 				return ((InternalEList<?>)getRessource()).basicRemove(otherEnd, msgs);
 			case ModelPackage.MODEL__COMMAND:
 				return ((InternalEList<?>)getCommand()).basicRemove(otherEnd, msgs);
+			case ModelPackage.MODEL__LOCAL_RESSOURCES:
+				return ((InternalEList<?>)getLocalRessources()).basicRemove(otherEnd, msgs);
+			case ModelPackage.MODEL__EXTERNAL_RESSOURCES:
+				return ((InternalEList<?>)getExternalRessources()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -127,6 +179,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 				return getRessource();
 			case ModelPackage.MODEL__COMMAND:
 				return getCommand();
+			case ModelPackage.MODEL__LOCAL_RESSOURCES:
+				return getLocalRessources();
+			case ModelPackage.MODEL__EXTERNAL_RESSOURCES:
+				return getExternalRessources();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -148,6 +204,14 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 				getCommand().clear();
 				getCommand().addAll((Collection<? extends ICommand>)newValue);
 				return;
+			case ModelPackage.MODEL__LOCAL_RESSOURCES:
+				getLocalRessources().clear();
+				getLocalRessources().addAll((Collection<? extends LocalRessource>)newValue);
+				return;
+			case ModelPackage.MODEL__EXTERNAL_RESSOURCES:
+				getExternalRessources().clear();
+				getExternalRessources().addAll((Collection<? extends ExternalRessource>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -166,6 +230,12 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 			case ModelPackage.MODEL__COMMAND:
 				getCommand().clear();
 				return;
+			case ModelPackage.MODEL__LOCAL_RESSOURCES:
+				getLocalRessources().clear();
+				return;
+			case ModelPackage.MODEL__EXTERNAL_RESSOURCES:
+				getExternalRessources().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -182,6 +252,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 				return ressource != null && !ressource.isEmpty();
 			case ModelPackage.MODEL__COMMAND:
 				return command != null && !command.isEmpty();
+			case ModelPackage.MODEL__LOCAL_RESSOURCES:
+				return localRessources != null && !localRessources.isEmpty();
+			case ModelPackage.MODEL__EXTERNAL_RESSOURCES:
+				return externalRessources != null && !externalRessources.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

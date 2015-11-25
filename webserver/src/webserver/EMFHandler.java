@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jetty.server.Request;
@@ -15,7 +14,9 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import model.ModelPackage;
+import model.Model;
+import model.ModelFactory;
+import model.impl.ModelFactoryImpl;
 
 public class EMFHandler extends AbstractHandler {
 
@@ -70,53 +71,81 @@ public class EMFHandler extends AbstractHandler {
 		String[] fragments = path.split("/");
 		Object context = root;
 		
+		// Feature to add
+		EStructuralFeature feature = null;
+		
 		String allBody = "";
 		String body ;
 		
+		// Get body content
 		while ((body = httpReq.getReader().readLine()) != null) {
 			allBody += body;
 		}
 		System.out.println(allBody);
 		
-		JSONObject json = new JSONObject(allBody);
-		try {
-			System.out.println(json.getString("test"));
+		if(allBody.equals("")) {
+			// No body, send error
+			httpResp.setStatus(HttpServletResponse.SC_PRECONDITION_FAILED);
+			httpResp.getWriter().print("No body in the post request");
+			httpResp.flushBuffer();
 		}
-		catch (JSONException e) {
-			e.printStackTrace();
-		}
-		allBody += "Key = : "  + json.getString("test");
-		
-		/*for (int i = 0; i < fragments.length; i++) {
-			String fragment = fragments[i];
-			if (fragment.isEmpty())
-				continue;
-			// should be avoided. inefficient
-			int position;
-			try {
-				position = Integer.parseInt(fragment);
-			} catch (Exception e) {
-				position = Integer.MIN_VALUE;
-			}
+		else {
+			
+			for (int i = 0; i < fragments.length; i++) {
+				String fragment = fragments[i];
+				if (fragment.isEmpty())
+					continue;
+				// should be avoided. inefficient
+				int position;
+				try {
+					position = Integer.parseInt(fragment);
+				} catch (Exception e) {
+					position = Integer.MIN_VALUE;
+				}
 
-			if (position == Integer.MIN_VALUE) {
-				// match feature
-				EObject eobject = (EObject) context;
-				//find the feature
-				EStructuralFeature feature = eobject.eClass().getEStructuralFeature(fragment);
-				// call reflexively
-				eobject.eClass().eSet(feature, null);
-				
-				//context  = eobject.eGet(feature);
-				
-			} else if (context instanceof EList) {
-				EList list = (EList) context;
-				context = list.get(position);
+				if (position == Integer.MIN_VALUE) {
+					// match feature
+					EObject eobject = (EObject) context;
+					//find the feature
+					feature = eobject.eClass().getEStructuralFeature(fragment);
+					
+					// call reflexively
+					System.out.println("Requested feature Name : " + feature.getName() + "  class : " + feature + "  : " + feature.getFeatureID());
+					context  = eobject.eGet(feature);
 			}
-		}*/
-		httpResp.setStatus(HttpServletResponse.SC_OK);
-		httpResp.getWriter().print(allBody);
-		httpResp.flushBuffer();
+			
+			ModelFactory modelFactory = ModelFactoryImpl.eINSTANCE;
+			Model model = modelFactory.createModel();
+			
+			System.out.println("Factory instantiated");
+			//EClass eClass = (EClass) feature.eContainer().eClass().getEStructuralFeature(feature.getName()); 
+			//System.out.println("Eclass is : " + eClass);
+			EObject eObject = modelFactory.create(feature.getEContainingClass().getEStructuralFeature(feature.getName()).eClass());
+			System.out.println("Instanciated : " + eObject.toString());
+			
+			for(EStructuralFeature e : eObject.eClass().getEStructuralFeatures()) {
+				System.out.println(e.getName());
+			}
+			
+			/*EObject eobject = (EObject) context;
+			eobject.eClass().eSet(feature, null);*/
+			
+			// Parse body and find keys
+			JSONObject json = new JSONObject(allBody);
+			try {
+				System.out.println(json.getString("test"));
+			}
+			catch (JSONException e) {
+				e.printStackTrace();
+			}
+			allBody += "Key = : "  + json.getString("test");
+			
+			httpResp.setStatus(HttpServletResponse.SC_OK);
+			httpResp.getWriter().print(allBody);
+			httpResp.flushBuffer();
+			}
+		}
+		
 	}
 	
 	@Override

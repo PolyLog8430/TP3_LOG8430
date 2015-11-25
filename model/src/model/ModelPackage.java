@@ -124,13 +124,31 @@ public interface ModelPackage extends EPackage {
 	int MODEL__COMMAND = 1;
 
 	/**
+	 * The feature id for the '<em><b>Local Ressources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__LOCAL_RESSOURCES = 2;
+
+	/**
+	 * The feature id for the '<em><b>External Ressources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__EXTERNAL_RESSOURCES = 3;
+
+	/**
 	 * The number of structural features of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_FEATURE_COUNT = 2;
+	int MODEL_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -917,6 +935,28 @@ public interface ModelPackage extends EPackage {
 	EReference getModel_Command();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link model.Model#getLocalRessources <em>Local Ressources</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Local Ressources</em>'.
+	 * @see model.Model#getLocalRessources()
+	 * @see #getModel()
+	 * @generated
+	 */
+	EReference getModel_LocalRessources();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link model.Model#getExternalRessources <em>External Ressources</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>External Ressources</em>'.
+	 * @see model.Model#getExternalRessources()
+	 * @see #getModel()
+	 * @generated
+	 */
+	EReference getModel_ExternalRessources();
+
+	/**
 	 * Returns the meta object for class '{@link model.LocalRessource <em>Local Ressource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1203,6 +1243,22 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL__COMMAND = eINSTANCE.getModel_Command();
+
+		/**
+		 * The meta object literal for the '<em><b>Local Ressources</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL__LOCAL_RESSOURCES = eINSTANCE.getModel_LocalRessources();
+
+		/**
+		 * The meta object literal for the '<em><b>External Ressources</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL__EXTERNAL_RESSOURCES = eINSTANCE.getModel_ExternalRessources();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.LocalRessourceImpl <em>Local Ressource</em>}' class.
