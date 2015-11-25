@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://www.example.org/model">
+  <Ressource xsi:type="model:LocalRessource" name="file1.txt"/>
+  <Ressource xsi:type="model:LocalRessource" name="file2.txt"/>
+  <Ressource xsi:type="model:LocalRessource" name="folder1"/>
+  <Ressource xsi:type="model:LocalRessource" name="folder2"/>
+  <Ressource xsi:type="model:ExternalRessource" uri="http://www.polymtl.ca/"/>
+  <Ressource xsi:type="model:ExternalRessource" uri="https://github.com/"/>
+  <Command xsi:type="model:FolderName" Name="FolderName" applyOnFolder="true"/>
+  <Command xsi:type="model:Path" Name="Path" applyOnFolder="true" applyOnFile="true"/>
+  <Command xsi:type="model:FileName" Name="FileName" applyOnFile="true"/>
+  <Command xsi:type="model:PageTile" Name="PageTitle" applyOnURI="true"/>
+  <Command xsi:type="model:FileSize" Name="FileSize" applyOnFile="true"/>
+</model:Model>
