@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
@@ -51,7 +52,7 @@ public class EMFHandler extends AbstractHandler {
 				EStructuralFeature feature = eobject.eClass().getEStructuralFeature(fragment);
 				
 				// call reflexively
-				System.out.println("Requested feature Name" + feature.getName());
+				System.out.println("Requested feature Name : " + feature.getName());
 				context  = eobject.eGet(feature);
 				
 			} else if (context instanceof EList) {
@@ -73,9 +74,10 @@ public class EMFHandler extends AbstractHandler {
 		
 		// Feature to add
 		EStructuralFeature feature = null;
+		EReference eRef = null;
 		
 		String allBody = "";
-		String body ;
+		String body;
 		
 		// Get body content
 		while ((body = httpReq.getReader().readLine()) != null) {
@@ -90,7 +92,7 @@ public class EMFHandler extends AbstractHandler {
 			httpResp.flushBuffer();
 		}
 		else {
-			
+			// Get Post information
 			for (int i = 0; i < fragments.length; i++) {
 				String fragment = fragments[i];
 				if (fragment.isEmpty())
@@ -109,8 +111,9 @@ public class EMFHandler extends AbstractHandler {
 					//find the feature
 					feature = eobject.eClass().getEStructuralFeature(fragment);
 					
+					eRef = (EReference) feature;
 					// call reflexively
-					System.out.println("Requested feature Name : " + feature.getName() + "  class : " + feature + "  : " + feature.getFeatureID());
+					System.out.println("Requested feature Name : " + feature.getName() + "  class : " + feature.getClass() + "  : " + feature.getFeatureID());
 					context  = eobject.eGet(feature);
 			}
 			
@@ -120,12 +123,17 @@ public class EMFHandler extends AbstractHandler {
 			System.out.println("Factory instantiated");
 			//EClass eClass = (EClass) feature.eContainer().eClass().getEStructuralFeature(feature.getName()); 
 			//System.out.println("Eclass is : " + eClass);
-			EObject eObject = modelFactory.create(feature.getEContainingClass().getEStructuralFeature(feature.getName()).eClass());
+			EObject eObject = modelFactory.create(eRef.getEReferenceType());
 			System.out.println("Instanciated : " + eObject.toString());
 			
 			for(EStructuralFeature e : eObject.eClass().getEStructuralFeatures()) {
 				System.out.println(e.getName());
 			}
+			
+			EObject mainDoc = (EObject) root;
+			EStructuralFeature listFeature =  mainDoc.eClass().getEStructuralFeature(fragment);
+			EList list = (EList) mainDoc.eGet(listFeature);
+			list.add(eObject);
 			
 			/*EObject eobject = (EObject) context;
 			eobject.eClass().eSet(feature, null);*/
