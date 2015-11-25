@@ -1,6 +1,7 @@
 package webserver;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -121,8 +122,6 @@ public class EMFHandler extends AbstractHandler {
 			Model model = modelFactory.createModel();
 			
 			System.out.println("Factory instantiated");
-			//EClass eClass = (EClass) feature.eContainer().eClass().getEStructuralFeature(feature.getName()); 
-			//System.out.println("Eclass is : " + eClass);
 			EObject eObject = modelFactory.create(eRef.getEReferenceType());
 			System.out.println("Instanciated : " + eObject.toString());
 			
@@ -135,21 +134,19 @@ public class EMFHandler extends AbstractHandler {
 			EList list = (EList) mainDoc.eGet(listFeature);
 			list.add(eObject);
 			
-			/*EObject eobject = (EObject) context;
-			eobject.eClass().eSet(feature, null);*/
-			
 			// Parse body and find keys
 			JSONObject json = new JSONObject(allBody);
-			try {
-				System.out.println(json.getString("test"));
-			}
-			catch (JSONException e) {
-				e.printStackTrace();
-			}
-			allBody += "Key = : "  + json.getString("test");
 			
-			httpResp.setStatus(HttpServletResponse.SC_OK);
-			httpResp.getWriter().print(allBody);
+			String returnJson = "";
+			
+			Iterator<String> iterator = json.keys();
+			while(iterator.hasNext()) {
+				String next = iterator.next();
+				returnJson += next + " : " + json.getString(next) + "\n";
+			}
+			
+			httpResp.setStatus(HttpServletResponse.SC_CREATED);
+			httpResp.getWriter().print(returnJson);
 			httpResp.flushBuffer();
 			}
 		}
