@@ -4,6 +4,8 @@ package model;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -159,13 +161,31 @@ public interface ModelPackage extends EPackage {
 	int LOCAL_RESSOURCE__NAME = RESSOURCE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Permission</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_RESSOURCE__PERMISSION = RESSOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_RESSOURCE__PATH = RESSOURCE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Local Ressource</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCAL_RESSOURCE_FEATURE_COUNT = RESSOURCE_FEATURE_COUNT + 0;
+	int LOCAL_RESSOURCE_FEATURE_COUNT = RESSOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Local Ressource</em>' class.
@@ -196,13 +216,31 @@ public interface ModelPackage extends EPackage {
 	int EXTERNAL_RESSOURCE__NAME = RESSOURCE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_RESSOURCE__TITLE = RESSOURCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_RESSOURCE__URI = RESSOURCE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>External Ressource</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_RESSOURCE_FEATURE_COUNT = RESSOURCE_FEATURE_COUNT + 0;
+	int EXTERNAL_RESSOURCE_FEATURE_COUNT = RESSOURCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>External Ressource</em>' class.
@@ -233,13 +271,76 @@ public interface ModelPackage extends EPackage {
 	int ICOMMAND__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Ressource</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMMAND__RESSOURCE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMMAND__RESULT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Apply On Folder</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMMAND__APPLY_ON_FOLDER = 3;
+
+	/**
+	 * The feature id for the '<em><b>Apply On File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMMAND__APPLY_ON_FILE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Apply On URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMMAND__APPLY_ON_URI = 5;
+
+	/**
+	 * The feature id for the '<em><b>Code Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMMAND__CODE_RESULT = 6;
+
+	/**
 	 * The number of structural features of the '<em>ICommand</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ICOMMAND_FEATURE_COUNT = 1;
+	int ICOMMAND_FEATURE_COUNT = 7;
+
+	/**
+	 * The operation id for the '<em>Execute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMMAND___EXECUTE__STRING = 0;
 
 	/**
 	 * The number of operations of the '<em>ICommand</em>' class.
@@ -248,7 +349,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ICOMMAND_OPERATION_COUNT = 0;
+	int ICOMMAND_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link model.impl.RessourceNameImpl <em>Ressource Name</em>}' class.
@@ -270,6 +371,60 @@ public interface ModelPackage extends EPackage {
 	int RESSOURCE_NAME__NAME = ICOMMAND__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Ressource</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESSOURCE_NAME__RESSOURCE = ICOMMAND__RESSOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESSOURCE_NAME__RESULT = ICOMMAND__RESULT;
+
+	/**
+	 * The feature id for the '<em><b>Apply On Folder</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESSOURCE_NAME__APPLY_ON_FOLDER = ICOMMAND__APPLY_ON_FOLDER;
+
+	/**
+	 * The feature id for the '<em><b>Apply On File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESSOURCE_NAME__APPLY_ON_FILE = ICOMMAND__APPLY_ON_FILE;
+
+	/**
+	 * The feature id for the '<em><b>Apply On URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESSOURCE_NAME__APPLY_ON_URI = ICOMMAND__APPLY_ON_URI;
+
+	/**
+	 * The feature id for the '<em><b>Code Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESSOURCE_NAME__CODE_RESULT = ICOMMAND__CODE_RESULT;
+
+	/**
 	 * The number of structural features of the '<em>Ressource Name</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -277,6 +432,15 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int RESSOURCE_NAME_FEATURE_COUNT = ICOMMAND_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Execute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESSOURCE_NAME___EXECUTE__STRING = ICOMMAND___EXECUTE__STRING;
 
 	/**
 	 * The number of operations of the '<em>Ressource Name</em>' class.
@@ -307,6 +471,60 @@ public interface ModelPackage extends EPackage {
 	int PATH__NAME = ICOMMAND__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Ressource</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH__RESSOURCE = ICOMMAND__RESSOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH__RESULT = ICOMMAND__RESULT;
+
+	/**
+	 * The feature id for the '<em><b>Apply On Folder</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH__APPLY_ON_FOLDER = ICOMMAND__APPLY_ON_FOLDER;
+
+	/**
+	 * The feature id for the '<em><b>Apply On File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH__APPLY_ON_FILE = ICOMMAND__APPLY_ON_FILE;
+
+	/**
+	 * The feature id for the '<em><b>Apply On URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH__APPLY_ON_URI = ICOMMAND__APPLY_ON_URI;
+
+	/**
+	 * The feature id for the '<em><b>Code Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH__CODE_RESULT = ICOMMAND__CODE_RESULT;
+
+	/**
 	 * The number of structural features of the '<em>Path</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -316,6 +534,15 @@ public interface ModelPackage extends EPackage {
 	int PATH_FEATURE_COUNT = ICOMMAND_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Execute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH___EXECUTE__STRING = ICOMMAND___EXECUTE__STRING;
+
+	/**
 	 * The number of operations of the '<em>Path</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -323,6 +550,17 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PATH_OPERATION_COUNT = ICOMMAND_OPERATION_COUNT + 0;
+
+
+	/**
+	 * The meta object id for the '{@link model.CommandCodeResult <em>Command Code Result</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.CommandCodeResult
+	 * @see model.impl.ModelPackageImpl#getCommandCodeResult()
+	 * @generated
+	 */
+	int COMMAND_CODE_RESULT = 7;
 
 
 	/**
@@ -389,6 +627,28 @@ public interface ModelPackage extends EPackage {
 	EClass getLocalRessource();
 
 	/**
+	 * Returns the meta object for the attribute '{@link model.LocalRessource#getPermission <em>Permission</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Permission</em>'.
+	 * @see model.LocalRessource#getPermission()
+	 * @see #getLocalRessource()
+	 * @generated
+	 */
+	EAttribute getLocalRessource_Permission();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.LocalRessource#getPath <em>Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Path</em>'.
+	 * @see model.LocalRessource#getPath()
+	 * @see #getLocalRessource()
+	 * @generated
+	 */
+	EAttribute getLocalRessource_Path();
+
+	/**
 	 * Returns the meta object for class '{@link model.ExternalRessource <em>External Ressource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -397,6 +657,28 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getExternalRessource();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.ExternalRessource#getTitle <em>Title</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Title</em>'.
+	 * @see model.ExternalRessource#getTitle()
+	 * @see #getExternalRessource()
+	 * @generated
+	 */
+	EAttribute getExternalRessource_Title();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.ExternalRessource#getUri <em>Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Uri</em>'.
+	 * @see model.ExternalRessource#getUri()
+	 * @see #getExternalRessource()
+	 * @generated
+	 */
+	EAttribute getExternalRessource_Uri();
 
 	/**
 	 * Returns the meta object for class '{@link model.ICommand <em>ICommand</em>}'.
@@ -420,6 +702,82 @@ public interface ModelPackage extends EPackage {
 	EAttribute getICommand_Name();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link model.ICommand#getRessource <em>Ressource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Ressource</em>'.
+	 * @see model.ICommand#getRessource()
+	 * @see #getICommand()
+	 * @generated
+	 */
+	EReference getICommand_Ressource();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.ICommand#getResult <em>Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Result</em>'.
+	 * @see model.ICommand#getResult()
+	 * @see #getICommand()
+	 * @generated
+	 */
+	EAttribute getICommand_Result();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.ICommand#isApplyOnFolder <em>Apply On Folder</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Apply On Folder</em>'.
+	 * @see model.ICommand#isApplyOnFolder()
+	 * @see #getICommand()
+	 * @generated
+	 */
+	EAttribute getICommand_ApplyOnFolder();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.ICommand#isApplyOnFile <em>Apply On File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Apply On File</em>'.
+	 * @see model.ICommand#isApplyOnFile()
+	 * @see #getICommand()
+	 * @generated
+	 */
+	EAttribute getICommand_ApplyOnFile();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.ICommand#isApplyOnURI <em>Apply On URI</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Apply On URI</em>'.
+	 * @see model.ICommand#isApplyOnURI()
+	 * @see #getICommand()
+	 * @generated
+	 */
+	EAttribute getICommand_ApplyOnURI();
+
+	/**
+	 * Returns the meta object for the attribute '{@link model.ICommand#getCodeResult <em>Code Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Code Result</em>'.
+	 * @see model.ICommand#getCodeResult()
+	 * @see #getICommand()
+	 * @generated
+	 */
+	EAttribute getICommand_CodeResult();
+
+	/**
+	 * Returns the meta object for the '{@link model.ICommand#execute(java.lang.String) <em>Execute</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Execute</em>' operation.
+	 * @see model.ICommand#execute(java.lang.String)
+	 * @generated
+	 */
+	EOperation getICommand__Execute__String();
+
+	/**
 	 * Returns the meta object for class '{@link model.RessourceName <em>Ressource Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -438,6 +796,16 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPath();
+
+	/**
+	 * Returns the meta object for enum '{@link model.CommandCodeResult <em>Command Code Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Command Code Result</em>'.
+	 * @see model.CommandCodeResult
+	 * @generated
+	 */
+	EEnum getCommandCodeResult();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -517,6 +885,22 @@ public interface ModelPackage extends EPackage {
 		EClass LOCAL_RESSOURCE = eINSTANCE.getLocalRessource();
 
 		/**
+		 * The meta object literal for the '<em><b>Permission</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOCAL_RESSOURCE__PERMISSION = eINSTANCE.getLocalRessource_Permission();
+
+		/**
+		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOCAL_RESSOURCE__PATH = eINSTANCE.getLocalRessource_Path();
+
+		/**
 		 * The meta object literal for the '{@link model.impl.ExternalRessourceImpl <em>External Ressource</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -525,6 +909,22 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EXTERNAL_RESSOURCE = eINSTANCE.getExternalRessource();
+
+		/**
+		 * The meta object literal for the '<em><b>Title</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTERNAL_RESSOURCE__TITLE = eINSTANCE.getExternalRessource_Title();
+
+		/**
+		 * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTERNAL_RESSOURCE__URI = eINSTANCE.getExternalRessource_Uri();
 
 		/**
 		 * The meta object literal for the '{@link model.ICommand <em>ICommand</em>}' class.
@@ -545,6 +945,62 @@ public interface ModelPackage extends EPackage {
 		EAttribute ICOMMAND__NAME = eINSTANCE.getICommand_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Ressource</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ICOMMAND__RESSOURCE = eINSTANCE.getICommand_Ressource();
+
+		/**
+		 * The meta object literal for the '<em><b>Result</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ICOMMAND__RESULT = eINSTANCE.getICommand_Result();
+
+		/**
+		 * The meta object literal for the '<em><b>Apply On Folder</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ICOMMAND__APPLY_ON_FOLDER = eINSTANCE.getICommand_ApplyOnFolder();
+
+		/**
+		 * The meta object literal for the '<em><b>Apply On File</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ICOMMAND__APPLY_ON_FILE = eINSTANCE.getICommand_ApplyOnFile();
+
+		/**
+		 * The meta object literal for the '<em><b>Apply On URI</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ICOMMAND__APPLY_ON_URI = eINSTANCE.getICommand_ApplyOnURI();
+
+		/**
+		 * The meta object literal for the '<em><b>Code Result</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ICOMMAND__CODE_RESULT = eINSTANCE.getICommand_CodeResult();
+
+		/**
+		 * The meta object literal for the '<em><b>Execute</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ICOMMAND___EXECUTE__STRING = eINSTANCE.getICommand__Execute__String();
+
+		/**
 		 * The meta object literal for the '{@link model.impl.RessourceNameImpl <em>Ressource Name</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -563,6 +1019,16 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PATH = eINSTANCE.getPath();
+
+		/**
+		 * The meta object literal for the '{@link model.CommandCodeResult <em>Command Code Result</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.CommandCodeResult
+		 * @see model.impl.ModelPackageImpl#getCommandCodeResult()
+		 * @generated
+		 */
+		EEnum COMMAND_CODE_RESULT = eINSTANCE.getCommandCodeResult();
 
 	}
 

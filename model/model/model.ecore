@@ -10,11 +10,32 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="Command" upperBound="-1"
         eType="#//ICommand" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LocalRessource" eSuperTypes="#//Ressource"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExternalRessource" eSuperTypes="#//Ressource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LocalRessource" eSuperTypes="#//Ressource">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="permission" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExternalRessource" eSuperTypes="#//Ressource">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ICommand" abstract="true" interface="true">
+    <eOperations name="execute">
+      <eParameters name="resourceId" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ressource" eType="#//Ressource"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="result" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="applyOnFolder" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="applyOnFile" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="applyOnURI" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codeResult" eType="#//CommandCodeResult"
+        defaultValueLiteral="SUCCESS"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RessourceName" eSuperTypes="#//ICommand"/>
   <eClassifiers xsi:type="ecore:EClass" name="Path" eSuperTypes="#//ICommand"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="CommandCodeResult">
+    <eLiterals name="SUCCESS"/>
+    <eLiterals name="ERROR" value="1"/>
+  </eClassifiers>
 </ecore:EPackage>
