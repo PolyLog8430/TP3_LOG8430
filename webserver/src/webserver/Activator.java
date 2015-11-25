@@ -7,6 +7,7 @@ import java.util.Collections;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMIResource;
@@ -31,7 +32,7 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 	private Server server;
-	private File savedModel = new File("localData.xmi");
+	private File savedModel = new File("D:\\Course programming\\TP3_LOG8430\\webserver\\test.model");
 
 	private EObject root;
 
@@ -63,8 +64,9 @@ public class Activator extends AbstractUIPlugin {
 		
 		IPath stateLocation = Activator.getDefault().getStateLocation();
 		IPath model = stateLocation.append("savedModel.xml");
-		File savedFile = model.toFile();
-		System.out.println("Le modele est enregistré dans le fichier: " + savedFile.getAbsolutePath());
+		//File savedFile = model.toFile();
+		File savedFile = savedModel;
+		System.out.println("Le path vers le modele est actuellement : " + savedFile.getAbsolutePath() + " \n Il est possible de le modifier dans webserver/src/webserver/Activator.java");
 		if (savedFile.exists()) {
 			// load from plug-in specific location
 			FileInputStream in = new FileInputStream(savedFile);
