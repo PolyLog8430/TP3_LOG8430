@@ -21,7 +21,6 @@ package model;
  * @generated
  */
 public interface ExternalRessource extends Ressource {
-
 	/**
 	 * Returns the value of the '<em><b>Title</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -73,4 +72,5 @@ public interface ExternalRessource extends Ressource {
 	 * @generated
 	 */
 	void setUri(String value);
+
 } // ExternalRessource

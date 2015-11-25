@@ -6,7 +6,9 @@ import model.LocalRessource;
 import model.ModelPackage;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -33,6 +35,7 @@ public class LocalRessourceImpl extends RessourceImpl implements LocalRessource 
 	 * @ordered
 	 */
 	protected static final String PERMISSION_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getPermission() <em>Permission</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -42,6 +45,7 @@ public class LocalRessourceImpl extends RessourceImpl implements LocalRessource 
 	 * @ordered
 	 */
 	protected String permission = PERMISSION_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getPath() <em>Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,6 +55,7 @@ public class LocalRessourceImpl extends RessourceImpl implements LocalRessource 
 	 * @ordered
 	 */
 	protected static final String PATH_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getPath() <em>Path</em>}' attribute.
 	 * <!-- begin-user-doc -->

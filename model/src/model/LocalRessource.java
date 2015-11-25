@@ -21,7 +21,6 @@ package model;
  * @generated
  */
 public interface LocalRessource extends Ressource {
-
 	/**
 	 * Returns the value of the '<em><b>Permission</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -73,4 +72,5 @@ public interface LocalRessource extends Ressource {
 	 * @generated
 	 */
 	void setPath(String value);
+
 } // LocalRessource
