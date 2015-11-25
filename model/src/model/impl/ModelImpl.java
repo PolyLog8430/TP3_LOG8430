@@ -12,7 +12,7 @@ import model.ModelPackage;
 import model.Ressource;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -102,12 +102,15 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public EList<Ressource> getRessource() {
-		if (ressource == null) {
-			ressource = new EObjectContainmentEList<Ressource>(Ressource.class, this, ModelPackage.MODEL__RESSOURCE);
+		if(ressource ==null){
+			ressource = new BasicEList<Ressource>();
 		}
+		ressource.clear();
+		ressource.addAll(getLocalRessources());
+		ressource.addAll(getExternalRessources());
+		
 		return ressource;
 	}
 
