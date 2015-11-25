@@ -98,10 +98,10 @@ public class ModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModelPackage.RESSOURCE_NAME: {
-				RessourceName ressourceName = (RessourceName)theEObject;
-				T result = caseRessourceName(ressourceName);
-				if (result == null) result = caseICommand(ressourceName);
+			case ModelPackage.FOLDER_NAME: {
+				FolderName folderName = (FolderName)theEObject;
+				T result = caseFolderName(folderName);
+				if (result == null) result = caseICommand(folderName);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -109,6 +109,27 @@ public class ModelSwitch<T> extends Switch<T> {
 				Path path = (Path)theEObject;
 				T result = casePath(path);
 				if (result == null) result = caseICommand(path);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.FILE_NAME: {
+				FileName fileName = (FileName)theEObject;
+				T result = caseFileName(fileName);
+				if (result == null) result = caseICommand(fileName);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.PAGE_TILE: {
+				PageTile pageTile = (PageTile)theEObject;
+				T result = casePageTile(pageTile);
+				if (result == null) result = caseICommand(pageTile);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.FILE_SIZE: {
+				FileSize fileSize = (FileSize)theEObject;
+				T result = caseFileSize(fileSize);
+				if (result == null) result = caseICommand(fileSize);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -192,17 +213,17 @@ public class ModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ressource Name</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Folder Name</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ressource Name</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Folder Name</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRessourceName(RessourceName object) {
+	public T caseFolderName(FolderName object) {
 		return null;
 	}
 
@@ -218,6 +239,51 @@ public class ModelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePath(Path object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>File Name</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>File Name</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFileName(FileName object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Page Tile</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Page Tile</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePageTile(PageTile object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>File Size</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>File Size</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFileSize(FileSize object) {
 		return null;
 	}
 

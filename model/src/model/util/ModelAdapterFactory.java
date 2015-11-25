@@ -88,12 +88,24 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 				return createICommandAdapter();
 			}
 			@Override
-			public Adapter caseRessourceName(RessourceName object) {
-				return createRessourceNameAdapter();
+			public Adapter caseFolderName(FolderName object) {
+				return createFolderNameAdapter();
 			}
 			@Override
 			public Adapter casePath(Path object) {
 				return createPathAdapter();
+			}
+			@Override
+			public Adapter caseFileName(FileName object) {
+				return createFileNameAdapter();
+			}
+			@Override
+			public Adapter casePageTile(PageTile object) {
+				return createPageTileAdapter();
+			}
+			@Override
+			public Adapter caseFileSize(FileSize object) {
+				return createFileSizeAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -186,16 +198,16 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link model.RessourceName <em>Ressource Name</em>}'.
+	 * Creates a new adapter for an object of class '{@link model.FolderName <em>Folder Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see model.RessourceName
+	 * @see model.FolderName
 	 * @generated
 	 */
-	public Adapter createRessourceNameAdapter() {
+	public Adapter createFolderNameAdapter() {
 		return null;
 	}
 
@@ -210,6 +222,48 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPathAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.FileName <em>File Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.FileName
+	 * @generated
+	 */
+	public Adapter createFileNameAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.PageTile <em>Page Tile</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.PageTile
+	 * @generated
+	 */
+	public Adapter createPageTileAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.FileSize <em>File Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.FileSize
+	 * @generated
+	 */
+	public Adapter createFileSizeAdapter() {
 		return null;
 	}
 

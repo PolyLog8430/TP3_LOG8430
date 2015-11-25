@@ -18,7 +18,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ICommand" abstract="true" interface="true">
+  <eClassifiers xsi:type="ecore:EClass" name="ICommand" abstract="true">
     <eOperations name="execute">
       <eParameters name="resourceId" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     </eOperations>
@@ -32,10 +32,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="codeResult" eType="#//CommandCodeResult"
         defaultValueLiteral="SUCCESS"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RessourceName" eSuperTypes="#//ICommand"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FolderName" eSuperTypes="#//ICommand"/>
   <eClassifiers xsi:type="ecore:EClass" name="Path" eSuperTypes="#//ICommand"/>
   <eClassifiers xsi:type="ecore:EEnum" name="CommandCodeResult">
     <eLiterals name="SUCCESS"/>
     <eLiterals name="ERROR" value="1"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FileName" eSuperTypes="#//ICommand"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PageTile" eSuperTypes="#//ICommand"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FileSize" eSuperTypes="#//ICommand"/>
 </ecore:EPackage>

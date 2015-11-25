@@ -36,7 +36,10 @@
         <genParameters ecoreParameter="model.ecore#//ICommand/execute/resourceId"/>
       </genOperations>
     </genClasses>
-    <genClasses ecoreClass="model.ecore#//RessourceName"/>
+    <genClasses ecoreClass="model.ecore#//FolderName"/>
     <genClasses ecoreClass="model.ecore#//Path"/>
+    <genClasses ecoreClass="model.ecore#//FileName"/>
+    <genClasses ecoreClass="model.ecore#//PageTile"/>
+    <genClasses ecoreClass="model.ecore#//FileSize"/>
   </genPackages>
 </genmodel:GenModel>

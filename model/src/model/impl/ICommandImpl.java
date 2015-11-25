@@ -3,41 +3,43 @@
 package model.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import model.CommandCodeResult;
+import model.ICommand;
 import model.ModelPackage;
 import model.Ressource;
-import model.RessourceName;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Ressource Name</b></em>'.
+ * An implementation of the model object '<em><b>ICommand</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link model.impl.RessourceNameImpl#getName <em>Name</em>}</li>
- *   <li>{@link model.impl.RessourceNameImpl#getRessource <em>Ressource</em>}</li>
- *   <li>{@link model.impl.RessourceNameImpl#getResult <em>Result</em>}</li>
- *   <li>{@link model.impl.RessourceNameImpl#isApplyOnFolder <em>Apply On Folder</em>}</li>
- *   <li>{@link model.impl.RessourceNameImpl#isApplyOnFile <em>Apply On File</em>}</li>
- *   <li>{@link model.impl.RessourceNameImpl#isApplyOnURI <em>Apply On URI</em>}</li>
- *   <li>{@link model.impl.RessourceNameImpl#getCodeResult <em>Code Result</em>}</li>
+ *   <li>{@link model.impl.ICommandImpl#getName <em>Name</em>}</li>
+ *   <li>{@link model.impl.ICommandImpl#getRessource <em>Ressource</em>}</li>
+ *   <li>{@link model.impl.ICommandImpl#getResult <em>Result</em>}</li>
+ *   <li>{@link model.impl.ICommandImpl#isApplyOnFolder <em>Apply On Folder</em>}</li>
+ *   <li>{@link model.impl.ICommandImpl#isApplyOnFile <em>Apply On File</em>}</li>
+ *   <li>{@link model.impl.ICommandImpl#isApplyOnURI <em>Apply On URI</em>}</li>
+ *   <li>{@link model.impl.ICommandImpl#getCodeResult <em>Code Result</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class RessourceNameImpl extends MinimalEObjectImpl.Container implements RessourceName {
+public abstract class ICommandImpl extends MinimalEObjectImpl.Container implements ICommand {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -173,7 +175,7 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RessourceNameImpl() {
+	protected ICommandImpl() {
 		super();
 	}
 
@@ -184,7 +186,7 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ModelPackage.Literals.RESSOURCE_NAME;
+		return ModelPackage.Literals.ICOMMAND;
 	}
 
 	/**
@@ -205,7 +207,7 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.RESSOURCE_NAME__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.ICOMMAND__NAME, oldName, name));
 	}
 
 	/**
@@ -226,7 +228,7 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 		Ressource oldRessource = ressource;
 		ressource = newRessource;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.RESSOURCE_NAME__RESSOURCE, oldRessource, newRessource);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.ICOMMAND__RESSOURCE, oldRessource, newRessource);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -241,14 +243,14 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 		if (newRessource != ressource) {
 			NotificationChain msgs = null;
 			if (ressource != null)
-				msgs = ((InternalEObject)ressource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelPackage.RESSOURCE_NAME__RESSOURCE, null, msgs);
+				msgs = ((InternalEObject)ressource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelPackage.ICOMMAND__RESSOURCE, null, msgs);
 			if (newRessource != null)
-				msgs = ((InternalEObject)newRessource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelPackage.RESSOURCE_NAME__RESSOURCE, null, msgs);
+				msgs = ((InternalEObject)newRessource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelPackage.ICOMMAND__RESSOURCE, null, msgs);
 			msgs = basicSetRessource(newRessource, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.RESSOURCE_NAME__RESSOURCE, newRessource, newRessource));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.ICOMMAND__RESSOURCE, newRessource, newRessource));
 	}
 
 	/**
@@ -269,7 +271,7 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 		String oldResult = result;
 		result = newResult;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.RESSOURCE_NAME__RESULT, oldResult, result));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.ICOMMAND__RESULT, oldResult, result));
 	}
 
 	/**
@@ -290,7 +292,7 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 		boolean oldApplyOnFolder = applyOnFolder;
 		applyOnFolder = newApplyOnFolder;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.RESSOURCE_NAME__APPLY_ON_FOLDER, oldApplyOnFolder, applyOnFolder));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.ICOMMAND__APPLY_ON_FOLDER, oldApplyOnFolder, applyOnFolder));
 	}
 
 	/**
@@ -311,7 +313,7 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 		boolean oldApplyOnFile = applyOnFile;
 		applyOnFile = newApplyOnFile;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.RESSOURCE_NAME__APPLY_ON_FILE, oldApplyOnFile, applyOnFile));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.ICOMMAND__APPLY_ON_FILE, oldApplyOnFile, applyOnFile));
 	}
 
 	/**
@@ -332,7 +334,7 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 		boolean oldApplyOnURI = applyOnURI;
 		applyOnURI = newApplyOnURI;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.RESSOURCE_NAME__APPLY_ON_URI, oldApplyOnURI, applyOnURI));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.ICOMMAND__APPLY_ON_URI, oldApplyOnURI, applyOnURI));
 	}
 
 	/**
@@ -353,7 +355,7 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 		CommandCodeResult oldCodeResult = codeResult;
 		codeResult = newCodeResult == null ? CODE_RESULT_EDEFAULT : newCodeResult;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.RESSOURCE_NAME__CODE_RESULT, oldCodeResult, codeResult));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.ICOMMAND__CODE_RESULT, oldCodeResult, codeResult));
 	}
 
 	/**
@@ -375,7 +377,7 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.RESSOURCE_NAME__RESSOURCE:
+			case ModelPackage.ICOMMAND__RESSOURCE:
 				return basicSetRessource(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -389,19 +391,19 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.RESSOURCE_NAME__NAME:
+			case ModelPackage.ICOMMAND__NAME:
 				return getName();
-			case ModelPackage.RESSOURCE_NAME__RESSOURCE:
+			case ModelPackage.ICOMMAND__RESSOURCE:
 				return getRessource();
-			case ModelPackage.RESSOURCE_NAME__RESULT:
+			case ModelPackage.ICOMMAND__RESULT:
 				return getResult();
-			case ModelPackage.RESSOURCE_NAME__APPLY_ON_FOLDER:
+			case ModelPackage.ICOMMAND__APPLY_ON_FOLDER:
 				return isApplyOnFolder();
-			case ModelPackage.RESSOURCE_NAME__APPLY_ON_FILE:
+			case ModelPackage.ICOMMAND__APPLY_ON_FILE:
 				return isApplyOnFile();
-			case ModelPackage.RESSOURCE_NAME__APPLY_ON_URI:
+			case ModelPackage.ICOMMAND__APPLY_ON_URI:
 				return isApplyOnURI();
-			case ModelPackage.RESSOURCE_NAME__CODE_RESULT:
+			case ModelPackage.ICOMMAND__CODE_RESULT:
 				return getCodeResult();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -415,25 +417,25 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.RESSOURCE_NAME__NAME:
+			case ModelPackage.ICOMMAND__NAME:
 				setName((String)newValue);
 				return;
-			case ModelPackage.RESSOURCE_NAME__RESSOURCE:
+			case ModelPackage.ICOMMAND__RESSOURCE:
 				setRessource((Ressource)newValue);
 				return;
-			case ModelPackage.RESSOURCE_NAME__RESULT:
+			case ModelPackage.ICOMMAND__RESULT:
 				setResult((String)newValue);
 				return;
-			case ModelPackage.RESSOURCE_NAME__APPLY_ON_FOLDER:
+			case ModelPackage.ICOMMAND__APPLY_ON_FOLDER:
 				setApplyOnFolder((Boolean)newValue);
 				return;
-			case ModelPackage.RESSOURCE_NAME__APPLY_ON_FILE:
+			case ModelPackage.ICOMMAND__APPLY_ON_FILE:
 				setApplyOnFile((Boolean)newValue);
 				return;
-			case ModelPackage.RESSOURCE_NAME__APPLY_ON_URI:
+			case ModelPackage.ICOMMAND__APPLY_ON_URI:
 				setApplyOnURI((Boolean)newValue);
 				return;
-			case ModelPackage.RESSOURCE_NAME__CODE_RESULT:
+			case ModelPackage.ICOMMAND__CODE_RESULT:
 				setCodeResult((CommandCodeResult)newValue);
 				return;
 		}
@@ -448,25 +450,25 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.RESSOURCE_NAME__NAME:
+			case ModelPackage.ICOMMAND__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ModelPackage.RESSOURCE_NAME__RESSOURCE:
+			case ModelPackage.ICOMMAND__RESSOURCE:
 				setRessource((Ressource)null);
 				return;
-			case ModelPackage.RESSOURCE_NAME__RESULT:
+			case ModelPackage.ICOMMAND__RESULT:
 				setResult(RESULT_EDEFAULT);
 				return;
-			case ModelPackage.RESSOURCE_NAME__APPLY_ON_FOLDER:
+			case ModelPackage.ICOMMAND__APPLY_ON_FOLDER:
 				setApplyOnFolder(APPLY_ON_FOLDER_EDEFAULT);
 				return;
-			case ModelPackage.RESSOURCE_NAME__APPLY_ON_FILE:
+			case ModelPackage.ICOMMAND__APPLY_ON_FILE:
 				setApplyOnFile(APPLY_ON_FILE_EDEFAULT);
 				return;
-			case ModelPackage.RESSOURCE_NAME__APPLY_ON_URI:
+			case ModelPackage.ICOMMAND__APPLY_ON_URI:
 				setApplyOnURI(APPLY_ON_URI_EDEFAULT);
 				return;
-			case ModelPackage.RESSOURCE_NAME__CODE_RESULT:
+			case ModelPackage.ICOMMAND__CODE_RESULT:
 				setCodeResult(CODE_RESULT_EDEFAULT);
 				return;
 		}
@@ -481,19 +483,19 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.RESSOURCE_NAME__NAME:
+			case ModelPackage.ICOMMAND__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ModelPackage.RESSOURCE_NAME__RESSOURCE:
+			case ModelPackage.ICOMMAND__RESSOURCE:
 				return ressource != null;
-			case ModelPackage.RESSOURCE_NAME__RESULT:
+			case ModelPackage.ICOMMAND__RESULT:
 				return RESULT_EDEFAULT == null ? result != null : !RESULT_EDEFAULT.equals(result);
-			case ModelPackage.RESSOURCE_NAME__APPLY_ON_FOLDER:
+			case ModelPackage.ICOMMAND__APPLY_ON_FOLDER:
 				return applyOnFolder != APPLY_ON_FOLDER_EDEFAULT;
-			case ModelPackage.RESSOURCE_NAME__APPLY_ON_FILE:
+			case ModelPackage.ICOMMAND__APPLY_ON_FILE:
 				return applyOnFile != APPLY_ON_FILE_EDEFAULT;
-			case ModelPackage.RESSOURCE_NAME__APPLY_ON_URI:
+			case ModelPackage.ICOMMAND__APPLY_ON_URI:
 				return applyOnURI != APPLY_ON_URI_EDEFAULT;
-			case ModelPackage.RESSOURCE_NAME__CODE_RESULT:
+			case ModelPackage.ICOMMAND__CODE_RESULT:
 				return codeResult != CODE_RESULT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -507,7 +509,7 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ModelPackage.RESSOURCE_NAME___EXECUTE__STRING:
+			case ModelPackage.ICOMMAND___EXECUTE__STRING:
 				execute((String)arguments.get(0));
 				return null;
 		}
@@ -540,4 +542,4 @@ public class RessourceNameImpl extends MinimalEObjectImpl.Container implements R
 		return result.toString();
 	}
 
-} //RessourceNameImpl
+} //ICommandImpl

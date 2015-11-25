@@ -49,13 +49,13 @@ public interface ModelFactory extends EFactory {
 	ExternalRessource createExternalRessource();
 
 	/**
-	 * Returns a new object of class '<em>Ressource Name</em>'.
+	 * Returns a new object of class '<em>Folder Name</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ressource Name</em>'.
+	 * @return a new object of class '<em>Folder Name</em>'.
 	 * @generated
 	 */
-	RessourceName createRessourceName();
+	FolderName createFolderName();
 
 	/**
 	 * Returns a new object of class '<em>Path</em>'.
@@ -65,6 +65,33 @@ public interface ModelFactory extends EFactory {
 	 * @generated
 	 */
 	Path createPath();
+
+	/**
+	 * Returns a new object of class '<em>File Name</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>File Name</em>'.
+	 * @generated
+	 */
+	FileName createFileName();
+
+	/**
+	 * Returns a new object of class '<em>Page Tile</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Page Tile</em>'.
+	 * @generated
+	 */
+	PageTile createPageTile();
+
+	/**
+	 * Returns a new object of class '<em>File Size</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>File Size</em>'.
+	 * @generated
+	 */
+	FileSize createFileSize();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -4,15 +4,17 @@ package model.impl;
 
 import model.CommandCodeResult;
 import model.ExternalRessource;
+import model.FileName;
+import model.FileSize;
+import model.FolderName;
 import model.ICommand;
 import model.LocalRessource;
 import model.Model;
 import model.ModelFactory;
 import model.ModelPackage;
+import model.PageTile;
 import model.Path;
 import model.Ressource;
-import model.RessourceName;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -70,7 +72,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass ressourceNameEClass = null;
+	private EClass folderNameEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,6 +80,27 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass pathEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass fileNameEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pageTileEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass fileSizeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -335,8 +358,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRessourceName() {
-		return ressourceNameEClass;
+	public EClass getFolderName() {
+		return folderNameEClass;
 	}
 
 	/**
@@ -346,6 +369,33 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 */
 	public EClass getPath() {
 		return pathEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFileName() {
+		return fileNameEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPageTile() {
+		return pageTileEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFileSize() {
+		return fileSizeEClass;
 	}
 
 	/**
@@ -410,9 +460,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEAttribute(iCommandEClass, ICOMMAND__CODE_RESULT);
 		createEOperation(iCommandEClass, ICOMMAND___EXECUTE__STRING);
 
-		ressourceNameEClass = createEClass(RESSOURCE_NAME);
+		folderNameEClass = createEClass(FOLDER_NAME);
 
 		pathEClass = createEClass(PATH);
+
+		fileNameEClass = createEClass(FILE_NAME);
+
+		pageTileEClass = createEClass(PAGE_TILE);
+
+		fileSizeEClass = createEClass(FILE_SIZE);
 
 		// Create enums
 		commandCodeResultEEnum = createEEnum(COMMAND_CODE_RESULT);
@@ -451,8 +507,11 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Add supertypes to classes
 		localRessourceEClass.getESuperTypes().add(this.getRessource());
 		externalRessourceEClass.getESuperTypes().add(this.getRessource());
-		ressourceNameEClass.getESuperTypes().add(this.getICommand());
+		folderNameEClass.getESuperTypes().add(this.getICommand());
 		pathEClass.getESuperTypes().add(this.getICommand());
+		fileNameEClass.getESuperTypes().add(this.getICommand());
+		pageTileEClass.getESuperTypes().add(this.getICommand());
+		fileSizeEClass.getESuperTypes().add(this.getICommand());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(ressourceEClass, Ressource.class, "Ressource", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -470,7 +529,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEAttribute(getExternalRessource_Title(), ecorePackage.getEString(), "title", null, 0, 1, ExternalRessource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExternalRessource_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, ExternalRessource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(iCommandEClass, ICommand.class, "ICommand", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(iCommandEClass, ICommand.class, "ICommand", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getICommand_Name(), ecorePackage.getEString(), "Name", null, 0, 1, ICommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getICommand_Ressource(), this.getRessource(), null, "ressource", null, 0, 1, ICommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getICommand_Result(), ecorePackage.getEString(), "result", null, 0, 1, ICommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -482,9 +541,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		EOperation op = initEOperation(getICommand__Execute__String(), null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theXMLTypePackage.getString(), "resourceId", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(ressourceNameEClass, RessourceName.class, "RessourceName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(folderNameEClass, FolderName.class, "FolderName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(pathEClass, Path.class, "Path", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(fileNameEClass, FileName.class, "FileName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(pageTileEClass, PageTile.class, "PageTile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(fileSizeEClass, FileSize.class, "FileSize", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(commandCodeResultEEnum, CommandCodeResult.class, "CommandCodeResult");

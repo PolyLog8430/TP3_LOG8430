@@ -60,8 +60,11 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 			case ModelPackage.MODEL: return createModel();
 			case ModelPackage.LOCAL_RESSOURCE: return createLocalRessource();
 			case ModelPackage.EXTERNAL_RESSOURCE: return createExternalRessource();
-			case ModelPackage.RESSOURCE_NAME: return createRessourceName();
+			case ModelPackage.FOLDER_NAME: return createFolderName();
 			case ModelPackage.PATH: return createPath();
+			case ModelPackage.FILE_NAME: return createFileName();
+			case ModelPackage.PAGE_TILE: return createPageTile();
+			case ModelPackage.FILE_SIZE: return createFileSize();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -132,9 +135,9 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RessourceName createRessourceName() {
-		RessourceNameImpl ressourceName = new RessourceNameImpl();
-		return ressourceName;
+	public FolderName createFolderName() {
+		FolderNameImpl folderName = new FolderNameImpl();
+		return folderName;
 	}
 
 	/**
@@ -145,6 +148,36 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public Path createPath() {
 		PathImpl path = new PathImpl();
 		return path;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FileName createFileName() {
+		FileNameImpl fileName = new FileNameImpl();
+		return fileName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PageTile createPageTile() {
+		PageTileImpl pageTile = new PageTileImpl();
+		return pageTile;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FileSize createFileSize() {
+		FileSizeImpl fileSize = new FileSizeImpl();
+		return fileSize;
 	}
 
 	/**

@@ -252,10 +252,10 @@ public interface ModelPackage extends EPackage {
 	int EXTERNAL_RESSOURCE_OPERATION_COUNT = RESSOURCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link model.ICommand <em>ICommand</em>}' class.
+	 * The meta object id for the '{@link model.impl.ICommandImpl <em>ICommand</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see model.ICommand
+	 * @see model.impl.ICommandImpl
 	 * @see model.impl.ModelPackageImpl#getICommand()
 	 * @generated
 	 */
@@ -352,14 +352,14 @@ public interface ModelPackage extends EPackage {
 	int ICOMMAND_OPERATION_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link model.impl.RessourceNameImpl <em>Ressource Name</em>}' class.
+	 * The meta object id for the '{@link model.impl.FolderNameImpl <em>Folder Name</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see model.impl.RessourceNameImpl
-	 * @see model.impl.ModelPackageImpl#getRessourceName()
+	 * @see model.impl.FolderNameImpl
+	 * @see model.impl.ModelPackageImpl#getFolderName()
 	 * @generated
 	 */
-	int RESSOURCE_NAME = 5;
+	int FOLDER_NAME = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -368,7 +368,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESSOURCE_NAME__NAME = ICOMMAND__NAME;
+	int FOLDER_NAME__NAME = ICOMMAND__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Ressource</b></em>' containment reference.
@@ -377,7 +377,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESSOURCE_NAME__RESSOURCE = ICOMMAND__RESSOURCE;
+	int FOLDER_NAME__RESSOURCE = ICOMMAND__RESSOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Result</b></em>' attribute.
@@ -386,7 +386,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESSOURCE_NAME__RESULT = ICOMMAND__RESULT;
+	int FOLDER_NAME__RESULT = ICOMMAND__RESULT;
 
 	/**
 	 * The feature id for the '<em><b>Apply On Folder</b></em>' attribute.
@@ -395,7 +395,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESSOURCE_NAME__APPLY_ON_FOLDER = ICOMMAND__APPLY_ON_FOLDER;
+	int FOLDER_NAME__APPLY_ON_FOLDER = ICOMMAND__APPLY_ON_FOLDER;
 
 	/**
 	 * The feature id for the '<em><b>Apply On File</b></em>' attribute.
@@ -404,7 +404,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESSOURCE_NAME__APPLY_ON_FILE = ICOMMAND__APPLY_ON_FILE;
+	int FOLDER_NAME__APPLY_ON_FILE = ICOMMAND__APPLY_ON_FILE;
 
 	/**
 	 * The feature id for the '<em><b>Apply On URI</b></em>' attribute.
@@ -413,7 +413,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESSOURCE_NAME__APPLY_ON_URI = ICOMMAND__APPLY_ON_URI;
+	int FOLDER_NAME__APPLY_ON_URI = ICOMMAND__APPLY_ON_URI;
 
 	/**
 	 * The feature id for the '<em><b>Code Result</b></em>' attribute.
@@ -422,16 +422,16 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESSOURCE_NAME__CODE_RESULT = ICOMMAND__CODE_RESULT;
+	int FOLDER_NAME__CODE_RESULT = ICOMMAND__CODE_RESULT;
 
 	/**
-	 * The number of structural features of the '<em>Ressource Name</em>' class.
+	 * The number of structural features of the '<em>Folder Name</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESSOURCE_NAME_FEATURE_COUNT = ICOMMAND_FEATURE_COUNT + 0;
+	int FOLDER_NAME_FEATURE_COUNT = ICOMMAND_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Execute</em>' operation.
@@ -440,16 +440,16 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESSOURCE_NAME___EXECUTE__STRING = ICOMMAND___EXECUTE__STRING;
+	int FOLDER_NAME___EXECUTE__STRING = ICOMMAND___EXECUTE__STRING;
 
 	/**
-	 * The number of operations of the '<em>Ressource Name</em>' class.
+	 * The number of operations of the '<em>Folder Name</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESSOURCE_NAME_OPERATION_COUNT = ICOMMAND_OPERATION_COUNT + 0;
+	int FOLDER_NAME_OPERATION_COUNT = ICOMMAND_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link model.impl.PathImpl <em>Path</em>}' class.
@@ -553,6 +553,306 @@ public interface ModelPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link model.impl.FileNameImpl <em>File Name</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.FileNameImpl
+	 * @see model.impl.ModelPackageImpl#getFileName()
+	 * @generated
+	 */
+	int FILE_NAME = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_NAME__NAME = ICOMMAND__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Ressource</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_NAME__RESSOURCE = ICOMMAND__RESSOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_NAME__RESULT = ICOMMAND__RESULT;
+
+	/**
+	 * The feature id for the '<em><b>Apply On Folder</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_NAME__APPLY_ON_FOLDER = ICOMMAND__APPLY_ON_FOLDER;
+
+	/**
+	 * The feature id for the '<em><b>Apply On File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_NAME__APPLY_ON_FILE = ICOMMAND__APPLY_ON_FILE;
+
+	/**
+	 * The feature id for the '<em><b>Apply On URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_NAME__APPLY_ON_URI = ICOMMAND__APPLY_ON_URI;
+
+	/**
+	 * The feature id for the '<em><b>Code Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_NAME__CODE_RESULT = ICOMMAND__CODE_RESULT;
+
+	/**
+	 * The number of structural features of the '<em>File Name</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_NAME_FEATURE_COUNT = ICOMMAND_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Execute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_NAME___EXECUTE__STRING = ICOMMAND___EXECUTE__STRING;
+
+	/**
+	 * The number of operations of the '<em>File Name</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_NAME_OPERATION_COUNT = ICOMMAND_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link model.impl.PageTileImpl <em>Page Tile</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.PageTileImpl
+	 * @see model.impl.ModelPackageImpl#getPageTile()
+	 * @generated
+	 */
+	int PAGE_TILE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TILE__NAME = ICOMMAND__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Ressource</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TILE__RESSOURCE = ICOMMAND__RESSOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TILE__RESULT = ICOMMAND__RESULT;
+
+	/**
+	 * The feature id for the '<em><b>Apply On Folder</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TILE__APPLY_ON_FOLDER = ICOMMAND__APPLY_ON_FOLDER;
+
+	/**
+	 * The feature id for the '<em><b>Apply On File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TILE__APPLY_ON_FILE = ICOMMAND__APPLY_ON_FILE;
+
+	/**
+	 * The feature id for the '<em><b>Apply On URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TILE__APPLY_ON_URI = ICOMMAND__APPLY_ON_URI;
+
+	/**
+	 * The feature id for the '<em><b>Code Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TILE__CODE_RESULT = ICOMMAND__CODE_RESULT;
+
+	/**
+	 * The number of structural features of the '<em>Page Tile</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TILE_FEATURE_COUNT = ICOMMAND_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Execute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TILE___EXECUTE__STRING = ICOMMAND___EXECUTE__STRING;
+
+	/**
+	 * The number of operations of the '<em>Page Tile</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TILE_OPERATION_COUNT = ICOMMAND_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link model.impl.FileSizeImpl <em>File Size</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.FileSizeImpl
+	 * @see model.impl.ModelPackageImpl#getFileSize()
+	 * @generated
+	 */
+	int FILE_SIZE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_SIZE__NAME = ICOMMAND__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Ressource</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_SIZE__RESSOURCE = ICOMMAND__RESSOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_SIZE__RESULT = ICOMMAND__RESULT;
+
+	/**
+	 * The feature id for the '<em><b>Apply On Folder</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_SIZE__APPLY_ON_FOLDER = ICOMMAND__APPLY_ON_FOLDER;
+
+	/**
+	 * The feature id for the '<em><b>Apply On File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_SIZE__APPLY_ON_FILE = ICOMMAND__APPLY_ON_FILE;
+
+	/**
+	 * The feature id for the '<em><b>Apply On URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_SIZE__APPLY_ON_URI = ICOMMAND__APPLY_ON_URI;
+
+	/**
+	 * The feature id for the '<em><b>Code Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_SIZE__CODE_RESULT = ICOMMAND__CODE_RESULT;
+
+	/**
+	 * The number of structural features of the '<em>File Size</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_SIZE_FEATURE_COUNT = ICOMMAND_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Execute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_SIZE___EXECUTE__STRING = ICOMMAND___EXECUTE__STRING;
+
+	/**
+	 * The number of operations of the '<em>File Size</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_SIZE_OPERATION_COUNT = ICOMMAND_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link model.CommandCodeResult <em>Command Code Result</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -560,7 +860,7 @@ public interface ModelPackage extends EPackage {
 	 * @see model.impl.ModelPackageImpl#getCommandCodeResult()
 	 * @generated
 	 */
-	int COMMAND_CODE_RESULT = 7;
+	int COMMAND_CODE_RESULT = 10;
 
 
 	/**
@@ -778,14 +1078,14 @@ public interface ModelPackage extends EPackage {
 	EOperation getICommand__Execute__String();
 
 	/**
-	 * Returns the meta object for class '{@link model.RessourceName <em>Ressource Name</em>}'.
+	 * Returns the meta object for class '{@link model.FolderName <em>Folder Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Ressource Name</em>'.
-	 * @see model.RessourceName
+	 * @return the meta object for class '<em>Folder Name</em>'.
+	 * @see model.FolderName
 	 * @generated
 	 */
-	EClass getRessourceName();
+	EClass getFolderName();
 
 	/**
 	 * Returns the meta object for class '{@link model.Path <em>Path</em>}'.
@@ -796,6 +1096,36 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPath();
+
+	/**
+	 * Returns the meta object for class '{@link model.FileName <em>File Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>File Name</em>'.
+	 * @see model.FileName
+	 * @generated
+	 */
+	EClass getFileName();
+
+	/**
+	 * Returns the meta object for class '{@link model.PageTile <em>Page Tile</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Page Tile</em>'.
+	 * @see model.PageTile
+	 * @generated
+	 */
+	EClass getPageTile();
+
+	/**
+	 * Returns the meta object for class '{@link model.FileSize <em>File Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>File Size</em>'.
+	 * @see model.FileSize
+	 * @generated
+	 */
+	EClass getFileSize();
 
 	/**
 	 * Returns the meta object for enum '{@link model.CommandCodeResult <em>Command Code Result</em>}'.
@@ -927,10 +1257,10 @@ public interface ModelPackage extends EPackage {
 		EAttribute EXTERNAL_RESSOURCE__URI = eINSTANCE.getExternalRessource_Uri();
 
 		/**
-		 * The meta object literal for the '{@link model.ICommand <em>ICommand</em>}' class.
+		 * The meta object literal for the '{@link model.impl.ICommandImpl <em>ICommand</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see model.ICommand
+		 * @see model.impl.ICommandImpl
 		 * @see model.impl.ModelPackageImpl#getICommand()
 		 * @generated
 		 */
@@ -1001,14 +1331,14 @@ public interface ModelPackage extends EPackage {
 		EOperation ICOMMAND___EXECUTE__STRING = eINSTANCE.getICommand__Execute__String();
 
 		/**
-		 * The meta object literal for the '{@link model.impl.RessourceNameImpl <em>Ressource Name</em>}' class.
+		 * The meta object literal for the '{@link model.impl.FolderNameImpl <em>Folder Name</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see model.impl.RessourceNameImpl
-		 * @see model.impl.ModelPackageImpl#getRessourceName()
+		 * @see model.impl.FolderNameImpl
+		 * @see model.impl.ModelPackageImpl#getFolderName()
 		 * @generated
 		 */
-		EClass RESSOURCE_NAME = eINSTANCE.getRessourceName();
+		EClass FOLDER_NAME = eINSTANCE.getFolderName();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.PathImpl <em>Path</em>}' class.
@@ -1019,6 +1349,36 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PATH = eINSTANCE.getPath();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.FileNameImpl <em>File Name</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.FileNameImpl
+		 * @see model.impl.ModelPackageImpl#getFileName()
+		 * @generated
+		 */
+		EClass FILE_NAME = eINSTANCE.getFileName();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.PageTileImpl <em>Page Tile</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.PageTileImpl
+		 * @see model.impl.ModelPackageImpl#getPageTile()
+		 * @generated
+		 */
+		EClass PAGE_TILE = eINSTANCE.getPageTile();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.FileSizeImpl <em>File Size</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.FileSizeImpl
+		 * @see model.impl.ModelPackageImpl#getFileSize()
+		 * @generated
+		 */
+		EClass FILE_SIZE = eINSTANCE.getFileSize();
 
 		/**
 		 * The meta object literal for the '{@link model.CommandCodeResult <em>Command Code Result</em>}' enum.

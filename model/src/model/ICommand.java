@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see model.ModelPackage#getICommand()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
 public interface ICommand extends EObject {
