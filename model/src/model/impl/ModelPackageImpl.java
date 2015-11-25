@@ -2,6 +2,7 @@
  */
 package model.impl;
 
+import model.CommandCodeResult;
 import model.ExternalRessource;
 import model.ICommand;
 import model.LocalRessource;
@@ -14,10 +15,13 @@ import model.RessourceName;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -76,6 +80,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	private EClass pathEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum commandCodeResultEEnum = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -120,6 +131,9 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		ModelPackageImpl theModelPackage = (ModelPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ModelPackageImpl());
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		XMLTypePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theModelPackage.createPackageContents();
@@ -195,8 +209,44 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getLocalRessource_Permission() {
+		return (EAttribute)localRessourceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLocalRessource_Path() {
+		return (EAttribute)localRessourceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExternalRessource() {
 		return externalRessourceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExternalRessource_Title() {
+		return (EAttribute)externalRessourceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExternalRessource_Uri() {
+		return (EAttribute)externalRessourceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -222,6 +272,69 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getICommand_Ressource() {
+		return (EReference)iCommandEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getICommand_Result() {
+		return (EAttribute)iCommandEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getICommand_ApplyOnFolder() {
+		return (EAttribute)iCommandEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getICommand_ApplyOnFile() {
+		return (EAttribute)iCommandEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getICommand_ApplyOnURI() {
+		return (EAttribute)iCommandEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getICommand_CodeResult() {
+		return (EAttribute)iCommandEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getICommand__Execute__String() {
+		return iCommandEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRessourceName() {
 		return ressourceNameEClass;
 	}
@@ -233,6 +346,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 */
 	public EClass getPath() {
 		return pathEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getCommandCodeResult() {
+		return commandCodeResultEEnum;
 	}
 
 	/**
@@ -271,15 +393,29 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEReference(modelEClass, MODEL__COMMAND);
 
 		localRessourceEClass = createEClass(LOCAL_RESSOURCE);
+		createEAttribute(localRessourceEClass, LOCAL_RESSOURCE__PERMISSION);
+		createEAttribute(localRessourceEClass, LOCAL_RESSOURCE__PATH);
 
 		externalRessourceEClass = createEClass(EXTERNAL_RESSOURCE);
+		createEAttribute(externalRessourceEClass, EXTERNAL_RESSOURCE__TITLE);
+		createEAttribute(externalRessourceEClass, EXTERNAL_RESSOURCE__URI);
 
 		iCommandEClass = createEClass(ICOMMAND);
 		createEAttribute(iCommandEClass, ICOMMAND__NAME);
+		createEReference(iCommandEClass, ICOMMAND__RESSOURCE);
+		createEAttribute(iCommandEClass, ICOMMAND__RESULT);
+		createEAttribute(iCommandEClass, ICOMMAND__APPLY_ON_FOLDER);
+		createEAttribute(iCommandEClass, ICOMMAND__APPLY_ON_FILE);
+		createEAttribute(iCommandEClass, ICOMMAND__APPLY_ON_URI);
+		createEAttribute(iCommandEClass, ICOMMAND__CODE_RESULT);
+		createEOperation(iCommandEClass, ICOMMAND___EXECUTE__STRING);
 
 		ressourceNameEClass = createEClass(RESSOURCE_NAME);
 
 		pathEClass = createEClass(PATH);
+
+		// Create enums
+		commandCodeResultEEnum = createEEnum(COMMAND_CODE_RESULT);
 	}
 
 	/**
@@ -305,6 +441,9 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
@@ -324,15 +463,33 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEReference(getModel_Command(), this.getICommand(), null, "Command", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(localRessourceEClass, LocalRessource.class, "LocalRessource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLocalRessource_Permission(), ecorePackage.getEString(), "permission", null, 0, 1, LocalRessource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLocalRessource_Path(), ecorePackage.getEString(), "path", null, 0, 1, LocalRessource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(externalRessourceEClass, ExternalRessource.class, "ExternalRessource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getExternalRessource_Title(), ecorePackage.getEString(), "title", null, 0, 1, ExternalRessource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExternalRessource_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, ExternalRessource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iCommandEClass, ICommand.class, "ICommand", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getICommand_Name(), ecorePackage.getEString(), "Name", null, 0, 1, ICommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getICommand_Ressource(), this.getRessource(), null, "ressource", null, 0, 1, ICommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getICommand_Result(), ecorePackage.getEString(), "result", null, 0, 1, ICommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getICommand_ApplyOnFolder(), theXMLTypePackage.getBoolean(), "applyOnFolder", null, 0, 1, ICommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getICommand_ApplyOnFile(), theXMLTypePackage.getBoolean(), "applyOnFile", null, 0, 1, ICommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getICommand_ApplyOnURI(), theXMLTypePackage.getBoolean(), "applyOnURI", null, 0, 1, ICommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getICommand_CodeResult(), this.getCommandCodeResult(), "codeResult", "SUCCESS", 0, 1, ICommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		EOperation op = initEOperation(getICommand__Execute__String(), null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theXMLTypePackage.getString(), "resourceId", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(ressourceNameEClass, RessourceName.class, "RessourceName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(pathEClass, Path.class, "Path", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		// Initialize enums and add enum literals
+		initEEnum(commandCodeResultEEnum, CommandCodeResult.class, "CommandCodeResult");
+		addEEnumLiteral(commandCodeResultEEnum, CommandCodeResult.SUCCESS);
+		addEEnumLiteral(commandCodeResultEEnum, CommandCodeResult.ERROR);
 
 		// Create resource
 		createResource(eNS_URI);

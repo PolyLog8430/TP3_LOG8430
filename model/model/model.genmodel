@@ -5,6 +5,10 @@
     complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>model.ecore</foreignModel>
   <genPackages prefix="Model" disposableProviderFactory="true" ecorePackage="model.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//CommandCodeResult">
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//CommandCodeResult/SUCCESS"/>
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//CommandCodeResult/ERROR"/>
+    </genEnums>
     <genClasses ecoreClass="model.ecore#//Ressource">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Ressource/name"/>
     </genClasses>
@@ -12,10 +16,25 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Model/Ressource"/>
       <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Model/Command"/>
     </genClasses>
-    <genClasses ecoreClass="model.ecore#//LocalRessource"/>
-    <genClasses ecoreClass="model.ecore#//ExternalRessource"/>
+    <genClasses ecoreClass="model.ecore#//LocalRessource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//LocalRessource/permission"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//LocalRessource/path"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//ExternalRessource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ExternalRessource/title"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ExternalRessource/uri"/>
+    </genClasses>
     <genClasses ecoreClass="model.ecore#//ICommand">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ICommand/Name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//ICommand/ressource"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ICommand/result"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ICommand/applyOnFolder"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ICommand/applyOnFile"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ICommand/applyOnURI"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ICommand/codeResult"/>
+      <genOperations ecoreOperation="model.ecore#//ICommand/execute">
+        <genParameters ecoreParameter="model.ecore#//ICommand/execute/resourceId"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//RessourceName"/>
     <genClasses ecoreClass="model.ecore#//Path"/>
