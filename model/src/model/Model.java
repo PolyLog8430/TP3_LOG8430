@@ -15,10 +15,10 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link model.Model#getRessource <em>Ressource</em>}</li>
- *   <li>{@link model.Model#getCommand <em>Command</em>}</li>
- *   <li>{@link model.Model#getLocalRessources <em>Local Ressources</em>}</li>
- *   <li>{@link model.Model#getExternalRessources <em>External Ressources</em>}</li>
+ *   <li>{@link model.Model#getResources <em>Resources</em>}</li>
+ *   <li>{@link model.Model#getCommands <em>Commands</em>}</li>
+ *   <li>{@link model.Model#getLocalResources <em>Local Resources</em>}</li>
+ *   <li>{@link model.Model#getExternalResources <em>External Resources</em>}</li>
  * </ul>
  *
  * @see model.ModelPackage#getModel()
@@ -27,67 +27,67 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Model extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Ressource</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Resources</b></em>' containment reference list.
 	 * The list contents are of type {@link model.Ressource}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Ressource</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Resources</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Ressource</em>' containment reference list.
-	 * @see model.ModelPackage#getModel_Ressource()
+	 * @return the value of the '<em>Resources</em>' containment reference list.
+	 * @see model.ModelPackage#getModel_Resources()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Ressource> getRessource();
+	EList<Ressource> getResources();
 
 	/**
-	 * Returns the value of the '<em><b>Command</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Commands</b></em>' containment reference list.
 	 * The list contents are of type {@link model.ICommand}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Command</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Commands</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Command</em>' containment reference list.
-	 * @see model.ModelPackage#getModel_Command()
+	 * @return the value of the '<em>Commands</em>' containment reference list.
+	 * @see model.ModelPackage#getModel_Commands()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ICommand> getCommand();
+	EList<ICommand> getCommands();
 
 	/**
-	 * Returns the value of the '<em><b>Local Ressources</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Local Resources</b></em>' containment reference list.
 	 * The list contents are of type {@link model.LocalRessource}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Local Ressources</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Local Resources</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Local Ressources</em>' containment reference list.
-	 * @see model.ModelPackage#getModel_LocalRessources()
+	 * @return the value of the '<em>Local Resources</em>' containment reference list.
+	 * @see model.ModelPackage#getModel_LocalResources()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<LocalRessource> getLocalRessources();
+	EList<LocalRessource> getLocalResources();
 
 	/**
-	 * Returns the value of the '<em><b>External Ressources</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>External Resources</b></em>' containment reference list.
 	 * The list contents are of type {@link model.ExternalRessource}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>External Ressources</em>' reference list isn't clear,
+	 * If the meaning of the '<em>External Resources</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>External Ressources</em>' containment reference list.
-	 * @see model.ModelPackage#getModel_ExternalRessources()
+	 * @return the value of the '<em>External Resources</em>' containment reference list.
+	 * @see model.ModelPackage#getModel_ExternalResources()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ExternalRessource> getExternalRessources();
+	EList<ExternalRessource> getExternalResources();
 
 } // Model

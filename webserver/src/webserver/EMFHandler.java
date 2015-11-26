@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -28,7 +29,7 @@ public class EMFHandler extends AbstractHandler {
 		this.root = root;
 	}
 
-	public void getRequest(String path, HttpServletResponse httpResp) 
+	public void getRequest(String path, HttpServletRequest httpReq, HttpServletResponse httpResp) 
 			throws IOException, ServletException {
 		
 		String[] fragments = path.split("/");
@@ -55,6 +56,39 @@ public class EMFHandler extends AbstractHandler {
 				// call reflexively
 				System.out.println("Requested feature Name : " + feature.getName());
 				context  = eobject.eGet(feature);
+				
+				if(context instanceof EList){
+					String filterURL = httpReq.getQueryString();
+					if(filterURL != null){
+						String[] args = filterURL.split("&");
+						String[][] filters = new String[args.length][2];
+						int j = 0;
+						for(String filter : args){
+							String[] a = filter.split("=");
+							filters[j][0] = a[0];
+							filters[j][1] = (a.length == 2 ) ? a[0] : "";
+							j++;
+						}
+
+						EList list = (EList) context;
+						EList listFiltered = new BasicEList<>();
+						for(Object o : list){
+							EObject eo = (EObject) o;
+							boolean add = true;
+							for(String[] filter : filters){
+								EStructuralFeature method = eo.eClass().getEStructuralFeature(filter[0]);
+								if(method != null){
+									add &= (filter[1].equals(eo.eGet(method)));
+								}
+							}
+							if(add){
+								listFiltered.add(o);
+							}
+						}
+						
+						context = listFiltered;
+					}
+				}
 				
 			} else if (context instanceof EList) {
 				EList list = (EList) context;
@@ -142,7 +176,7 @@ public class EMFHandler extends AbstractHandler {
 			Iterator<String> iterator = json.keys();
 			while(iterator.hasNext()) {
 				String next = iterator.next();
-				returnJson += next + " : " + json.getString(next) + "\n";
+				eObject.eSet(eObject.eClass().getEStructuralFeature(next), json.getString(next));
 			}
 			
 			httpResp.setStatus(HttpServletResponse.SC_CREATED);
@@ -159,7 +193,7 @@ public class EMFHandler extends AbstractHandler {
 		String method = httpReq.getMethod();
 
 		if(method.equalsIgnoreCase("GET")) {
-			getRequest(path, httpResp);
+			getRequest(path, httpReq, httpResp);
 		} 
 		else if (method.equalsIgnoreCase("POST")) {
 			postRequest(path, httpReq, httpResp);
