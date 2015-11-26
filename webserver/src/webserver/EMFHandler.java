@@ -61,6 +61,7 @@ public class EMFHandler extends AbstractHandler {
 				System.out.println("Requested feature Name : " + feature.getName());
 				context  = eobject.eGet(feature);
 				
+				// Get filtering parameters and apply it to feature
 				if(context instanceof EList){
 					String filterURL = httpReq.getQueryString();
 					if(filterURL != null){
@@ -174,7 +175,7 @@ public class EMFHandler extends AbstractHandler {
 			EList list = (EList) mainDoc.eGet(listFeature);
 			list.add(eObject);
 			
-			// Parse body and find keys
+			// Parse json body and find keys
 			JSONObject json = new JSONObject(allBody);
 			
 			String returnJson = "";

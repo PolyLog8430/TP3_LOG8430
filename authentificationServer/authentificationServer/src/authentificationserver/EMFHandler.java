@@ -61,6 +61,7 @@ public class EMFHandler extends AbstractHandler {
 			EStructuralFeature feature = eobject.eClass().getEStructuralFeature("users");
 			EList list = (EList) eobject.eGet(feature);
 		
+			// Get user/pass with input parameters and compare to model
 			for(Object o : list){
 				EObject eo = (EObject) o;
 				if(eo.eClass().getInstanceClassName().equals(User.class.getName())){
@@ -85,7 +86,12 @@ public class EMFHandler extends AbstractHandler {
 		httpResp.flushBuffer();
 	}
 	
-	
+	/**
+	 * Transmit client request to webserver or webserver response to client
+	 * @param req
+	 * @param resp
+	 * @throws IOException
+	 */
 	private void forward(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
 		URL url = new URL("http://"+SERVER_TO_FORWARD+req.getRequestURI()+((req.getQueryString() != null) ? "?"+req.getQueryString() : ""));
