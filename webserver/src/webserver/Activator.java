@@ -31,7 +31,7 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 	private Server server;
-	private File savedModel = new File("D:\\Course programming\\TP3_LOG8430\\webserver\\My4.model");
+	private File savedModel = new File("example1.model");
 
 	private EObject root;
 
@@ -61,6 +61,7 @@ public class Activator extends AbstractUIPlugin {
 		server = new Server(8080);
 		XMIResource xmiResource = new XMIResourceImpl();
 		
+		System.out.println(new File(".").getAbsolutePath());
 		IPath stateLocation = Activator.getDefault().getStateLocation();
 		IPath model = stateLocation.append("savedModel.xml");
 		//File savedFile = model.toFile();

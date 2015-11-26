@@ -32,7 +32,7 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 	private Server server;
-	private File savedModel = new File("D:\\Course programming\\TP3_LOG8430\\authentificationServer\\authentificationServer\\users.model");
+	private File savedModel = new File("users.model");
 
 	private EObject root;
 
