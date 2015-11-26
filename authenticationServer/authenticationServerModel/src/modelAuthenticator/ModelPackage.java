@@ -1,6 +1,6 @@
 /**
  */
-package modelauthenticator;
+package modelAuthenticator;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -54,7 +54,7 @@ public interface ModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ModelPackage eINSTANCE = modelauthenticator.impl.ModelPackageImpl.init();
+	ModelPackage eINSTANCE = modelAuthenticator.impl.ModelPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link modelauthenticator.impl.UserImpl <em>User</em>}' class.

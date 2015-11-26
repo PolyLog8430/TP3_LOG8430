@@ -1,6 +1,6 @@
 /**
  */
-package modelauthenticator;
+package modelAuthenticator;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -15,17 +15,17 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link modelauthenticator.Model#getUsers <em>Users</em>}</li>
+ *   <li>{@link modelAuthenticator.Model#getUsers <em>Users</em>}</li>
  * </ul>
  *
- * @see modelauthenticator.ModelPackage#getModel()
+ * @see modelAuthenticator.modelAuthenticatorPackage#getModel()
  * @model
  * @generated
  */
 public interface Model extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Users</b></em>' containment reference list.
-	 * The list contents are of type {@link modelauthenticator.User}.
+	 * The list contents are of type {@link modelAuthenticator.User}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Users</em>' containment reference list isn't clear,
@@ -33,7 +33,7 @@ public interface Model extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Users</em>' containment reference list.
-	 * @see modelauthenticator.ModelPackage#getModel_Users()
+	 * @see modelAuthenticator.modelAuthenticatorPackage#getModel_Users()
 	 * @model containment="true"
 	 * @generated
 	 */

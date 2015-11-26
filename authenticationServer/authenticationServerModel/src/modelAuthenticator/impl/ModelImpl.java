@@ -1,13 +1,13 @@
 /**
  */
-package modelauthenticator.impl;
+package modelAuthenticator.impl;
 
 import java.util.Collection;
 
-import modelauthenticator.Model;
-import modelauthenticator.ModelPackage;
-import modelauthenticator.User;
+import modelAuthenticator.Model;
+import modelAuthenticator.User;
 
+import modelAuthenticator.modelAuthenticatorPackage;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link modelauthenticator.impl.ModelImpl#getUsers <em>Users</em>}</li>
+ *   <li>{@link modelAuthenticator.impl.ModelImpl#getUsers <em>Users</em>}</li>
  * </ul>
  *
  * @generated
@@ -60,7 +60,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ModelPackage.Literals.MODEL;
+		return modelAuthenticatorPackage.Literals.MODEL;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	 */
 	public EList<User> getUsers() {
 		if (users == null) {
-			users = new EObjectContainmentEList<User>(User.class, this, ModelPackage.MODEL__USERS);
+			users = new EObjectContainmentEList<User>(User.class, this, modelAuthenticatorPackage.MODEL__USERS);
 		}
 		return users;
 	}
@@ -83,7 +83,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.MODEL__USERS:
+			case modelAuthenticatorPackage.MODEL__USERS:
 				return ((InternalEList<?>)getUsers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -97,7 +97,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.MODEL__USERS:
+			case modelAuthenticatorPackage.MODEL__USERS:
 				return getUsers();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -112,7 +112,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.MODEL__USERS:
+			case modelAuthenticatorPackage.MODEL__USERS:
 				getUsers().clear();
 				getUsers().addAll((Collection<? extends User>)newValue);
 				return;
@@ -128,7 +128,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.MODEL__USERS:
+			case modelAuthenticatorPackage.MODEL__USERS:
 				getUsers().clear();
 				return;
 		}
@@ -143,7 +143,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.MODEL__USERS:
+			case modelAuthenticatorPackage.MODEL__USERS:
 				return users != null && !users.isEmpty();
 		}
 		return super.eIsSet(featureID);

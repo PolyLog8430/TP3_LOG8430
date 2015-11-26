@@ -1,10 +1,10 @@
 /**
  */
-package modelauthenticator.impl;
+package modelAuthenticator.impl;
 
-import modelauthenticator.ModelPackage;
-import modelauthenticator.User;
+import modelAuthenticator.User;
 
+import modelAuthenticator.modelAuthenticatorPackage;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link modelauthenticator.impl.UserImpl#getName <em>Name</em>}</li>
- *   <li>{@link modelauthenticator.impl.UserImpl#getPassword <em>Password</em>}</li>
+ *   <li>{@link modelAuthenticator.impl.UserImpl#getName <em>Name</em>}</li>
+ *   <li>{@link modelAuthenticator.impl.UserImpl#getPassword <em>Password</em>}</li>
  * </ul>
  *
  * @generated
@@ -83,7 +83,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ModelPackage.Literals.USER;
+		return modelAuthenticatorPackage.Literals.USER;
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.USER__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, modelAuthenticatorPackage.USER__NAME, oldName, name));
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		String oldPassword = password;
 		password = newPassword;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.USER__PASSWORD, oldPassword, password));
+			eNotify(new ENotificationImpl(this, Notification.SET, modelAuthenticatorPackage.USER__PASSWORD, oldPassword, password));
 	}
 
 	/**
@@ -136,9 +136,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.USER__NAME:
+			case modelAuthenticatorPackage.USER__NAME:
 				return getName();
-			case ModelPackage.USER__PASSWORD:
+			case modelAuthenticatorPackage.USER__PASSWORD:
 				return getPassword();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -152,10 +152,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.USER__NAME:
+			case modelAuthenticatorPackage.USER__NAME:
 				setName((String)newValue);
 				return;
-			case ModelPackage.USER__PASSWORD:
+			case modelAuthenticatorPackage.USER__PASSWORD:
 				setPassword((String)newValue);
 				return;
 		}
@@ -170,10 +170,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.USER__NAME:
+			case modelAuthenticatorPackage.USER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ModelPackage.USER__PASSWORD:
+			case modelAuthenticatorPackage.USER__PASSWORD:
 				setPassword(PASSWORD_EDEFAULT);
 				return;
 		}
@@ -188,9 +188,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.USER__NAME:
+			case modelAuthenticatorPackage.USER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ModelPackage.USER__PASSWORD:
+			case modelAuthenticatorPackage.USER__PASSWORD:
 				return PASSWORD_EDEFAULT == null ? password != null : !PASSWORD_EDEFAULT.equals(password);
 		}
 		return super.eIsSet(featureID);

@@ -1,6 +1,6 @@
 /**
  */
-package model;
+package modelAuthenticator;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -19,18 +19,18 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see model.ModelFactory
+ * @see modelAuthenticator.modelAuthenticatorFactory
  * @model kind="package"
  * @generated
  */
-public interface ModelPackage extends EPackage {
+public interface modelAuthenticatorPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "model";
+	String eNAME = "modelAuthenticator";
 
 	/**
 	 * The package namespace URI.
@@ -38,7 +38,7 @@ public interface ModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.example.org/model";
+	String eNS_URI = "http://www.example.org/modelauthenticator";
 
 	/**
 	 * The package namespace name.
@@ -46,7 +46,7 @@ public interface ModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "model";
+	String eNS_PREFIX = "authenticationModel";
 
 	/**
 	 * The singleton instance of the package.
@@ -54,26 +54,17 @@ public interface ModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ModelPackage eINSTANCE = model.impl.ModelPackageImpl.init();
+	modelAuthenticatorPackage eINSTANCE = modelAuthenticator.impl.modelAuthenticatorPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link model.impl.PersonneImpl <em>Personne</em>}' class.
+	 * The meta object id for the '{@link modelAuthenticator.impl.UserImpl <em>User</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see model.impl.PersonneImpl
-	 * @see model.impl.ModelPackageImpl#getPersonne()
+	 * @see modelAuthenticator.impl.UserImpl
+	 * @see modelAuthenticator.impl.modelAuthenticatorPackageImpl#getUser()
 	 * @generated
 	 */
-	int PERSONNE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Enfants</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERSONNE__ENFANTS = 0;
+	int USER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -82,54 +73,53 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PERSONNE__NAME = 1;
+	int USER__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Connaissance</b></em>' reference list.
+	 * The feature id for the '<em><b>Password</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERSONNE__CONNAISSANCE = 2;
+	int USER__PASSWORD = 1;
 
 	/**
-	 * The number of structural features of the '<em>Personne</em>' class.
+	 * The number of structural features of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERSONNE_FEATURE_COUNT = 3;
+	int USER_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Personne</em>' class.
+	 * The number of operations of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERSONNE_OPERATION_COUNT = 0;
-
+	int USER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link model.impl.ModelImpl <em>Model</em>}' class.
+	 * The meta object id for the '{@link modelAuthenticator.impl.ModelImpl <em>Model</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see model.impl.ModelImpl
-	 * @see model.impl.ModelPackageImpl#getModel()
+	 * @see modelAuthenticator.impl.ModelImpl
+	 * @see modelAuthenticator.impl.modelAuthenticatorPackageImpl#getModel()
 	 * @generated
 	 */
 	int MODEL = 1;
 
 	/**
-	 * The feature id for the '<em><b>Personnes</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Users</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__PERSONNES = 0;
+	int MODEL__USERS = 0;
 
 	/**
 	 * The number of structural features of the '<em>Model</em>' class.
@@ -151,68 +141,57 @@ public interface ModelPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link model.Personne <em>Personne</em>}'.
+	 * Returns the meta object for class '{@link modelAuthenticator.User <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Personne</em>'.
-	 * @see model.Personne
+	 * @return the meta object for class '<em>User</em>'.
+	 * @see modelAuthenticator.User
 	 * @generated
 	 */
-	EClass getPersonne();
+	EClass getUser();
 
 	/**
-	 * Returns the meta object for the reference list '{@link model.Personne#getEnfants <em>Enfants</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Enfants</em>'.
-	 * @see model.Personne#getEnfants()
-	 * @see #getPersonne()
-	 * @generated
-	 */
-	EReference getPersonne_Enfants();
-
-	/**
-	 * Returns the meta object for the attribute '{@link model.Personne#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link modelAuthenticator.User#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see model.Personne#getName()
-	 * @see #getPersonne()
+	 * @see modelAuthenticator.User#getName()
+	 * @see #getUser()
 	 * @generated
 	 */
-	EAttribute getPersonne_Name();
+	EAttribute getUser_Name();
 
 	/**
-	 * Returns the meta object for the reference list '{@link model.Personne#getConnaissance <em>Connaissance</em>}'.
+	 * Returns the meta object for the attribute '{@link modelAuthenticator.User#getPassword <em>Password</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Connaissance</em>'.
-	 * @see model.Personne#getConnaissance()
-	 * @see #getPersonne()
+	 * @return the meta object for the attribute '<em>Password</em>'.
+	 * @see modelAuthenticator.User#getPassword()
+	 * @see #getUser()
 	 * @generated
 	 */
-	EReference getPersonne_Connaissance();
+	EAttribute getUser_Password();
 
 	/**
-	 * Returns the meta object for class '{@link model.Model <em>Model</em>}'.
+	 * Returns the meta object for class '{@link modelAuthenticator.Model <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Model</em>'.
-	 * @see model.Model
+	 * @see modelAuthenticator.Model
 	 * @generated
 	 */
 	EClass getModel();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link model.Model#getPersonnes <em>Personnes</em>}'.
+	 * Returns the meta object for the containment reference list '{@link modelAuthenticator.Model#getUsers <em>Users</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Personnes</em>'.
-	 * @see model.Model#getPersonnes()
+	 * @return the meta object for the containment reference list '<em>Users</em>'.
+	 * @see modelAuthenticator.Model#getUsers()
 	 * @see #getModel()
 	 * @generated
 	 */
-	EReference getModel_Personnes();
+	EReference getModel_Users();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -221,7 +200,7 @@ public interface ModelPackage extends EPackage {
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	ModelFactory getModelFactory();
+	modelAuthenticatorFactory getmodelAuthenticatorFactory();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -238,22 +217,14 @@ public interface ModelPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link model.impl.PersonneImpl <em>Personne</em>}' class.
+		 * The meta object literal for the '{@link modelAuthenticator.impl.UserImpl <em>User</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see model.impl.PersonneImpl
-		 * @see model.impl.ModelPackageImpl#getPersonne()
+		 * @see modelAuthenticator.impl.UserImpl
+		 * @see modelAuthenticator.impl.modelAuthenticatorPackageImpl#getUser()
 		 * @generated
 		 */
-		EClass PERSONNE = eINSTANCE.getPersonne();
-
-		/**
-		 * The meta object literal for the '<em><b>Enfants</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PERSONNE__ENFANTS = eINSTANCE.getPersonne_Enfants();
+		EClass USER = eINSTANCE.getUser();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -261,34 +232,34 @@ public interface ModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PERSONNE__NAME = eINSTANCE.getPersonne_Name();
+		EAttribute USER__NAME = eINSTANCE.getUser_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Connaissance</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PERSONNE__CONNAISSANCE = eINSTANCE.getPersonne_Connaissance();
+		EAttribute USER__PASSWORD = eINSTANCE.getUser_Password();
 
 		/**
-		 * The meta object literal for the '{@link model.impl.ModelImpl <em>Model</em>}' class.
+		 * The meta object literal for the '{@link modelAuthenticator.impl.ModelImpl <em>Model</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see model.impl.ModelImpl
-		 * @see model.impl.ModelPackageImpl#getModel()
+		 * @see modelAuthenticator.impl.ModelImpl
+		 * @see modelAuthenticator.impl.modelAuthenticatorPackageImpl#getModel()
 		 * @generated
 		 */
 		EClass MODEL = eINSTANCE.getModel();
 
 		/**
-		 * The meta object literal for the '<em><b>Personnes</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Users</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL__PERSONNES = eINSTANCE.getModel_Personnes();
+		EReference MODEL__USERS = eINSTANCE.getModel_Users();
 
 	}
 
-} //ModelPackage
+} //modelAuthenticatorPackage

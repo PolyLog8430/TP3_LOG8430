@@ -1,8 +1,8 @@
 /**
  */
-package model.impl;
+package modelAuthenticator.impl;
 
-import model.*;
+import modelAuthenticator.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -18,24 +18,24 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
+public class modelAuthenticatorFactoryImpl extends EFactoryImpl implements modelAuthenticatorFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ModelFactory init() {
+	public static modelAuthenticatorFactory init() {
 		try {
-			ModelFactory theModelFactory = (ModelFactory)EPackage.Registry.INSTANCE.getEFactory(ModelPackage.eNS_URI);
-			if (theModelFactory != null) {
-				return theModelFactory;
+			modelAuthenticatorFactory themodelAuthenticatorFactory = (modelAuthenticatorFactory)EPackage.Registry.INSTANCE.getEFactory(modelAuthenticatorPackage.eNS_URI);
+			if (themodelAuthenticatorFactory != null) {
+				return themodelAuthenticatorFactory;
 			}
 		}
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new ModelFactoryImpl();
+		return new modelAuthenticatorFactoryImpl();
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelFactoryImpl() {
+	public modelAuthenticatorFactoryImpl() {
 		super();
 	}
 
@@ -56,8 +56,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ModelPackage.PERSONNE: return createPersonne();
-			case ModelPackage.MODEL: return createModel();
+			case modelAuthenticatorPackage.USER: return createUser();
+			case modelAuthenticatorPackage.MODEL: return createModel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -68,9 +68,9 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Personne createPersonne() {
-		PersonneImpl personne = new PersonneImpl();
-		return personne;
+	public User createUser() {
+		UserImpl user = new UserImpl();
+		return user;
 	}
 
 	/**
@@ -88,8 +88,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelPackage getModelPackage() {
-		return (ModelPackage)getEPackage();
+	public modelAuthenticatorPackage getmodelAuthenticatorPackage() {
+		return (modelAuthenticatorPackage)getEPackage();
 	}
 
 	/**
@@ -99,8 +99,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * @generated
 	 */
 	@Deprecated
-	public static ModelPackage getPackage() {
-		return ModelPackage.eINSTANCE;
+	public static modelAuthenticatorPackage getPackage() {
+		return modelAuthenticatorPackage.eINSTANCE;
 	}
 
-} //ModelFactoryImpl
+} //modelAuthenticatorFactoryImpl

@@ -1,8 +1,8 @@
 /**
  */
-package model.util;
+package modelAuthenticator.util;
 
-import model.*;
+import modelAuthenticator.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -16,17 +16,17 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see model.ModelPackage
+ * @see modelAuthenticator.modelAuthenticatorPackage
  * @generated
  */
-public class ModelAdapterFactory extends AdapterFactoryImpl {
+public class modelAuthenticatorAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ModelPackage modelPackage;
+	protected static modelAuthenticatorPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -34,9 +34,9 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelAdapterFactory() {
+	public modelAuthenticatorAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = ModelPackage.eINSTANCE;
+			modelPackage = modelAuthenticatorPackage.eINSTANCE;
 		}
 	}
 
@@ -65,11 +65,11 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelSwitch<Adapter> modelSwitch =
-		new ModelSwitch<Adapter>() {
+	protected modelAuthenticatorSwitch<Adapter> modelSwitch =
+		new modelAuthenticatorSwitch<Adapter>() {
 			@Override
-			public Adapter casePersonne(Personne object) {
-				return createPersonneAdapter();
+			public Adapter caseUser(User object) {
+				return createUserAdapter();
 			}
 			@Override
 			public Adapter caseModel(Model object) {
@@ -96,27 +96,27 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link model.Personne <em>Personne</em>}'.
+	 * Creates a new adapter for an object of class '{@link modelAuthenticator.User <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see model.Personne
+	 * @see modelAuthenticator.User
 	 * @generated
 	 */
-	public Adapter createPersonneAdapter() {
+	public Adapter createUserAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link model.Model <em>Model</em>}'.
+	 * Creates a new adapter for an object of class '{@link modelAuthenticator.Model <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see model.Model
+	 * @see modelAuthenticator.Model
 	 * @generated
 	 */
 	public Adapter createModelAdapter() {
@@ -135,4 +135,4 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //ModelAdapterFactory
+} //modelAuthenticatorAdapterFactory

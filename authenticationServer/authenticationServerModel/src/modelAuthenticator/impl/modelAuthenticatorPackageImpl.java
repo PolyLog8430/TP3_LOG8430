@@ -1,11 +1,11 @@
 /**
  */
-package model.impl;
+package modelAuthenticator.impl;
 
-import model.Model;
-import model.ModelFactory;
-import model.ModelPackage;
-import model.Personne;
+import modelAuthenticator.Model;
+import modelAuthenticator.User;
+import modelAuthenticator.modelAuthenticatorFactory;
+import modelAuthenticator.modelAuthenticatorPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -20,13 +20,13 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
+public class modelAuthenticatorPackageImpl extends EPackageImpl implements modelAuthenticatorPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass personneEClass = null;
+	private EClass userEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -46,12 +46,12 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see model.ModelPackage#eNS_URI
+	 * @see modelAuthenticator.modelAuthenticatorPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private ModelPackageImpl() {
-		super(eNS_URI, ModelFactory.eINSTANCE);
+	private modelAuthenticatorPackageImpl() {
+		super(eNS_URI, modelAuthenticatorFactory.eINSTANCE);
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link ModelPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link modelAuthenticatorPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,27 +73,27 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static ModelPackage init() {
-		if (isInited) return (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+	public static modelAuthenticatorPackage init() {
+		if (isInited) return (modelAuthenticatorPackage)EPackage.Registry.INSTANCE.getEPackage(modelAuthenticatorPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ModelPackageImpl theModelPackage = (ModelPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ModelPackageImpl());
+		modelAuthenticatorPackageImpl themodelAuthenticatorPackage = (modelAuthenticatorPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof modelAuthenticatorPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new modelAuthenticatorPackageImpl());
 
 		isInited = true;
 
 		// Create package meta-data objects
-		theModelPackage.createPackageContents();
+		themodelAuthenticatorPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theModelPackage.initializePackageContents();
+		themodelAuthenticatorPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theModelPackage.freeze();
+		themodelAuthenticatorPackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(ModelPackage.eNS_URI, theModelPackage);
-		return theModelPackage;
+		EPackage.Registry.INSTANCE.put(modelAuthenticatorPackage.eNS_URI, themodelAuthenticatorPackage);
+		return themodelAuthenticatorPackage;
 	}
 
 	/**
@@ -101,8 +101,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPersonne() {
-		return personneEClass;
+	public EClass getUser() {
+		return userEClass;
 	}
 
 	/**
@@ -110,8 +110,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPersonne_Enfants() {
-		return (EReference)personneEClass.getEStructuralFeatures().get(0);
+	public EAttribute getUser_Name() {
+		return (EAttribute)userEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -119,17 +119,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPersonne_Name() {
-		return (EAttribute)personneEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPersonne_Connaissance() {
-		return (EReference)personneEClass.getEStructuralFeatures().get(2);
+	public EAttribute getUser_Password() {
+		return (EAttribute)userEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -146,7 +137,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModel_Personnes() {
+	public EReference getModel_Users() {
 		return (EReference)modelEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -155,8 +146,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelFactory getModelFactory() {
-		return (ModelFactory)getEFactoryInstance();
+	public modelAuthenticatorFactory getmodelAuthenticatorFactory() {
+		return (modelAuthenticatorFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -178,13 +169,12 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		personneEClass = createEClass(PERSONNE);
-		createEReference(personneEClass, PERSONNE__ENFANTS);
-		createEAttribute(personneEClass, PERSONNE__NAME);
-		createEReference(personneEClass, PERSONNE__CONNAISSANCE);
+		userEClass = createEClass(USER);
+		createEAttribute(userEClass, USER__NAME);
+		createEAttribute(userEClass, USER__PASSWORD);
 
 		modelEClass = createEClass(MODEL);
-		createEReference(modelEClass, MODEL__PERSONNES);
+		createEReference(modelEClass, MODEL__USERS);
 	}
 
 	/**
@@ -217,16 +207,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Add supertypes to classes
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(personneEClass, Personne.class, "Personne", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPersonne_Enfants(), this.getPersonne(), null, "enfants", null, 0, -1, Personne.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPersonne_Name(), ecorePackage.getEString(), "name", null, 0, 1, Personne.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPersonne_Connaissance(), this.getPersonne(), null, "connaissance", null, 0, -1, Personne.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUser_Name(), ecorePackage.getEString(), "name", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_Password(), ecorePackage.getEString(), "password", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModel_Personnes(), this.getPersonne(), null, "personnes", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModel_Users(), this.getUser(), null, "users", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
 	}
 
-} //ModelPackageImpl
+} //modelAuthenticatorPackageImpl

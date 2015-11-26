@@ -1,6 +1,6 @@
 /**
  */
-package modelauthenticator;
+package modelAuthenticator;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link modelauthenticator.User#getName <em>Name</em>}</li>
- *   <li>{@link modelauthenticator.User#getPassword <em>Password</em>}</li>
+ *   <li>{@link modelAuthenticator.User#getName <em>Name</em>}</li>
+ *   <li>{@link modelAuthenticator.User#getPassword <em>Password</em>}</li>
  * </ul>
  *
- * @see modelauthenticator.ModelPackage#getUser()
+ * @see modelAuthenticator.modelAuthenticatorPackage#getUser()
  * @model
  * @generated
  */
@@ -32,14 +32,14 @@ public interface User extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see modelauthenticator.ModelPackage#getUser_Name()
+	 * @see modelAuthenticator.modelAuthenticatorPackage#getUser_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link modelauthenticator.User#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link modelAuthenticator.User#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -58,14 +58,14 @@ public interface User extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Password</em>' attribute.
 	 * @see #setPassword(String)
-	 * @see modelauthenticator.ModelPackage#getUser_Password()
+	 * @see modelAuthenticator.modelAuthenticatorPackage#getUser_Password()
 	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getPassword();
 
 	/**
-	 * Sets the value of the '{@link modelauthenticator.User#getPassword <em>Password</em>}' attribute.
+	 * Sets the value of the '{@link modelAuthenticator.User#getPassword <em>Password</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Password</em>' attribute.

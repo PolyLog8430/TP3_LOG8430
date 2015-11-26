@@ -1,8 +1,8 @@
 /**
  */
-package modelauthenticator.util;
+package modelAuthenticator.util;
 
-import modelauthenticator.*;
+import modelAuthenticator.*;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;

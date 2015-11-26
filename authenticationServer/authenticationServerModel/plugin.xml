@@ -9,8 +9,8 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated model -->
       <package
-            uri="http://www.example.org/modelAuthenticator"
-            class="modelAuthenticator.ModelPackage"
+            uri="http://www.example.org/modelauthenticator"
+            class="modelAuthenticator.modelAuthenticatorPackage"
             genModel="model/model.genmodel"/>
    </extension>
 

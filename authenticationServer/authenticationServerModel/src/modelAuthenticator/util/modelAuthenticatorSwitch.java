@@ -1,8 +1,8 @@
 /**
  */
-package model.util;
+package modelAuthenticator.util;
 
-import model.*;
+import modelAuthenticator.*;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -19,17 +19,17 @@ import org.eclipse.emf.ecore.util.Switch;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see model.ModelPackage
+ * @see modelAuthenticator.modelAuthenticatorPackage
  * @generated
  */
-public class ModelSwitch<T> extends Switch<T> {
+public class modelAuthenticatorSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ModelPackage modelPackage;
+	protected static modelAuthenticatorPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -37,9 +37,9 @@ public class ModelSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelSwitch() {
+	public modelAuthenticatorSwitch() {
 		if (modelPackage == null) {
-			modelPackage = ModelPackage.eINSTANCE;
+			modelPackage = modelAuthenticatorPackage.eINSTANCE;
 		}
 	}
 
@@ -66,13 +66,13 @@ public class ModelSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case ModelPackage.PERSONNE: {
-				Personne personne = (Personne)theEObject;
-				T result = casePersonne(personne);
+			case modelAuthenticatorPackage.USER: {
+				User user = (User)theEObject;
+				T result = caseUser(user);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModelPackage.MODEL: {
+			case modelAuthenticatorPackage.MODEL: {
 				Model model = (Model)theEObject;
 				T result = caseModel(model);
 				if (result == null) result = defaultCase(theEObject);
@@ -83,17 +83,17 @@ public class ModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Personne</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>User</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Personne</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>User</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePersonne(Personne object) {
+	public T caseUser(User object) {
 		return null;
 	}
 
@@ -128,4 +128,4 @@ public class ModelSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //ModelSwitch
+} //modelAuthenticatorSwitch

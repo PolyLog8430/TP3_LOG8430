@@ -1,6 +1,6 @@
 /**
  */
-package modelauthenticator;
+package modelAuthenticator;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -19,7 +19,7 @@ public interface ModelFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ModelFactory eINSTANCE = modelauthenticator.impl.ModelFactoryImpl.init();
+	ModelFactory eINSTANCE = modelAuthenticator.impl.ModelFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>User</em>'.

@@ -1,6 +1,6 @@
 /**
  */
-package model;
+package modelAuthenticator;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -9,26 +9,26 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see model.ModelPackage
+ * @see modelAuthenticator.modelAuthenticatorPackage
  * @generated
  */
-public interface ModelFactory extends EFactory {
+public interface modelAuthenticatorFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ModelFactory eINSTANCE = model.impl.ModelFactoryImpl.init();
+	modelAuthenticatorFactory eINSTANCE = modelAuthenticator.impl.modelAuthenticatorFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Personne</em>'.
+	 * Returns a new object of class '<em>User</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Personne</em>'.
+	 * @return a new object of class '<em>User</em>'.
 	 * @generated
 	 */
-	Personne createPersonne();
+	User createUser();
 
 	/**
 	 * Returns a new object of class '<em>Model</em>'.
@@ -46,6 +46,6 @@ public interface ModelFactory extends EFactory {
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-	ModelPackage getModelPackage();
+	modelAuthenticatorPackage getmodelAuthenticatorPackage();
 
-} //ModelFactory
+} //modelAuthenticatorFactory

@@ -1,14 +1,7 @@
 package authenticationserver;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Base64;
@@ -16,20 +9,14 @@ import java.util.Base64;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.UriBuilder;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-import org.eclipse.jetty.util.IO;
 
-import jersey.repackaged.com.google.common.io.ByteStreams;
-import modelauthenticator.ModelPackage;
-import modelauthenticator.User;
-import modelauthenticator.impl.UserImpl;
+import modelAuthenticator.User;
 import utils.IOUtil;
 
 public class EMFHandler extends AbstractHandler {

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/model/src" editDirectory="/authenticationServerModel.edit/src"
-    editorDirectory="/authenticationServerModel.editor/src" modelPluginID="model"
-    modelName="Model" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/authenticationServerModel/src" editDirectory="/authenticationServerModel.edit/src"
+    editorDirectory="/authenticationServerModel.editor/src" modelPluginID="authenticationServerModel"
+    modelName="authentificationServerModel" editPluginClass="modelAuthenticator.provider.authenticationServerModelEditPlugin"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory="/authenticationServer.tests/src"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
-    operationReflection="true" importOrganizing="true">
+    editPluginID="modelAuthenticator.edit" operationReflection="true" importOrganizing="true">
   <foreignModel>model.ecore</foreignModel>
-  <genPackages prefix="Model" disposableProviderFactory="true" ecorePackage="model.ecore#/">
+  <genPackages prefix="modelAuthenticator" disposableProviderFactory="true" fileExtensions="modelAuthenticator"
+      ecorePackage="model.ecore#/">
     <genClasses ecoreClass="model.ecore#//User">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//User/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//User/password"/>

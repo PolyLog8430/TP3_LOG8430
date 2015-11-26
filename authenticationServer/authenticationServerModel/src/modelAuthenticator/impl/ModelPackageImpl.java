@@ -1,11 +1,11 @@
 /**
  */
-package modelauthenticator.impl;
+package modelAuthenticator.impl;
 
-import modelauthenticator.Model;
-import modelauthenticator.ModelFactory;
-import modelauthenticator.ModelPackage;
-import modelauthenticator.User;
+import modelAuthenticator.Model;
+import modelAuthenticator.ModelFactory;
+import modelAuthenticator.ModelPackage;
+import modelAuthenticator.User;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
