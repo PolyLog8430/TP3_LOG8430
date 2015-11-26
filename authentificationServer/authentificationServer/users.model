@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<authentificationModel:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:authentificationModel="http://www.example.org/modelAuthentificator">
-  <users name="john" password="doe"/>
-  <users name="root" password="toor"/>
-</authentificationModel:Model>
