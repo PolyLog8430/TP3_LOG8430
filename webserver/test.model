@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<model:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://www.example.org/model">
-  <commands xsi:type="model:FileName"/>
-  <commands xsi:type="model:PageTile"/>
-  <localResources name="Test"/>
-  <localResources/>
-  <externalResources/>
-  <externalResources/>
-</model:Model>

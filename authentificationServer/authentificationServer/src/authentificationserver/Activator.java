@@ -32,7 +32,7 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 	private Server server;
-	private File savedModel = new File("localData.xmi");
+	private File savedModel = new File("D:\\Course programming\\TP3_LOG8430\\authentificationServer\\authentificationServer\\users.model");
 
 	private EObject root;
 
@@ -64,7 +64,9 @@ public class Activator extends AbstractUIPlugin {
 		
 		IPath stateLocation = Activator.getDefault().getStateLocation();
 		IPath model = stateLocation.append("savedModel.xml");
-		File savedFile = model.toFile();
+		//File savedFile = model.toFile();
+		
+		File savedFile = savedModel;
 		System.out.println("Le modele est enregistré dans le fichier: " + savedFile.getAbsolutePath());
 		if (savedFile.exists()) {
 			// load from plug-in specific location
