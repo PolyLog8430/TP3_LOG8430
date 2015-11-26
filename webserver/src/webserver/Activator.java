@@ -7,7 +7,6 @@ import java.util.Collections;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMIResource;
@@ -32,7 +31,7 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 	private Server server;
-	private File savedModel = new File("D:\\Course programming\\TP3_LOG8430\\webserver\\My3.model");
+	private File savedModel = new File("D:\\Course programming\\TP3_LOG8430\\webserver\\My4.model");
 
 	private EObject root;
 
