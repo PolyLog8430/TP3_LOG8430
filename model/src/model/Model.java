@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link model.Model#getResources <em>Resources</em>}</li>
  *   <li>{@link model.Model#getCommands <em>Commands</em>}</li>
  *   <li>{@link model.Model#getLocalResources <em>Local Resources</em>}</li>
  *   <li>{@link model.Model#getExternalResources <em>External Resources</em>}</li>
@@ -26,22 +25,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Model extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Resources</b></em>' containment reference list.
-	 * The list contents are of type {@link model.Ressource}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Resources</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Resources</em>' containment reference list.
-	 * @see model.ModelPackage#getModel_Resources()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Ressource> getResources();
-
 	/**
 	 * Returns the value of the '<em><b>Commands</b></em>' containment reference list.
 	 * The list contents are of type {@link model.ICommand}.
@@ -89,5 +72,13 @@ public interface Model extends EObject {
 	 * @generated
 	 */
 	EList<ExternalRessource> getExternalResources();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	EList<Ressource> resources();
 
 } // Model

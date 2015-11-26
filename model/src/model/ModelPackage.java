@@ -106,22 +106,13 @@ public interface ModelPackage extends EPackage {
 	int MODEL = 1;
 
 	/**
-	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__RESOURCES = 0;
-
-	/**
 	 * The feature id for the '<em><b>Commands</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__COMMANDS = 1;
+	int MODEL__COMMANDS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Local Resources</b></em>' containment reference list.
@@ -130,7 +121,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__LOCAL_RESOURCES = 2;
+	int MODEL__LOCAL_RESOURCES = 1;
 
 	/**
 	 * The feature id for the '<em><b>External Resources</b></em>' containment reference list.
@@ -139,7 +130,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__EXTERNAL_RESOURCES = 3;
+	int MODEL__EXTERNAL_RESOURCES = 2;
 
 	/**
 	 * The number of structural features of the '<em>Model</em>' class.
@@ -148,7 +139,16 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_FEATURE_COUNT = 4;
+	int MODEL_FEATURE_COUNT = 3;
+
+	/**
+	 * The operation id for the '<em>Resources</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___RESOURCES = 0;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -157,7 +157,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_OPERATION_COUNT = 0;
+	int MODEL_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link model.impl.LocalRessourceImpl <em>Local Ressource</em>}' class.
@@ -913,17 +913,6 @@ public interface ModelPackage extends EPackage {
 	EClass getModel();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link model.Model#getResources <em>Resources</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Resources</em>'.
-	 * @see model.Model#getResources()
-	 * @see #getModel()
-	 * @generated
-	 */
-	EReference getModel_Resources();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link model.Model#getCommands <em>Commands</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -955,6 +944,16 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModel_ExternalResources();
+
+	/**
+	 * Returns the meta object for the '{@link model.Model#resources() <em>Resources</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Resources</em>' operation.
+	 * @see model.Model#resources()
+	 * @generated
+	 */
+	EOperation getModel__Resources();
 
 	/**
 	 * Returns the meta object for class '{@link model.LocalRessource <em>Local Ressource</em>}'.
@@ -1229,14 +1228,6 @@ public interface ModelPackage extends EPackage {
 		EClass MODEL = eINSTANCE.getModel();
 
 		/**
-		 * The meta object literal for the '<em><b>Resources</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL__RESOURCES = eINSTANCE.getModel_Resources();
-
-		/**
 		 * The meta object literal for the '<em><b>Commands</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1259,6 +1250,14 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL__EXTERNAL_RESOURCES = eINSTANCE.getModel_ExternalResources();
+
+		/**
+		 * The meta object literal for the '<em><b>Resources</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___RESOURCES = eINSTANCE.getModel__Resources();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.LocalRessourceImpl <em>Local Ressource</em>}' class.

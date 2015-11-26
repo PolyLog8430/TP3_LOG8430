@@ -2,6 +2,7 @@
  */
 package model.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import model.ExternalRessource;
@@ -31,7 +32,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link model.impl.ModelImpl#getResources <em>Resources</em>}</li>
  *   <li>{@link model.impl.ModelImpl#getCommands <em>Commands</em>}</li>
  *   <li>{@link model.impl.ModelImpl#getLocalResources <em>Local Resources</em>}</li>
  *   <li>{@link model.impl.ModelImpl#getExternalResources <em>External Resources</em>}</li>
@@ -40,16 +40,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
-	/**
-	 * The cached value of the '{@link #getResources() <em>Resources</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getResources()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Ressource> resources;
-
 	/**
 	 * The cached value of the '{@link #getCommands() <em>Commands</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -102,20 +92,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 */
-	public EList<Ressource> getResources() {
-		if (resources == null) {
-			resources = new BasicEList<>();
-		}
-		resources.clear();
-		resources.addAll(getLocalResources());
-		resources.addAll(getExternalResources());
-		return resources;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<ICommand> getCommands() {
@@ -152,13 +128,24 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Ressource> resources() {
+		EList<Ressource> resources = new BasicEList<>();
+		
+		resources.addAll(getLocalResources());
+		resources.addAll(getExternalResources());
+		return resources;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.MODEL__RESOURCES:
-				return ((InternalEList<?>)getResources()).basicRemove(otherEnd, msgs);
 			case ModelPackage.MODEL__COMMANDS:
 				return ((InternalEList<?>)getCommands()).basicRemove(otherEnd, msgs);
 			case ModelPackage.MODEL__LOCAL_RESOURCES:
@@ -177,8 +164,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.MODEL__RESOURCES:
-				return getResources();
 			case ModelPackage.MODEL__COMMANDS:
 				return getCommands();
 			case ModelPackage.MODEL__LOCAL_RESOURCES:
@@ -198,10 +183,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.MODEL__RESOURCES:
-				getResources().clear();
-				getResources().addAll((Collection<? extends Ressource>)newValue);
-				return;
 			case ModelPackage.MODEL__COMMANDS:
 				getCommands().clear();
 				getCommands().addAll((Collection<? extends ICommand>)newValue);
@@ -226,9 +207,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.MODEL__RESOURCES:
-				getResources().clear();
-				return;
 			case ModelPackage.MODEL__COMMANDS:
 				getCommands().clear();
 				return;
@@ -250,8 +228,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.MODEL__RESOURCES:
-				return resources != null && !resources.isEmpty();
 			case ModelPackage.MODEL__COMMANDS:
 				return commands != null && !commands.isEmpty();
 			case ModelPackage.MODEL__LOCAL_RESOURCES:
@@ -260,6 +236,20 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 				return externalResources != null && !externalResources.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case ModelPackage.MODEL___RESOURCES:
+				return resources();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ModelImpl
