@@ -182,7 +182,12 @@ public class EMFHandler extends AbstractHandler {
 			Iterator<String> iterator = json.keys();
 			while(iterator.hasNext()) {
 				String next = iterator.next();
-				eObject.eSet(eObject.eClass().getEStructuralFeature(next), json.getString(next));
+				try {
+					eObject.eSet(eObject.eClass().getEStructuralFeature(next), json.getString(next));
+				} 
+				catch (JSONException e) {
+					
+				}
 			}
 			
 			httpResp.setStatus(HttpServletResponse.SC_CREATED);

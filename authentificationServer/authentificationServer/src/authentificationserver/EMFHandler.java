@@ -34,7 +34,7 @@ import utils.IOUtil;
 
 public class EMFHandler extends AbstractHandler {
 
-	private static final String SERVER_TO_FORWARD = "127.0.0.1:8000";
+	private static final String SERVER_TO_FORWARD = "132.207.246.119:8080";
 	
 	private final EObject root;
 
