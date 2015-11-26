@@ -67,7 +67,7 @@ public class EMFHandler extends AbstractHandler {
 						for(String filter : args){
 							String[] a = filter.split("=");
 							filters[j][0] = a[0];
-							filters[j][1] = (a.length == 2 ) ? a[0] : "";
+							filters[j][1] = (a.length == 2 ) ? a[1] : "";
 							j++;
 						}
 						
