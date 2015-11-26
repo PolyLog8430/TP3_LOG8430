@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: AuthenticationServer
 Bundle-SymbolicName: authenticationServer
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: authenticationserver.Activator
+Bundle-Activator: authenticationServer.Activator
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.ui,
@@ -11,7 +11,6 @@ Require-Bundle: org.eclipse.emf.ecore,
 Import-Package: modelAuthenticator,
  modelAuthenticator.impl
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: lib/javax.servlet-3.0-sources.jar,
  lib/jetty-annotations-9.0.0.M5.jar,
  lib/jetty-client-9.0.0.M5.jar,
