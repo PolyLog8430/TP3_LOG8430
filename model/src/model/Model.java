@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link model.Model#getCommands <em>Commands</em>}</li>
  *   <li>{@link model.Model#getLocalResources <em>Local Resources</em>}</li>
  *   <li>{@link model.Model#getExternalResources <em>External Resources</em>}</li>
+ *   <li>{@link model.Model#getResources <em>Resources</em>}</li>
  * </ul>
  *
  * @see model.ModelPackage#getModel()
@@ -74,11 +75,19 @@ public interface Model extends EObject {
 	EList<ExternalRessource> getExternalResources();
 
 	/**
+	 * Returns the value of the '<em><b>Resources</b></em>' reference list.
+	 * The list contents are of type {@link model.Ressource}.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Resources</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @return the value of the '<em>Resources</em>' reference list.
+	 * @see model.ModelPackage#getModel_Resources()
+	 * @model changeable="false" derived="true"
 	 * @generated
 	 */
-	EList<Ressource> resources();
+	EList<Ressource> getResources();
 
 } // Model

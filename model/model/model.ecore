@@ -5,13 +5,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Model">
-    <eOperations name="resources" upperBound="-1" eType="#//Ressource"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="commands" upperBound="-1"
         eType="#//ICommand" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="localResources" upperBound="-1"
         eType="#//LocalRessource" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="externalResources" upperBound="-1"
         eType="#//ExternalRessource" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resources" upperBound="-1"
+        eType="#//Ressource" changeable="false" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LocalRessource" eSuperTypes="#//Ressource">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="permission" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

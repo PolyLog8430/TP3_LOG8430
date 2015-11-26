@@ -2,7 +2,6 @@
  */
 package model.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import model.ExternalRessource;
@@ -13,7 +12,6 @@ import model.ModelPackage;
 import model.Ressource;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -22,6 +20,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -35,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link model.impl.ModelImpl#getCommands <em>Commands</em>}</li>
  *   <li>{@link model.impl.ModelImpl#getLocalResources <em>Local Resources</em>}</li>
  *   <li>{@link model.impl.ModelImpl#getExternalResources <em>External Resources</em>}</li>
+ *   <li>{@link model.impl.ModelImpl#getResources <em>Resources</em>}</li>
  * </ul>
  *
  * @generated
@@ -69,6 +69,16 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	 * @ordered
 	 */
 	protected EList<ExternalRessource> externalResources;
+
+	/**
+	 * The cached value of the '{@link #getResources() <em>Resources</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResources()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Ressource> resources;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -130,9 +140,11 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public EList<Ressource> resources() {
-		EList<Ressource> resources = new BasicEList<>();
-		
+	public EList<Ressource> getResources() {
+		if (resources == null) {
+			resources = new EObjectResolvingEList<Ressource>(Ressource.class, this, ModelPackage.MODEL__RESOURCES);
+		}
+		resources.clear();
 		resources.addAll(getLocalResources());
 		resources.addAll(getExternalResources());
 		return resources;
@@ -170,6 +182,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 				return getLocalResources();
 			case ModelPackage.MODEL__EXTERNAL_RESOURCES:
 				return getExternalResources();
+			case ModelPackage.MODEL__RESOURCES:
+				return getResources();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -234,22 +248,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 				return localResources != null && !localResources.isEmpty();
 			case ModelPackage.MODEL__EXTERNAL_RESOURCES:
 				return externalResources != null && !externalResources.isEmpty();
+			case ModelPackage.MODEL__RESOURCES:
+				return resources != null && !resources.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case ModelPackage.MODEL___RESOURCES:
-				return resources();
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 } //ModelImpl

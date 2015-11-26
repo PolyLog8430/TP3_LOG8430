@@ -133,22 +133,22 @@ public interface ModelPackage extends EPackage {
 	int MODEL__EXTERNAL_RESOURCES = 2;
 
 	/**
+	 * The feature id for the '<em><b>Resources</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__RESOURCES = 3;
+
+	/**
 	 * The number of structural features of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_FEATURE_COUNT = 3;
-
-	/**
-	 * The operation id for the '<em>Resources</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL___RESOURCES = 0;
+	int MODEL_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -157,7 +157,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_OPERATION_COUNT = 1;
+	int MODEL_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link model.impl.LocalRessourceImpl <em>Local Ressource</em>}' class.
@@ -946,14 +946,15 @@ public interface ModelPackage extends EPackage {
 	EReference getModel_ExternalResources();
 
 	/**
-	 * Returns the meta object for the '{@link model.Model#resources() <em>Resources</em>}' operation.
+	 * Returns the meta object for the reference list '{@link model.Model#getResources <em>Resources</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Resources</em>' operation.
-	 * @see model.Model#resources()
+	 * @return the meta object for the reference list '<em>Resources</em>'.
+	 * @see model.Model#getResources()
+	 * @see #getModel()
 	 * @generated
 	 */
-	EOperation getModel__Resources();
+	EReference getModel_Resources();
 
 	/**
 	 * Returns the meta object for class '{@link model.LocalRessource <em>Local Ressource</em>}'.
@@ -1252,12 +1253,12 @@ public interface ModelPackage extends EPackage {
 		EReference MODEL__EXTERNAL_RESOURCES = eINSTANCE.getModel_ExternalResources();
 
 		/**
-		 * The meta object literal for the '<em><b>Resources</b></em>' operation.
+		 * The meta object literal for the '<em><b>Resources</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL___RESOURCES = eINSTANCE.getModel__Resources();
+		EReference MODEL__RESOURCES = eINSTANCE.getModel_Resources();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.LocalRessourceImpl <em>Local Ressource</em>}' class.
