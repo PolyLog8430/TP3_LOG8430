@@ -60,7 +60,7 @@ public class Activator extends AbstractUIPlugin {
 
 		server = new Server(8080);
 		XMIResource xmiResource = new XMIResourceImpl();
-		
+
 		System.out.println(new File(".").getAbsolutePath());
 		IPath stateLocation = Activator.getDefault().getStateLocation();
 		IPath model = stateLocation.append("savedModel.xml");

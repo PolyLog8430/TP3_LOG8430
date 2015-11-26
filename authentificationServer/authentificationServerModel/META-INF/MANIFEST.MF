@@ -7,10 +7,7 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: model,
- model.impl,
- model.util,
- modelAuthentificator,
+Export-Package: modelAuthentificator,
  modelAuthentificator.impl,
  modelAuthentificator.util
 Require-Bundle: org.eclipse.core.runtime,

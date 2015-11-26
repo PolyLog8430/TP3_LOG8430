@@ -19,7 +19,6 @@ import org.osgi.framework.BundleContext;
 
 import modelAuthentificator.ModelFactory;
 
-
 /**
  * The activator class controls the plug-in life cycle
  */
@@ -61,11 +60,11 @@ public class Activator extends AbstractUIPlugin {
 
 		server = new Server(8081);
 		XMIResource xmiResource = new XMIResourceImpl();
-		
+
 		IPath stateLocation = Activator.getDefault().getStateLocation();
 		IPath model = stateLocation.append("savedModel.xml");
-		//File savedFile = model.toFile();
-		
+		// File savedFile = model.toFile();
+
 		File savedFile = savedModel;
 		System.out.println("Le modele est enregistré dans le fichier: " + savedFile.getAbsolutePath());
 		if (savedFile.exists()) {

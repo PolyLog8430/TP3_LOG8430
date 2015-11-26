@@ -35,7 +35,7 @@ public class EMFHandler extends AbstractHandler {
 
 	public void getRequest(String path, HttpServletRequest httpReq, HttpServletResponse httpResp) 
 			throws IOException, ServletException {
-		
+
 		String[] fragments = path.split("/");
 		Object context = root;
 
@@ -56,11 +56,11 @@ public class EMFHandler extends AbstractHandler {
 				EObject eobject = (EObject) context;
 				//find the feature
 				EStructuralFeature feature = eobject.eClass().getEStructuralFeature(fragment);
-				
+
 				// call reflexively
 				System.out.println("Requested feature Name : " + feature.getName());
 				context  = eobject.eGet(feature);
-				
+
 				// Get filtering parameters and apply it to feature
 				if(context instanceof EList){
 					String filterURL = httpReq.getQueryString();
@@ -74,7 +74,7 @@ public class EMFHandler extends AbstractHandler {
 							filters[j][1] = (a.length == 2 ) ? a[1] : "";
 							j++;
 						}
-						
+
 						EList list = (EList) context;
 						EList listFiltered = new BasicEList<>();
 						for(Object o : list){
@@ -90,11 +90,11 @@ public class EMFHandler extends AbstractHandler {
 								listFiltered.add(o);
 							}
 						}
-						
+
 						context = listFiltered;
 					}
 				}
-				
+
 			} else if (context instanceof EList) {
 				EList list = (EList) context;
 				context = list.get(position);
@@ -103,30 +103,30 @@ public class EMFHandler extends AbstractHandler {
 		}
 		httpResp.setStatus(HttpServletResponse.SC_OK);
 		httpResp.getWriter().print(context);
-		
-		
+
+
 		httpResp.flushBuffer();
 	}
-	
+
 	public void postRequest(String path, HttpServletRequest httpReq, HttpServletResponse httpResp) 
 			throws IOException, ServletException {
-		
+
 		String[] fragments = path.split("/");
 		Object context = root;
-		
+
 		// Feature to add
 		EStructuralFeature feature = null;
 		EReference eRef = null;
-		
+
 		String allBody = "";
 		String body;
-		
+
 		// Get body content
 		while ((body = httpReq.getReader().readLine()) != null) {
 			allBody += body;
 		}
 		System.out.println(allBody);
-		
+
 		if(allBody.equals("")) {
 			// No body, send error
 			httpResp.setStatus(HttpServletResponse.SC_PRECONDITION_FAILED);
@@ -136,6 +136,7 @@ public class EMFHandler extends AbstractHandler {
 		else {
 			// Get Post information
 			for (int i = 0; i < fragments.length; i++) {
+				
 				String fragment = fragments[i];
 				if (fragment.isEmpty())
 					continue;
@@ -152,53 +153,52 @@ public class EMFHandler extends AbstractHandler {
 					EObject eobject = (EObject) context;
 					//find the feature
 					feature = eobject.eClass().getEStructuralFeature(fragment);
-					
+
 					eRef = (EReference) feature;
 					// call reflexively
 					System.out.println("Requested feature Name : " + feature.getName() + "  class : " + feature.getClass() + "  : " + feature.getFeatureID());
 					context  = eobject.eGet(feature);
-			}
-			
-			ModelFactory modelFactory = ModelFactoryImpl.eINSTANCE;
-			Model model = modelFactory.createModel();
-			
-			System.out.println("Factory instantiated");
-			EObject eObject = modelFactory.create(eRef.getEReferenceType());
-			System.out.println("Instanciated : " + eObject.toString());
-			
-			for(EStructuralFeature e : eObject.eClass().getEStructuralFeatures()) {
-				System.out.println(e.getName());
-			}
-			
-			EObject mainDoc = (EObject) root;
-			EStructuralFeature listFeature =  mainDoc.eClass().getEStructuralFeature(fragment);
-			EList list = (EList) mainDoc.eGet(listFeature);
-			list.add(eObject);
-			
-			// Parse json body and find keys
-			JSONObject json = new JSONObject(allBody);
-			
-			String returnJson = "";
-			
-			Iterator<String> iterator = json.keys();
-			while(iterator.hasNext()) {
-				String next = iterator.next();
-				try {
-					eObject.eSet(eObject.eClass().getEStructuralFeature(next), json.getString(next));
-				} 
-				catch (JSONException e) {
-					
 				}
-			}
-			
-			httpResp.setStatus(HttpServletResponse.SC_CREATED);
-			httpResp.getWriter().print(returnJson);
-			httpResp.flushBuffer();
+
+				ModelFactory modelFactory = ModelFactoryImpl.eINSTANCE;
+				Model model = modelFactory.createModel();
+
+				System.out.println("Factory instantiated");
+				EObject eObject = modelFactory.create(eRef.getEReferenceType());
+				System.out.println("Instanciated : " + eObject.toString());
+
+				for(EStructuralFeature e : eObject.eClass().getEStructuralFeatures()) {
+					System.out.println(e.getName());
+				}
+
+				EObject mainDoc = (EObject) root;
+				EStructuralFeature listFeature =  mainDoc.eClass().getEStructuralFeature(fragment);
+				EList list = (EList) mainDoc.eGet(listFeature);
+				list.add(eObject);
+
+				// Parse json body and find keys
+				JSONObject json = new JSONObject(allBody);
+
+				String returnJson = "";
+
+				Iterator<String> iterator = json.keys();
+				while(iterator.hasNext()) {
+					String next = iterator.next();
+					try {
+						eObject.eSet(eObject.eClass().getEStructuralFeature(next), json.getString(next));
+					} 
+					catch (JSONException e) {
+
+					}
+				}
+
+				httpResp.setStatus(HttpServletResponse.SC_CREATED);
+				httpResp.getWriter().print(returnJson);
+				httpResp.flushBuffer();
 			}
 		}
-		
 	}
-	
+
 	@Override
 	public void handle(String path, Request req, HttpServletRequest httpReq, HttpServletResponse httpResp)
 			throws IOException, ServletException {
