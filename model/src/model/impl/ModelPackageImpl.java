@@ -268,6 +268,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getLocalRessource_Type() {
+		return (EAttribute)localRessourceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExternalRessource() {
 		return externalRessourceEClass;
 	}
@@ -465,6 +474,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		localRessourceEClass = createEClass(LOCAL_RESSOURCE);
 		createEAttribute(localRessourceEClass, LOCAL_RESSOURCE__PERMISSION);
 		createEAttribute(localRessourceEClass, LOCAL_RESSOURCE__PATH);
+		createEAttribute(localRessourceEClass, LOCAL_RESSOURCE__TYPE);
 
 		externalRessourceEClass = createEClass(EXTERNAL_RESSOURCE);
 		createEAttribute(externalRessourceEClass, EXTERNAL_RESSOURCE__TITLE);
@@ -546,6 +556,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEClass(localRessourceEClass, LocalRessource.class, "LocalRessource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLocalRessource_Permission(), ecorePackage.getEString(), "permission", null, 0, 1, LocalRessource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLocalRessource_Path(), ecorePackage.getEString(), "path", null, 0, 1, LocalRessource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLocalRessource_Type(), ecorePackage.getEString(), "type", null, 0, 1, LocalRessource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(externalRessourceEClass, ExternalRessource.class, "ExternalRessource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExternalRessource_Title(), ecorePackage.getEString(), "title", null, 0, 1, ExternalRessource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

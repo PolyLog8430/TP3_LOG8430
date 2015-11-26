@@ -2,6 +2,7 @@ package webserver;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Iterator;
 
 import javax.servlet.ServletException;
@@ -13,6 +14,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.json.JSONException;
@@ -67,7 +70,7 @@ public class EMFHandler extends AbstractHandler {
 						for(String filter : args){
 							String[] a = filter.split("=");
 							filters[j][0] = a[0];
-							filters[j][1] = (a.length == 2 ) ? a[0] : "";
+							filters[j][1] = (a.length == 2 ) ? a[1] : "";
 							j++;
 						}
 						
@@ -99,6 +102,8 @@ public class EMFHandler extends AbstractHandler {
 		}
 		httpResp.setStatus(HttpServletResponse.SC_OK);
 		httpResp.getWriter().print(context);
+		
+		
 		httpResp.flushBuffer();
 	}
 	

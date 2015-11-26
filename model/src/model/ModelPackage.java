@@ -197,13 +197,22 @@ public interface ModelPackage extends EPackage {
 	int LOCAL_RESSOURCE__PATH = RESSOURCE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_RESSOURCE__TYPE = RESSOURCE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Local Ressource</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCAL_RESSOURCE_FEATURE_COUNT = RESSOURCE_FEATURE_COUNT + 2;
+	int LOCAL_RESSOURCE_FEATURE_COUNT = RESSOURCE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Local Ressource</em>' class.
@@ -989,6 +998,17 @@ public interface ModelPackage extends EPackage {
 	EAttribute getLocalRessource_Path();
 
 	/**
+	 * Returns the meta object for the attribute '{@link model.LocalRessource#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see model.LocalRessource#getType()
+	 * @see #getLocalRessource()
+	 * @generated
+	 */
+	EAttribute getLocalRessource_Type();
+
+	/**
 	 * Returns the meta object for class '{@link model.ExternalRessource <em>External Ressource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1285,6 +1305,14 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LOCAL_RESSOURCE__PATH = eINSTANCE.getLocalRessource_Path();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOCAL_RESSOURCE__TYPE = eINSTANCE.getLocalRessource_Type();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.ExternalRessourceImpl <em>External Ressource</em>}' class.
