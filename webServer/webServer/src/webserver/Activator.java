@@ -96,9 +96,10 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public void stop(BundleContext context) throws Exception {
 
+		System.out.println("Stopping webserver, save model in model.modelwebserver");
 		XMIResource xmiResource = new XMIResourceImpl();
 		xmiResource.getContents().add(root);
-		OutputStream out = plugin.getBundle().getEntry("/model.modelwebserver").openConnection().getOutputStream();
+		OutputStream out = plugin.getBundle().getEntry("model.modelwebserver").openConnection().getOutputStream();
 		xmiResource.save(out, Collections.emptyMap());
 		out.close();
 		plugin = null;
