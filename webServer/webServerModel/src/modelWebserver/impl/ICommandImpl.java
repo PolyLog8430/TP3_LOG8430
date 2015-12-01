@@ -363,11 +363,7 @@ public abstract class ICommandImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void execute(String resourceId) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
+	public abstract void execute(String resourceId);
 
 	/**
 	 * <!-- begin-user-doc -->

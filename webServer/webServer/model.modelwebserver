@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <modelWebserver:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:modelWebserver="http://www.example.org/model">
-  <commands xsi:type="model:FolderName" Name="Nom du dossier" result="" applyOnFolder="true"/>
-  <commands xsi:type="model:Path" Name="Chemin" applyOnFolder="true" applyOnFile="true"/>
-  <commands xsi:type="model:PageTile" Name="Nom de la page" applyOnURI="true"/>
-  <commands xsi:type="model:FileSize" Name="Taille du fichier" applyOnFile="true"/>
+  <commands xsi:type="modelWebserver:FolderName" Name="Nom du dossier" result="" applyOnFolder="true"/>
+  <commands xsi:type="modelWebserver:Path" Name="Chemin" applyOnFolder="true" applyOnFile="true"/>
+  <commands xsi:type="modelWebserver:PageTile" Name="Nom de la page" applyOnURI="true"/>
+  <commands xsi:type="modelWebserver:FileSize" Name="Taille du fichier" applyOnFile="true"/>
   <localResources name="tp1" permission="666" path="/users/log8430/tp1" type="folder"/>
   <localResources name="tp2" permission="666" path="/users/log8430/tp2" type="folder"/>
   <localResources name="rapport1.doc" permission="766" path="/users/log8430/tp1/rapport1.doc" type="file"/>

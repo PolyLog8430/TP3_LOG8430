@@ -138,13 +138,17 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Get external and local resources
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Ressource> getResources() {
 		if (resources == null) {
 			resources = new EObjectResolvingEList<Ressource>(Ressource.class, this, ModelWebserverPackage.MODEL__RESOURCES);
 		}
+		resources.clear();
+		resources.addAll(getLocalResources());
+		resources.addAll(getExternalResources());
 		return resources;
 	}
 

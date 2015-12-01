@@ -2,10 +2,13 @@
  */
 package modelWebserver.impl;
 
-import modelWebserver.FileName;
-import modelWebserver.ModelWebserverPackage;
+import java.io.File;
 
 import org.eclipse.emf.ecore.EClass;
+
+import modelWebserver.CommandCodeResult;
+import modelWebserver.FileName;
+import modelWebserver.ModelWebserverPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,6 +35,24 @@ public class FileNameImpl extends ICommandImpl implements FileName {
 	@Override
 	protected EClass eStaticClass() {
 		return ModelWebserverPackage.Literals.FILE_NAME;
+	}
+	
+	/**
+	 * Execute the command FileName on the given resource.
+	 * @param resourceId The complete path of the file.
+	 */
+	@Override
+	public void execute(String resourceId) {
+		File file = new File(resourceId);
+		if ( ! file.isFile()) {
+			codeResult = CommandCodeResult.ERROR;
+			result = "Error, not a file.";
+		}
+		else {
+			codeResult = CommandCodeResult.SUCCESS;
+			result = file.getName();
+		}
+
 	}
 
 } //FileNameImpl
