@@ -1,8 +1,8 @@
 package webserver;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.util.Collections;
 
@@ -60,7 +60,7 @@ public class Activator extends AbstractUIPlugin {
 		server = new Server(8080);
 		XMIResource xmiResource = new XMIResourceImpl();
 		
-		URL modelEntry = plugin.getBundle().getEntry("/example1.model");
+		URL modelEntry = plugin.getBundle().getEntry("model.modelwebserver");
 		
 		if (modelEntry != null) {
 			System.out.println("Modèle trouvé à : " + modelEntry.getPath());
@@ -71,7 +71,7 @@ public class Activator extends AbstractUIPlugin {
 			in.close();
 			root = xmiResource.getContents().get(0);
 		} else {
-			System.out.println("Pas de modèle trouvé, création d'un modèle vide");
+			System.out.println("Pas de modèle nommé model.modelwebserver trouvé à la racine du projet, création d'un modèle vide");
 			root = ModelWebserverFactory.eINSTANCE.createModel();
 		}
 		server.setHandler(addEmfHandler(root));
@@ -98,7 +98,7 @@ public class Activator extends AbstractUIPlugin {
 
 		XMIResource xmiResource = new XMIResourceImpl();
 		xmiResource.getContents().add(root);
-		FileOutputStream out = new FileOutputStream(savedModel);
+		OutputStream out = plugin.getBundle().getEntry("/model.modelwebserver").openConnection().getOutputStream();
 		xmiResource.save(out, Collections.emptyMap());
 		out.close();
 		plugin = null;
