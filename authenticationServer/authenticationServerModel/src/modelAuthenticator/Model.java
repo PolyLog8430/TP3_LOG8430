@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link modelAuthenticator.Model#getUsers <em>Users</em>}</li>
  * </ul>
  *
- * @see modelAuthenticator.modelAuthenticatorPackage#getModel()
+ * @see modelAuthenticator.ModelAuthenticatorPackage#getModel()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface Model extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Users</em>' containment reference list.
-	 * @see modelAuthenticator.modelAuthenticatorPackage#getModel_Users()
+	 * @see modelAuthenticator.ModelAuthenticatorPackage#getModel_Users()
 	 * @model containment="true"
 	 * @generated
 	 */

@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link modelAuthenticator.User#getPassword <em>Password</em>}</li>
  * </ul>
  *
- * @see modelAuthenticator.modelAuthenticatorPackage#getUser()
+ * @see modelAuthenticator.ModelAuthenticatorPackage#getUser()
  * @model
  * @generated
  */
@@ -32,7 +32,7 @@ public interface User extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see modelAuthenticator.modelAuthenticatorPackage#getUser_Name()
+	 * @see modelAuthenticator.ModelAuthenticatorPackage#getUser_Name()
 	 * @model
 	 * @generated
 	 */
@@ -58,7 +58,7 @@ public interface User extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Password</em>' attribute.
 	 * @see #setPassword(String)
-	 * @see modelAuthenticator.modelAuthenticatorPackage#getUser_Password()
+	 * @see modelAuthenticator.ModelAuthenticatorPackage#getUser_Password()
 	 * @model unique="false" ordered="false"
 	 * @generated
 	 */

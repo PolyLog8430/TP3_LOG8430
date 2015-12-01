@@ -1,11 +1,11 @@
 package authenticationserver;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Collections;
 
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
@@ -17,7 +17,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import modelAuthenticator.ModelFactory;
+import modelAuthenticator.ModelAuthenticatorFactory;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -25,7 +25,7 @@ import modelAuthenticator.ModelFactory;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "authenticator"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "authenticationServer"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
@@ -61,21 +61,21 @@ public class Activator extends AbstractUIPlugin {
 		server = new Server(8081);
 		XMIResource xmiResource = new XMIResourceImpl();
 
-		IPath stateLocation = Activator.getDefault().getStateLocation();
-		IPath model = stateLocation.append("savedModel.xml");
-		// File savedFile = model.toFile();
-
-		File savedFile = savedModel;
-		System.out.println("Le modele est enregistré dans le fichier: " + savedFile.getAbsolutePath());
-		if (savedFile.exists()) {
+		URL modelEntry = plugin.getBundle().getEntry("/users.modelAuthenticator");
+		
+		if (modelEntry != null) {
+			System.out.println("Modèle trouvé à : " + modelEntry.getPath());
 			// load from plug-in specific location
-			FileInputStream in = new FileInputStream(savedFile);
+			InputStream in = modelEntry.openStream();
 			xmiResource.load(in, Collections.emptyMap());
+			System.out.println(xmiResource.toString());
 			in.close();
 			root = xmiResource.getContents().get(0);
 		} else {
-			root = ModelFactory.eINSTANCE.createModel();
+			System.out.println("Pas de modèle trouvé, création d'un modèle vide");
+			root = ModelAuthenticatorFactory.eINSTANCE.createModel();
 		}
+		
 		server.setHandler(addEmfHandler(root));
 		new Thread(new Runnable() {
 			@Override

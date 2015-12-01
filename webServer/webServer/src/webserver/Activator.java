@@ -1,11 +1,11 @@
 package webserver;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Collections;
 
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
@@ -13,11 +13,10 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import model.ModelFactory;
+import modelWebserver.ModelWebserverFactory;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -31,7 +30,7 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 	private Server server;
-	private File savedModel = new File("example1.model");
+	private File savedModel = new File("model.modelwebserver");
 
 	private EObject root;
 
@@ -39,7 +38,7 @@ public class Activator extends AbstractUIPlugin {
 	 * The constructor
 	 */
 	public Activator() {
-
+		
 	}
 
 	/*
@@ -57,24 +56,23 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-
+		
 		server = new Server(8080);
 		XMIResource xmiResource = new XMIResourceImpl();
-
-		System.out.println(new File(".").getAbsolutePath());
-		IPath stateLocation = Activator.getDefault().getStateLocation();
-		IPath model = stateLocation.append("savedModel.xml");
-		//File savedFile = model.toFile();
-		File savedFile = savedModel;
-		System.out.println("Le path vers le modele est actuellement : " + savedFile.getAbsolutePath() + " \n Il est possible de le modifier dans webserver/src/webserver/Activator.java");
-		if (savedFile.exists()) {
+		
+		URL modelEntry = plugin.getBundle().getEntry("/example1.model");
+		
+		if (modelEntry != null) {
+			System.out.println("Modèle trouvé à : " + modelEntry.getPath());
 			// load from plug-in specific location
-			FileInputStream in = new FileInputStream(savedFile);
+			InputStream in = modelEntry.openStream();
 			xmiResource.load(in, Collections.emptyMap());
+			System.out.println(xmiResource.toString());
 			in.close();
 			root = xmiResource.getContents().get(0);
 		} else {
-			root = ModelFactory.eINSTANCE.createModel();
+			System.out.println("Pas de modèle trouvé, création d'un modèle vide");
+			root = ModelWebserverFactory.eINSTANCE.createModel();
 		}
 		server.setHandler(addEmfHandler(root));
 		new Thread(new Runnable() {
@@ -116,17 +114,17 @@ public class Activator extends AbstractUIPlugin {
 		return plugin;
 	}
 
-	/**
-	 * Returns an image descriptor for the image file at the given plug-in
-	 * relative path
-	 *
-	 * @param path
-	 *            the path
-	 * @return the image descriptor
-	 */
-	public static ImageDescriptor getImageDescriptor(String path) {
-		return imageDescriptorFromPlugin(PLUGIN_ID, path);
-	}
+//	/**
+//	 * Returns an image descriptor for the image file at the given plug-in
+//	 * relative path
+//	 *
+//	 * @param path
+//	 *            the path
+//	 * @return the image descriptor
+//	 */
+//	public static ImageDescriptor getImageDescriptor(String path) {
+//		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+//	}
 
 	private Handler addEmfHandler(EObject root) {
 		return new EMFHandler(root);

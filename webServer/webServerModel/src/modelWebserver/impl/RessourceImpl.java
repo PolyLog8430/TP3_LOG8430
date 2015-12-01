@@ -1,9 +1,9 @@
 /**
  */
-package modelAuthenticator.impl;
+package modelWebserver.impl;
 
-import modelAuthenticator.ModelAuthenticatorPackage;
-import modelAuthenticator.User;
+import modelWebserver.ModelWebserverPackage;
+import modelWebserver.Ressource;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -14,19 +14,18 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>User</b></em>'.
+ * An implementation of the model object '<em><b>Ressource</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link modelAuthenticator.impl.UserImpl#getName <em>Name</em>}</li>
- *   <li>{@link modelAuthenticator.impl.UserImpl#getPassword <em>Password</em>}</li>
+ *   <li>{@link modelWebserver.impl.RessourceImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class UserImpl extends MinimalEObjectImpl.Container implements User {
+public abstract class RessourceImpl extends MinimalEObjectImpl.Container implements Ressource {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -48,31 +47,11 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPassword() <em>Password</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPassword()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String PASSWORD_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getPassword() <em>Password</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPassword()
-	 * @generated
-	 * @ordered
-	 */
-	protected String password = PASSWORD_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UserImpl() {
+	protected RessourceImpl() {
 		super();
 	}
 
@@ -83,7 +62,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ModelAuthenticatorPackage.Literals.USER;
+		return ModelWebserverPackage.Literals.RESSOURCE;
 	}
 
 	/**
@@ -104,28 +83,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelAuthenticatorPackage.USER__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getPassword() {
-		return password;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPassword(String newPassword) {
-		String oldPassword = password;
-		password = newPassword;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelAuthenticatorPackage.USER__PASSWORD, oldPassword, password));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelWebserverPackage.RESSOURCE__NAME, oldName, name));
 	}
 
 	/**
@@ -136,10 +94,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelAuthenticatorPackage.USER__NAME:
+			case ModelWebserverPackage.RESSOURCE__NAME:
 				return getName();
-			case ModelAuthenticatorPackage.USER__PASSWORD:
-				return getPassword();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -152,11 +108,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelAuthenticatorPackage.USER__NAME:
+			case ModelWebserverPackage.RESSOURCE__NAME:
 				setName((String)newValue);
-				return;
-			case ModelAuthenticatorPackage.USER__PASSWORD:
-				setPassword((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -170,11 +123,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelAuthenticatorPackage.USER__NAME:
+			case ModelWebserverPackage.RESSOURCE__NAME:
 				setName(NAME_EDEFAULT);
-				return;
-			case ModelAuthenticatorPackage.USER__PASSWORD:
-				setPassword(PASSWORD_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -188,10 +138,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelAuthenticatorPackage.USER__NAME:
+			case ModelWebserverPackage.RESSOURCE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ModelAuthenticatorPackage.USER__PASSWORD:
-				return PASSWORD_EDEFAULT == null ? password != null : !PASSWORD_EDEFAULT.equals(password);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -208,10 +156,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", password: ");
-		result.append(password);
 		result.append(')');
 		return result.toString();
 	}
 
-} //UserImpl
+} //RessourceImpl

@@ -10,7 +10,7 @@
       <!-- @generated model -->
       <package
             uri="http://www.example.org/modelauthenticator"
-            class="modelAuthenticator.modelAuthenticatorPackage"
+            class="modelAuthenticator.ModelAuthenticatorPackage"
             genModel="model/model.genmodel"/>
    </extension>
 

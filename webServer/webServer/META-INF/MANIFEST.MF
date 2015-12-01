@@ -8,8 +8,8 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.ui,
  org.eclipse.core.runtime
-Import-Package: model,
- model.impl
+Import-Package: modelWebserver,
+ modelWebserver.impl
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: lib/javax.servlet-3.0-sources.jar,

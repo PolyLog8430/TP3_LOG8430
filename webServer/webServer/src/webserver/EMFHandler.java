@@ -1,8 +1,6 @@
 package webserver;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Iterator;
 
 import javax.servlet.ServletException;
@@ -14,16 +12,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import model.Model;
-import model.ModelFactory;
-import model.impl.ModelFactoryImpl;
+import modelWebserver.Model;
+import modelWebserver.ModelWebserverFactory;
+import modelWebserver.impl.ModelWebserverFactoryImpl;
 
 public class EMFHandler extends AbstractHandler {
 
@@ -160,7 +156,7 @@ public class EMFHandler extends AbstractHandler {
 					context  = eobject.eGet(feature);
 				}
 
-				ModelFactory modelFactory = ModelFactoryImpl.eINSTANCE;
+				ModelWebserverFactory modelFactory = ModelWebserverFactoryImpl.eINSTANCE;
 				Model model = modelFactory.createModel();
 
 				System.out.println("Factory instantiated");
