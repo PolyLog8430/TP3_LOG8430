@@ -1,6 +1,7 @@
 package webserver;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -13,8 +14,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -98,8 +102,16 @@ public class EMFHandler extends AbstractHandler {
 			}
 
 		}
+		Object json;
+		if(context instanceof EList){
+			json = new JSONArray(((EList) context).toArray());
+		}
+		else{
+			json = new JSONObject(context);
+		}
+		
 		httpResp.setStatus(HttpServletResponse.SC_OK);
-		httpResp.getWriter().print(context);
+		httpResp.getWriter().print(json);
 
 		httpResp.flushBuffer();
 	}
