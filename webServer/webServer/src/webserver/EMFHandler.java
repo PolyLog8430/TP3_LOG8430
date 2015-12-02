@@ -1,7 +1,6 @@
 package webserver;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -14,15 +13,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import modelWebserver.Model;
 import modelWebserver.ModelWebserverFactory;
 import modelWebserver.impl.ModelWebserverFactoryImpl;
 

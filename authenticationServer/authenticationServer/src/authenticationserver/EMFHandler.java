@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -32,38 +33,38 @@ public class EMFHandler extends AbstractHandler {
 	@Override
 	public void handle(String path, Request req, HttpServletRequest httpReq, HttpServletResponse httpResp)
 			throws IOException, ServletException {
-		boolean authSuccess = false;
+		String authLogin = null;
 
-		System.out.println("OK");
 
 		String auth = httpReq.getHeader("Authorization");
-		System.out.println("Auth: " + auth);
+		Activator.getDefault().getLog().log(new Status(Status.INFO, Activator.PLUGIN_ID, "Auth request : "+auth));	
 
 		if (auth != null && auth.startsWith("Basic")) {
 			auth = auth.substring("Basic".length()).trim();
 			String credentials[] = new String(Base64.getDecoder().decode(auth), Charset.forName("UTF-8")).split(":", 2);
 
-			EObject eobject = (EObject) root;
-			EStructuralFeature feature = eobject.eClass().getEStructuralFeature("users");
-			EList list = (EList) eobject.eGet(feature);
+			EStructuralFeature usersFeature = root.eClass().getEStructuralFeature("users");
+			EList<EObject> list = (EList<EObject>) root.eGet(usersFeature);
 
 			// Get user/pass with input parameters and compare to model
-			for (Object o : list) {
-				EObject eo = (EObject) o;
-				if (eo.eClass().getInstanceClassName().equals(User.class.getName())) {
+			for (EObject eo : list) {
+				if (eo.eClass().getInstanceClassName().equals(User.class.getName())) { // Type of User
 					String login = (String) eo.eGet(eo.eClass().getEStructuralFeature("name"));
 					String pass = (String) eo.eGet(eo.eClass().getEStructuralFeature("password"));
-					if (login.equals(credentials[0]) && pass.equals(credentials[1])) {
-						System.out.println("OK: " + credentials[0]);
-						authSuccess = true;
+					
+					if (login.equals(credentials[0]) && pass.equals(credentials[1])) { 
+						authLogin = login;
+						break;
 					}
 				}
 			}
 		}
 
-		if (authSuccess) {
-			forward(httpReq, httpResp);
+		if (authLogin != null) {
+			Activator.getDefault().getLog().log(new Status(Status.INFO, Activator.PLUGIN_ID, authLogin+" is authorized"));	
+			forward(httpReq, httpResp, authLogin);
 		} else {
+			Activator.getDefault().getLog().log(new Status(Status.WARNING, Activator.PLUGIN_ID, "Unauthorized"));	
 			httpResp.setStatus(HttpServletResponse.SC_FORBIDDEN);
 			httpResp.getWriter().print("Bad credential");
 		}
@@ -78,7 +79,7 @@ public class EMFHandler extends AbstractHandler {
 	 * @param resp
 	 * @throws IOException
 	 */
-	private void forward(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	private void forward(HttpServletRequest req, HttpServletResponse resp, String username) throws IOException {
 
 		URL url = new URL("http://" + SERVER_TO_FORWARD + req.getRequestURI()
 		+ ((req.getQueryString() != null) ? "?" + req.getQueryString() : ""));
@@ -86,7 +87,9 @@ public class EMFHandler extends AbstractHandler {
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod(req.getMethod());
 
-		if (req.getMethod().compareTo("GET") != 0) {
+		connection.setRequestProperty("Authorization", "Custom "+username);
+		
+		if (req.getMethod().compareTo("GET") != 0) { // If the request isn't GET, copy its body 
 
 			connection.setDoOutput(true);
 			connection.setDoInput(true);
@@ -100,13 +103,17 @@ public class EMFHandler extends AbstractHandler {
 			}
 		}
 
-		try {
+		try { // Forward server answer
 			resp.setStatus(connection.getResponseCode());
 			IOUtil.fastCopy(connection.getInputStream(), resp.getOutputStream());
 			connection.getInputStream().close();
+			
 		} catch (IOException e) {
+			connection.disconnect();
+			resp.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);
 			IOUtil.fastCopy(connection.getErrorStream(), resp.getOutputStream());
 			connection.getErrorStream().close();
+				
 		} finally {
 			resp.getOutputStream().close();
 		}

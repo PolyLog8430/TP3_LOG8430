@@ -2,6 +2,7 @@ package authenticationserver;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Collections;
@@ -15,6 +16,9 @@ import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
+import org.osgi.service.log.LogService;
+import org.osgi.util.tracker.ServiceTracker;
 
 import modelAuthenticator.ModelAuthenticatorFactory;
 
@@ -58,20 +62,23 @@ public class Activator extends AbstractUIPlugin {
 		plugin = this;
 
 		server = new Server(8081);
+		
 		XMIResource xmiResource = new XMIResourceImpl();
+		getLog().log(new Status(IStatus.OK,PLUGIN_ID,"\tDémarrage du serveur d'authentification"));
 
 		URL modelEntry = plugin.getBundle().getEntry("/users.modelAuthenticator");
-		
-		if (modelEntry != null) {
-			System.out.println("Modèle trouvé à : " + modelEntry.getPath());
-			// load from plug-in specific location
+		try{
 			InputStream in = modelEntry.openStream();
+			
 			xmiResource.load(in, Collections.emptyMap());
-			System.out.println(xmiResource.toString());
 			in.close();
+			getLog().log(new Status(IStatus.INFO,PLUGIN_ID,"Modèle trouvé à : " + modelEntry.getPath()));
+
 			root = xmiResource.getContents().get(0);
-		} else {
-			System.out.println("Pas de modèle trouvé, création d'un modèle vide");
+		}
+		catch(IOException e){
+			getLog().log(new Status(IStatus.WARNING,PLUGIN_ID,"Pas de modèle trouvé, création d'un modèle vide", e));
+
 			root = ModelAuthenticatorFactory.eINSTANCE.createModel();
 		}
 		
@@ -83,7 +90,7 @@ public class Activator extends AbstractUIPlugin {
 					server.start();
 					server.join();
 				} catch (Exception e) {
-					getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, "Failed to start webserver"));
+					getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, "Failed to start webserver", e));
 				}
 			}
 		}).start();
@@ -99,10 +106,16 @@ public class Activator extends AbstractUIPlugin {
 
 		XMIResource xmiResource = new XMIResourceImpl();
 		xmiResource.getContents().add(root);
-		FileOutputStream out = new FileOutputStream(savedModel);
-		xmiResource.save(out, Collections.emptyMap());
-		out.close();
+		try{
+			FileOutputStream out = new FileOutputStream(savedModel);
+			xmiResource.save(out, Collections.emptyMap());
+			out.close();
+		}
+		catch(IOException e){
+			getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, "Failed to save model data",e));
+		}
 		plugin = null;
+		
 		super.stop(context);
 	}
 
