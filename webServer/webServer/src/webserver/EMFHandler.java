@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -29,10 +30,41 @@ public class EMFHandler extends AbstractHandler {
 	public EMFHandler(EObject root) {
 		this.root = root;
 	}
-	
-	public void getRequest(String path, HttpServletRequest httpReq, HttpServletResponse httpResp)
+
+	/**
+	 * Check authorization credentials
+	 * @param httpReq request
+	 * @return is authorized or not
+	 */
+	private boolean getAuthenticateUser(HttpServletRequest httpReq){
+		String authorization = httpReq.getHeader("Authorization");
+		
+		if(authorization != null && authorization.startsWith("Custom")){
+			String username = authorization.substring("Custom".length()).trim();
+			
+			//TODO compare username with resource ...
+			Activator.getDefault().getLog().log(new Status(Status.OK,Activator.PLUGIN_ID,"User to authorized : "+username));
+		}
+		
+		return true;
+	}
+
+	/**
+	 * Handle GET request
+	 * @param path URI 
+	 * @param httpReq request
+	 * @param httpResp response
+	 * @throws IOException
+	 * @throws ServletException
+	 */
+	private void getRequest(String path, HttpServletRequest httpReq, HttpServletResponse httpResp)
 			throws IOException, ServletException {
 
+		if(!getAuthenticateUser(httpReq)){
+			writeResponse(httpResp, "Error -> Unauthorized", HttpServletResponse.SC_UNAUTHORIZED);
+			return;
+		}
+		
 		String[] fragments = path.split("/");
 		Object context = root;
 
@@ -127,9 +159,22 @@ public class EMFHandler extends AbstractHandler {
 		httpResp.flushBuffer();
 	}
 
-	public void postRequest(String path, HttpServletRequest httpReq, HttpServletResponse httpResp)
+	/**
+	 * Handle POST request
+	 * @param path URI
+	 * @param httpReq request
+	 * @param httpResp response
+	 * @throws IOException
+	 * @throws ServletException
+	 */
+	private void postRequest(String path, HttpServletRequest httpReq, HttpServletResponse httpResp)
 			throws IOException, ServletException {
 
+		if(!getAuthenticateUser(httpReq)){
+			writeResponse(httpResp, "Error -> Unauthorized", HttpServletResponse.SC_UNAUTHORIZED);
+			return;
+		}
+		
 		String[] fragments = path.split("/");
 		Object context = root;
 
@@ -236,7 +281,14 @@ public class EMFHandler extends AbstractHandler {
 		}
 	}
 
-	public void writeResponse(HttpServletResponse httpResp, String message, int statusCode) throws IOException {
+	/**
+	 * Write a response with message and status code back to the client
+	 * @param httpResp response
+	 * @param message string
+	 * @param statusCode int
+	 * @throws IOException
+	 */
+	private void writeResponse(HttpServletResponse httpResp, String message, int statusCode) throws IOException {
 		System.out.println("Sending : " + message + "  with Status : " + statusCode);
 		httpResp.setStatus(statusCode);
 		httpResp.getWriter().print(message);
@@ -252,6 +304,10 @@ public class EMFHandler extends AbstractHandler {
 			getRequest(path, httpReq, httpResp);
 		} else if (method.equalsIgnoreCase("POST")) {
 			postRequest(path, httpReq, httpResp);
+		}
+		else{
+			writeResponse(httpResp, "Error -> La méthode "+method+" n'est pas supporté.",
+					HttpServletResponse.SC_BAD_REQUEST);
 		}
 	}
 
