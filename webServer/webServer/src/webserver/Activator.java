@@ -1,6 +1,6 @@
 package webserver;
 
-import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
@@ -30,7 +30,6 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 	private Server server;
-	private File savedModel = new File("model.modelwebserver");
 
 	private EObject root;
 
@@ -61,19 +60,21 @@ public class Activator extends AbstractUIPlugin {
 		XMIResource xmiResource = new XMIResourceImpl();
 		
 		URL modelEntry = plugin.getBundle().getEntry("model.modelwebserver");
-		
-		if (modelEntry != null) {
-			System.out.println("Modèle trouvé à : " + modelEntry.getPath());
-			// load from plug-in specific location
+		try{
 			InputStream in = modelEntry.openStream();
+			
 			xmiResource.load(in, Collections.emptyMap());
-			System.out.println(xmiResource.toString());
 			in.close();
+			getLog().log(new Status(IStatus.INFO,PLUGIN_ID,"Modèle trouvé à : " + modelEntry.getPath()));
+
 			root = xmiResource.getContents().get(0);
-		} else {
-			System.out.println("Pas de modèle nommé model.modelwebserver trouvé à la racine du projet, création d'un modèle vide");
+		}
+		catch(IOException e){
+			getLog().log(new Status(IStatus.WARNING,PLUGIN_ID,"Pas de modèle nommé model.modelwebserver trouvé, création d'un modèle vide", e));
+
 			root = ModelWebserverFactory.eINSTANCE.createModel();
 		}
+		
 		server.setHandler(addEmfHandler(root));
 		new Thread(new Runnable() {
 			@Override
@@ -81,6 +82,7 @@ public class Activator extends AbstractUIPlugin {
 				try {
 					server.start();
 					server.join();
+					getLog().log(new Status(IStatus.OK,PLUGIN_ID,"Démarrage du web serveur"));
 				} catch (Exception e) {
 					getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, "Failed to start webserver"));
 				}
@@ -96,7 +98,8 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public void stop(BundleContext context) throws Exception {
 
-		System.out.println("Stopping webserver, save model in model.modelwebserver");
+		getLog().log(new Status(IStatus.OK,PLUGIN_ID,"Stopping webserver, save model in model.modelwebserver"));
+
 		XMIResource xmiResource = new XMIResourceImpl();
 		xmiResource.getContents().add(root);
 		OutputStream out = plugin.getBundle().getEntry("model.modelwebserver").openConnection().getOutputStream();
@@ -114,18 +117,6 @@ public class Activator extends AbstractUIPlugin {
 	public static Activator getDefault() {
 		return plugin;
 	}
-
-//	/**
-//	 * Returns an image descriptor for the image file at the given plug-in
-//	 * relative path
-//	 *
-//	 * @param path
-//	 *            the path
-//	 * @return the image descriptor
-//	 */
-//	public static ImageDescriptor getImageDescriptor(String path) {
-//		return imageDescriptorFromPlugin(PLUGIN_ID, path);
-//	}
 
 	private Handler addEmfHandler(EObject root) {
 		return new EMFHandler(root);

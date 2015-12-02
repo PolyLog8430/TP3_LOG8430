@@ -16,9 +16,6 @@ import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceReference;
-import org.osgi.service.log.LogService;
-import org.osgi.util.tracker.ServiceTracker;
 
 import modelAuthenticator.ModelAuthenticatorFactory;
 
@@ -51,12 +48,6 @@ public class Activator extends AbstractUIPlugin {
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.
 	 * BundleContext)
 	 */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.
-	 * BundleContext)
-	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
@@ -64,7 +55,6 @@ public class Activator extends AbstractUIPlugin {
 		server = new Server(8081);
 		
 		XMIResource xmiResource = new XMIResourceImpl();
-		getLog().log(new Status(IStatus.OK,PLUGIN_ID,"\tDémarrage du serveur d'authentification"));
 
 		URL modelEntry = plugin.getBundle().getEntry("/users.modelAuthenticator");
 		try{
@@ -89,8 +79,9 @@ public class Activator extends AbstractUIPlugin {
 				try {
 					server.start();
 					server.join();
+					getLog().log(new Status(IStatus.OK,PLUGIN_ID,"Démarrage du serveur d'authentification"));
 				} catch (Exception e) {
-					getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, "Failed to start webserver", e));
+					getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, "Failed to start authentication server", e));
 				}
 			}
 		}).start();

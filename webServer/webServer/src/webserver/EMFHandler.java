@@ -43,7 +43,7 @@ public class EMFHandler extends AbstractHandler {
 			String username = authorization.substring("Custom".length()).trim();
 			
 			//TODO compare username with resource ...
-			Activator.getDefault().getLog().log(new Status(Status.OK,Activator.PLUGIN_ID,"User to authorized : "+username));
+			Activator.getDefault().getLog().log(new Status(Status.INFO,Activator.PLUGIN_ID,"User to authorized : "+username));
 		}
 		
 		return true;
@@ -91,7 +91,7 @@ public class EMFHandler extends AbstractHandler {
 				}
 				
 				// call reflexively
-				System.out.println("Requested feature Name : " + feature.getName());
+				Activator.getDefault().getLog().log(new Status(Status.INFO,Activator.PLUGIN_ID,"Requested feature Name  : "+feature.getName()));
 				context = eobject.eGet(feature);
 
 				// Get filtering parameters and apply it to feature
@@ -221,15 +221,15 @@ public class EMFHandler extends AbstractHandler {
 
 			eRef = (EReference) feature;
 			// call reflexively
-			System.out.println("Requested class Name : " + feature.getName());
+			Activator.getDefault().getLog().log(new Status(Status.INFO,Activator.PLUGIN_ID,"Requested feature Name  : "+feature.getName()));
 			context = eobject.eGet(feature);
 
 			ModelWebserverFactory modelFactory = ModelWebserverFactoryImpl.eINSTANCE;
 
 			// Instantiate object of requested class
 			EObject eObject = modelFactory.create(eRef.getEReferenceType());
-			System.out.println("Instanciated : " + eObject.toString());
-			
+			Activator.getDefault().getLog().log(new Status(Status.INFO,Activator.PLUGIN_ID,"Instanciated  : "+eObject.toString()));
+
 			// Parse json body and find keys
 			JSONObject json = null;
 			try {
@@ -266,7 +266,7 @@ public class EMFHandler extends AbstractHandler {
 				try {
 					eObject.eSet(eObject.eClass().getEStructuralFeature(var), json.getString(var));
 				} catch (JSONException e) {
-					System.out.println("Unexpected error in json : " + e.toString());
+					Activator.getDefault().getLog().log(new Status(Status.WARNING,Activator.PLUGIN_ID,"Unexpected error in json",e));
 				}
 			}
 			
@@ -289,7 +289,8 @@ public class EMFHandler extends AbstractHandler {
 	 * @throws IOException
 	 */
 	private void writeResponse(HttpServletResponse httpResp, String message, int statusCode) throws IOException {
-		System.out.println("Sending : " + message + "  with Status : " + statusCode);
+		Activator.getDefault().getLog().log(new Status(Status.INFO,Activator.PLUGIN_ID,"Sending : " + message + "  with Status : " + statusCode));
+
 		httpResp.setStatus(statusCode);
 		httpResp.getWriter().print(message);
 		httpResp.flushBuffer();

@@ -35,10 +35,10 @@ public class EMFHandler extends AbstractHandler {
 			throws IOException, ServletException {
 		String authLogin = null;
 
-
 		String auth = httpReq.getHeader("Authorization");
 		Activator.getDefault().getLog().log(new Status(Status.INFO, Activator.PLUGIN_ID, "Auth request : "+auth));	
 
+		// If the header is in good format
 		if (auth != null && auth.startsWith("Basic")) {
 			auth = auth.substring("Basic".length()).trim();
 			String credentials[] = new String(Base64.getDecoder().decode(auth), Charset.forName("UTF-8")).split(":", 2);
@@ -60,10 +60,11 @@ public class EMFHandler extends AbstractHandler {
 			}
 		}
 
-		if (authLogin != null) {
+		if (authLogin != null) { // Auth ok
 			Activator.getDefault().getLog().log(new Status(Status.INFO, Activator.PLUGIN_ID, authLogin+" is authorized"));	
 			forward(httpReq, httpResp, authLogin);
-		} else {
+		} 
+		else { // Un-authorized
 			Activator.getDefault().getLog().log(new Status(Status.WARNING, Activator.PLUGIN_ID, "Unauthorized"));	
 			httpResp.setStatus(HttpServletResponse.SC_FORBIDDEN);
 			httpResp.getWriter().print("Bad credential");
@@ -80,7 +81,7 @@ public class EMFHandler extends AbstractHandler {
 	 * @throws IOException
 	 */
 	private void forward(HttpServletRequest req, HttpServletResponse resp, String username) throws IOException {
-
+		// Send Request
 		URL url = new URL("http://" + SERVER_TO_FORWARD + req.getRequestURI()
 		+ ((req.getQueryString() != null) ? "?" + req.getQueryString() : ""));
 
@@ -102,8 +103,9 @@ public class EMFHandler extends AbstractHandler {
 				connection.getOutputStream().close();
 			}
 		}
-
-		try { // Forward server answer
+		
+		// Forward server answer
+		try { 
 			resp.setStatus(connection.getResponseCode());
 			IOUtil.fastCopy(connection.getInputStream(), resp.getOutputStream());
 			connection.getInputStream().close();
