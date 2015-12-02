@@ -29,7 +29,7 @@ public class EMFHandler extends AbstractHandler {
 	public EMFHandler(EObject root) {
 		this.root = root;
 	}
-
+	
 	public void getRequest(String path, HttpServletRequest httpReq, HttpServletResponse httpResp)
 			throws IOException, ServletException {
 
@@ -53,7 +53,11 @@ public class EMFHandler extends AbstractHandler {
 				EObject eobject = (EObject) context;
 				// find the feature
 				EStructuralFeature feature = eobject.eClass().getEStructuralFeature(fragment);
-
+				if(feature == null){
+					writeResponse(httpResp, "Error -> Classe specifie dans l'url non disponible dans le modele ", HttpServletResponse.SC_NOT_FOUND);
+					return;
+				}
+				
 				// call reflexively
 				System.out.println("Requested feature Name : " + feature.getName());
 				context = eobject.eGet(feature);
@@ -64,6 +68,8 @@ public class EMFHandler extends AbstractHandler {
 					if (filterURL != null) {
 						String[] args = filterURL.split("&");
 						String[][] filters = new String[args.length][2];
+						
+						// Extarct filters from query string into an array
 						int j = 0;
 						for (String filter : args) {
 							String[] a = filter.split("=");
@@ -71,7 +77,8 @@ public class EMFHandler extends AbstractHandler {
 							filters[j][1] = (a.length == 2) ? a[1] : "";
 							j++;
 						}
-
+						
+						// Apply on list
 						EList list = (EList) context;
 						EList listFiltered = new BasicEList<>();
 						for (Object o : list) {
@@ -94,10 +101,18 @@ public class EMFHandler extends AbstractHandler {
 
 			} else if (context instanceof EList) {
 				EList list = (EList) context;
-				context = list.get(position);
+				if(position >= 0 && position < list.size()){
+					context = list.get(position);
+				}
+				else{
+					writeResponse(httpResp, "Error -> Position specifie dans l'url est non disponible dans le modele ", HttpServletResponse.SC_NOT_FOUND);
+					return;
+				}
 			}
 
 		}
+		
+		// Format output into JSON format
 		Object json;
 		if(context instanceof EList){
 			json = new JSONArray(((EList) context).toArray());
