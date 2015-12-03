@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>ICommand</b></em>'.
+ * An abstract class for all commands to extends.
  * <!-- end-user-doc -->
  *
  * <p>

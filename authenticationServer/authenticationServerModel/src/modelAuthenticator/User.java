@@ -23,13 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface User extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+	 * Returns the value of the user's <em><b>Name</b></em>.
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see modelAuthenticator.ModelAuthenticatorPackage#getUser_Name()
@@ -39,9 +33,7 @@ public interface User extends EObject {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link modelAuthenticator.User#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link modelAuthenticator.User#getName <em>Name</em>}' attribute. 
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
@@ -49,7 +41,7 @@ public interface User extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Password</b></em>' attribute.
+	 * Returns the value of the user's <em><b>Password</b></em>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Password</em>' attribute isn't clear,
@@ -66,8 +58,6 @@ public interface User extends EObject {
 
 	/**
 	 * Sets the value of the '{@link modelAuthenticator.User#getPassword <em>Password</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Password</em>' attribute.
 	 * @see #getPassword()
 	 * @generated

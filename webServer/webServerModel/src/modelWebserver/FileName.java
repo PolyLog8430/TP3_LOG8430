@@ -5,7 +5,7 @@ package modelWebserver;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>File Name</b></em>'.
+ * The '<em><b>File Name</b></em>' command.
  * <!-- end-user-doc -->
  *
  *

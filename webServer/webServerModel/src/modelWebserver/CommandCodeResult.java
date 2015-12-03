@@ -11,7 +11,7 @@ import org.eclipse.emf.common.util.Enumerator;
 /**
  * <!-- begin-user-doc -->
  * A representation of the literals of the enumeration '<em><b>Command Code Result</b></em>',
- * and utility methods for working with them.
+ * representing the state of the command. either succedded or error happened during the command application. 
  * <!-- end-user-doc -->
  * @see modelWebserver.ModelWebserverPackage#getCommandCodeResult()
  * @model
@@ -41,10 +41,6 @@ public enum CommandCodeResult implements Enumerator {
 	/**
 	 * The '<em><b>SUCCESS</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>SUCCESS</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #SUCCESS
 	 * @model
@@ -56,10 +52,6 @@ public enum CommandCodeResult implements Enumerator {
 	/**
 	 * The '<em><b>ERROR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>ERROR</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #ERROR
 	 * @model

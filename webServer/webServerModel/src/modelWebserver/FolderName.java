@@ -5,7 +5,7 @@ package modelWebserver;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Folder Name</b></em>'.
+ * The '<em><b>Folder Name</b></em>' Command.
  * <!-- end-user-doc -->
  *
  *
