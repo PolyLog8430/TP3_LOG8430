@@ -52,6 +52,13 @@ public class Activator extends AbstractUIPlugin {
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.
 	 * BundleContext)
 	 */
+	/**
+	 * The server start method.
+	 * Reads saved model or creates empty model.
+	 * 
+	 * @param context
+	 * @throws Exception
+	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
@@ -96,6 +103,12 @@ public class Activator extends AbstractUIPlugin {
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.
 	 * BundleContext)
 	 */
+	/**
+	 * Stopping the server.
+	 * persist the model.
+	 * @param context
+	 * @throws Exception
+	 */
 	public void stop(BundleContext context) throws Exception {
 
 		getLog().log(new Status(IStatus.OK,PLUGIN_ID,"Stopping webserver, save model in model.modelwebserver"));
@@ -118,6 +131,11 @@ public class Activator extends AbstractUIPlugin {
 		return plugin;
 	}
 
+	/**
+	 * Create the server handler, responsible for handling the request affecting the model.
+	 * @param root root EMF object.
+	 * @return
+	 */
 	private Handler addEmfHandler(EObject root) {
 		return new EMFHandler(root);
 	}
