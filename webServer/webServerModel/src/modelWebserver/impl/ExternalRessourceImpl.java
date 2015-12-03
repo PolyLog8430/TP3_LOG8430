@@ -87,6 +87,7 @@ public class ExternalRessourceImpl extends RessourceImpl implements ExternalRess
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Return the URI of the external resource
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -96,6 +97,7 @@ public class ExternalRessourceImpl extends RessourceImpl implements ExternalRess
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Set the title of the external resource page.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -108,6 +110,7 @@ public class ExternalRessourceImpl extends RessourceImpl implements ExternalRess
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Return the URI of the external resource.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -117,6 +120,7 @@ public class ExternalRessourceImpl extends RessourceImpl implements ExternalRess
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Set the URI of the external resource.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

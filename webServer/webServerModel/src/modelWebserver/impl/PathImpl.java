@@ -12,7 +12,7 @@ import modelWebserver.Path;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Path</b></em>'.
+ * The implementation of the '<em><b>Path</b></em>' command.
  * <!-- end-user-doc -->
  *
  * @generated
