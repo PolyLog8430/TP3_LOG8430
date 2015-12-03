@@ -1,6 +1,11 @@
 package webserver;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -8,15 +13,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,10 +32,17 @@ import modelWebserver.impl.ModelWebserverFactoryImpl;
 
 public class EMFHandler extends AbstractHandler {
 
-	private final EObject root;
-
-	public EMFHandler(EObject root) {
+	private final EObject root; 
+	
+	private Activator plugin;
+	private HashMap<String, EObject> userModels;
+	
+	public EMFHandler(EObject root, Activator plugin) {
 		this.root = root;
+		this.plugin = plugin;
+		
+		userModels = new HashMap<>();
+		userModels.put("public", root);
 	}
 
 	/**
@@ -36,17 +50,56 @@ public class EMFHandler extends AbstractHandler {
 	 * @param httpReq request
 	 * @return is authorized or not
 	 */
-	private boolean getAuthenticateUser(HttpServletRequest httpReq){
+	private String getAuthenticateUser(HttpServletRequest httpReq){
 		String authorization = httpReq.getHeader("Authorization");
 		
 		if(authorization != null && authorization.startsWith("Custom")){
 			String username = authorization.substring("Custom".length()).trim();
 			
 			//TODO compare username with resource ...
-			Activator.getDefault().getLog().log(new Status(Status.INFO,Activator.PLUGIN_ID,"User to authorized : "+username));
+			logToOSGI("User authorized : " + username);
+			return username;
 		}
 		
-		return true;
+		return null;
+	}
+	
+	/**
+	 * Search for a model associated to a username from the local hashmap, disc or create
+	 * an empty one if there is no model for the user
+	 * @param username
+	 * @return Model associated with username 
+	 */
+	private EObject getUserModel(String username) {
+		
+		if (userModels.containsKey(username)) { // Model already loaded 
+			logToOSGI("Modèle trouvé pour : " + username);
+		}
+		else if (plugin.getBundle().getEntry(username + ".modelwebserver") != null) { // Model on disc but not loaded 
+			
+			XMIResource xmiResource = new XMIResourceImpl();
+			
+			URL modelEntry = plugin.getBundle().getEntry(username + ".modelwebserver");
+			try{
+				InputStream in = modelEntry.openStream();
+				
+				xmiResource.load(in, Collections.emptyMap());
+				in.close();
+				logToOSGI("Modèle trouvé à : " + modelEntry.getPath());
+				
+				userModels.put(username, xmiResource.getContents().get(0));
+			}
+			catch(IOException e){
+				
+			}
+		}
+		else {	// No existant model for the user, create empty one 
+			
+			logToOSGI("Pas de modèle pour le user " + username + " trouvé, création d'un modèle vide");
+			userModels.put(username, ModelWebserverFactory.eINSTANCE.createModel());
+		}
+		
+		return userModels.get(username);
 	}
 
 	/**
@@ -57,17 +110,13 @@ public class EMFHandler extends AbstractHandler {
 	 * @throws IOException
 	 * @throws ServletException
 	 */
-	private void getRequest(String path, HttpServletRequest httpReq, HttpServletResponse httpResp)
+	private void getRequest(String path, HttpServletRequest httpReq, HttpServletResponse httpResp, EObject model)
 			throws IOException, ServletException {
-
-		if(!getAuthenticateUser(httpReq)){
-			writeResponse(httpResp, "Error -> Unauthorized", HttpServletResponse.SC_UNAUTHORIZED);
-			return;
-		}
 		
 		String[] fragments = path.split("/");
-		Object context = root;
-
+		
+		Object requestedFeature = null;
+		
 		for (int i = 0; i < fragments.length; i++) {
 			String fragment = fragments[i];
 			if (fragment.isEmpty())
@@ -82,7 +131,7 @@ public class EMFHandler extends AbstractHandler {
 
 			if (position == Integer.MIN_VALUE) {
 				// match feature
-				EObject eobject = (EObject) context;
+				EObject eobject = (EObject) model;
 				// find the feature
 				EStructuralFeature feature = eobject.eClass().getEStructuralFeature(fragment);
 				if(feature == null){
@@ -91,11 +140,11 @@ public class EMFHandler extends AbstractHandler {
 				}
 				
 				// call reflexively
-				Activator.getDefault().getLog().log(new Status(Status.INFO,Activator.PLUGIN_ID,"Requested feature Name  : "+feature.getName()));
-				context = eobject.eGet(feature);
+				logToOSGI("Requested feature Name  : " + feature.getName());
+				requestedFeature = eobject.eGet(feature);
 
 				// Get filtering parameters and apply it to feature
-				if (context instanceof EList) {
+				if (requestedFeature instanceof EList) {
 					String filterURL = httpReq.getQueryString();
 					if (filterURL != null) {
 						String[] args = filterURL.split("&");
@@ -111,7 +160,7 @@ public class EMFHandler extends AbstractHandler {
 						}
 						
 						// Apply on list
-						EList list = (EList) context;
+						EList list = (EList) requestedFeature;
 						EList listFiltered = new BasicEList<>();
 						for (Object o : list) {
 							EObject eo = (EObject) o;
@@ -127,14 +176,14 @@ public class EMFHandler extends AbstractHandler {
 							}
 						}
 
-						context = listFiltered;
+						requestedFeature = listFiltered;
 					}
 				}
 
-			} else if (context instanceof EList) {
-				EList list = (EList) context;
+			} else if (requestedFeature instanceof EList) {
+				EList list = (EList) requestedFeature;
 				if(position >= 0 && position < list.size()){
-					context = list.get(position);
+					requestedFeature = list.get(position);
 				}
 				else{
 					writeResponse(httpResp, "Error -> Position specifie dans l'url est non disponible dans le modele ", HttpServletResponse.SC_NOT_FOUND);
@@ -145,12 +194,19 @@ public class EMFHandler extends AbstractHandler {
 		}
 		
 		// Format output into JSON format
-		Object json;
-		if(context instanceof EList){
-			json = new JSONArray(((EList) context).toArray());
+		String json = "";
+		if(requestedFeature instanceof EList){
+			
+			for (Object o : (EList)requestedFeature) {
+				
+				EObject eo = (EObject) o;
+				//json += eo.getClass().getName() + " : ";
+				json += eo;
+			}
+			//json += json = new JSONArray(((EList) requestedFeature).toArray()).toString();
 		}
 		else{
-			json = new JSONObject(context);
+			json = new JSONObject(requestedFeature).toString();
 		}
 		
 		httpResp.setStatus(HttpServletResponse.SC_OK);
@@ -167,16 +223,11 @@ public class EMFHandler extends AbstractHandler {
 	 * @throws IOException
 	 * @throws ServletException
 	 */
-	private void postRequest(String path, HttpServletRequest httpReq, HttpServletResponse httpResp)
+	private void postRequest(String path, HttpServletRequest httpReq, HttpServletResponse httpResp, EObject model)
 			throws IOException, ServletException {
-
-		if(!getAuthenticateUser(httpReq)){
-			writeResponse(httpResp, "Error -> Unauthorized", HttpServletResponse.SC_UNAUTHORIZED);
-			return;
-		}
 		
 		String[] fragments = path.split("/");
-		Object context = root;
+		Object requestedFeature;
 
 		// Feature to add
 		EStructuralFeature feature = null;
@@ -208,7 +259,7 @@ public class EMFHandler extends AbstractHandler {
 			}
 
 			// match feature
-			EObject eobject = (EObject) context;
+			EObject eobject = (EObject) model;
 
 			// find the class named "fragment" in the model
 			feature = eobject.eClass().getEStructuralFeature(fragment);
@@ -221,14 +272,14 @@ public class EMFHandler extends AbstractHandler {
 
 			eRef = (EReference) feature;
 			// call reflexively
-			Activator.getDefault().getLog().log(new Status(Status.INFO,Activator.PLUGIN_ID,"Requested feature Name  : "+feature.getName()));
-			context = eobject.eGet(feature);
+			logToOSGI("Requested feature Name  : " + feature.getName());
+			requestedFeature = eobject.eGet(feature);
 
 			ModelWebserverFactory modelFactory = ModelWebserverFactoryImpl.eINSTANCE;
 
 			// Instantiate object of requested class
 			EObject eObject = modelFactory.create(eRef.getEReferenceType());
-			Activator.getDefault().getLog().log(new Status(Status.INFO,Activator.PLUGIN_ID,"Instanciated  : "+eObject.toString()));
+			logToOSGI("Instanciated  : " + eObject.toString());
 
 			// Parse json body and find keys
 			JSONObject json = null;
@@ -266,13 +317,13 @@ public class EMFHandler extends AbstractHandler {
 				try {
 					eObject.eSet(eObject.eClass().getEStructuralFeature(var), json.getString(var));
 				} catch (JSONException e) {
-					Activator.getDefault().getLog().log(new Status(Status.WARNING,Activator.PLUGIN_ID,"Unexpected error in json",e));
+					logToOSGI("Unexpected error in json" + e);
 				}
 			}
 			
 			// Everything ok, add object to model
 			
-			EObject mainDoc = (EObject) root;
+			EObject mainDoc = (EObject) model;
 			EStructuralFeature listFeature = mainDoc.eClass().getEStructuralFeature(fragment);
 			EList list = (EList) mainDoc.eGet(listFeature);
 			list.add(eObject);
@@ -289,7 +340,7 @@ public class EMFHandler extends AbstractHandler {
 	 * @throws IOException
 	 */
 	private void writeResponse(HttpServletResponse httpResp, String message, int statusCode) throws IOException {
-		Activator.getDefault().getLog().log(new Status(Status.INFO,Activator.PLUGIN_ID,"Sending : " + message + "  with Status : " + statusCode));
+		logToOSGI("Sending : " + message + " with Status : " + statusCode);
 
 		httpResp.setStatus(statusCode);
 		httpResp.getWriter().print(message);
@@ -300,16 +351,43 @@ public class EMFHandler extends AbstractHandler {
 	public void handle(String path, Request req, HttpServletRequest httpReq, HttpServletResponse httpResp)
 			throws IOException, ServletException {
 		String method = httpReq.getMethod();
+		
+		EObject model;
+		String username;
+		
+		if((username = getAuthenticateUser(httpReq)) != null) {
+			model = getUserModel(username);
+			logToOSGI("Accès par utilisateur authentifié : " + username);
+		}
+		else {
+			model = userModels.get("public");
+			logToOSGI("Accès par utilisateur non authentifié, choix du modèle public");
+		}
 
 		if (method.equalsIgnoreCase("GET")) {
-			getRequest(path, httpReq, httpResp);
+			getRequest(path, httpReq, httpResp, model);
 		} else if (method.equalsIgnoreCase("POST")) {
-			postRequest(path, httpReq, httpResp);
+			postRequest(path, httpReq, httpResp, model);
+			
+			/*XMIResource xmiResource = new XMIResourceImpl();
+			xmiResource.getContents().add(model);
+			
+			OutputStream out = plugin.getBundle().getEntry(username + ".modelwebserver").openConnection().getOutputStream();
+			xmiResource.save(out, Collections.emptyMap());
+			out.close();*/
+			
+			System.out.println(plugin.getBundle().getEntry("/"));
+			File modelFile = new File(plugin.getBundle().getEntry("/").toString() + "/" + username + ".modelwebserver");
+			modelFile.createNewFile();
 		}
 		else{
 			writeResponse(httpResp, "Error -> La méthode "+method+" n'est pas supporté.",
 					HttpServletResponse.SC_BAD_REQUEST);
 		}
+	}
+	
+	public void logToOSGI(String message) {
+		plugin.getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, message));
 	}
 
 }

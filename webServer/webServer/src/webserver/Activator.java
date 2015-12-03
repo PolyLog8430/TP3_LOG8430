@@ -46,12 +46,6 @@ public class Activator extends AbstractUIPlugin {
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.
 	 * BundleContext)
 	 */
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.
-	 * BundleContext)
-	 */
 	/**
 	 * The server start method.
 	 * Reads saved model or creates empty model.
@@ -137,6 +131,6 @@ public class Activator extends AbstractUIPlugin {
 	 * @return
 	 */
 	private Handler addEmfHandler(EObject root) {
-		return new EMFHandler(root);
+		return new EMFHandler(root, this);
 	}
 }
