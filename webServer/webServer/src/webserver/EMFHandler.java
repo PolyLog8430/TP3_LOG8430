@@ -1,6 +1,8 @@
 package webserver;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -13,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
@@ -72,10 +75,10 @@ public class EMFHandler extends AbstractHandler {
 	 */
 	private EObject getUserModel(String username) {
 		
-		if (userModels.containsKey(username)) { // Model already loaded 
+		if (userModels.containsKey(username)) { // Model already loaded in the hashmap 
 			logToOSGI("Modèle trouvé pour : " + username);
 		}
-		else if (plugin.getBundle().getEntry(username + ".modelwebserver") != null) { // Model on disc but not loaded 
+		else if (plugin.getBundle().getEntry(username + ".modelwebserver") != null) { // Model present in the bundle 
 			
 			XMIResource xmiResource = new XMIResourceImpl();
 			
@@ -86,6 +89,25 @@ public class EMFHandler extends AbstractHandler {
 				xmiResource.load(in, Collections.emptyMap());
 				in.close();
 				logToOSGI("Modèle trouvé à : " + modelEntry.getPath());
+				
+				userModels.put(username, xmiResource.getContents().get(0));
+			}
+			catch(IOException e){
+				
+			}
+		}
+		else if (plugin.getStateLocation().append(username + ".modelwebserver").toFile().exists()) { // Model in plugin local storage from previous session
+			
+			File localStorageModel = plugin.getStateLocation().append(username + ".modelwebserver").toFile();
+			
+			XMIResource xmiResource = new XMIResourceImpl();
+			
+			try{
+				FileInputStream in = new FileInputStream(localStorageModel);
+				
+				xmiResource.load(in, Collections.emptyMap());
+				in.close();
+				logToOSGI("Modèle trouvé à : " + localStorageModel.getPath());
 				
 				userModels.put(username, xmiResource.getContents().get(0));
 			}
@@ -220,10 +242,11 @@ public class EMFHandler extends AbstractHandler {
 	 * @param path URI
 	 * @param httpReq request
 	 * @param httpResp response
+	 * @return 
 	 * @throws IOException
 	 * @throws ServletException
 	 */
-	private void postRequest(String path, HttpServletRequest httpReq, HttpServletResponse httpResp, EObject model)
+	private boolean postRequest(String path, HttpServletRequest httpReq, HttpServletResponse httpResp, EObject model)
 			throws IOException, ServletException {
 		
 		String[] fragments = path.split("/");
@@ -245,7 +268,7 @@ public class EMFHandler extends AbstractHandler {
 		if (allBody.equals("")) {
 			// No body, send error
 			writeResponse(httpResp, "Error -> Body vide", HttpServletResponse.SC_PRECONDITION_FAILED);
-			return;
+			return false;
 		} else {
 			// Get Post information
 
@@ -255,7 +278,7 @@ public class EMFHandler extends AbstractHandler {
 				// No url indication regarding the model fragment to add
 				writeResponse(httpResp, "Error -> Le type d'ajout desire n'a pas ete specifie dans l'url",
 						HttpServletResponse.SC_BAD_REQUEST);
-				return;
+				return false;
 			}
 
 			// match feature
@@ -267,7 +290,7 @@ public class EMFHandler extends AbstractHandler {
 			if (feature == null) {
 				writeResponse(httpResp, "Error -> Classe specifie dans l'url non disponible dans le modele",
 						HttpServletResponse.SC_BAD_REQUEST);
-				return;
+				return false;
 			}
 
 			eRef = (EReference) feature;
@@ -287,7 +310,7 @@ public class EMFHandler extends AbstractHandler {
 				json = new JSONObject(allBody);
 			} catch(JSONException e) {
 				writeResponse(httpResp, "Erreur de parsage du json. Le json : " + allBody + " est incorrect !", HttpServletResponse.SC_BAD_REQUEST);
-				return;
+				return false;
 			}
 			
 			String availableFeatures = new String();
@@ -306,7 +329,7 @@ public class EMFHandler extends AbstractHandler {
 				if(eObject.eClass().getEStructuralFeature(next) == null) {
 					writeResponse(httpResp, "Error -> Variable Json : " +  next + " is not a variable of : " + eObject.eClass().getInstanceClassName() +
 							"\nAvailable variables are : \n" + availableFeatures, HttpServletResponse.SC_BAD_REQUEST);
-					return;
+					return false;
 				} else {
 					validVariables.add(next);
 				}
@@ -330,6 +353,7 @@ public class EMFHandler extends AbstractHandler {
 			
 			writeResponse(httpResp, "Posted with success", HttpServletResponse.SC_CREATED);
 		}
+		return true;
 	}
 
 	/**
@@ -367,18 +391,25 @@ public class EMFHandler extends AbstractHandler {
 		if (method.equalsIgnoreCase("GET")) {
 			getRequest(path, httpReq, httpResp, model);
 		} else if (method.equalsIgnoreCase("POST")) {
-			postRequest(path, httpReq, httpResp, model);
 			
-			/*XMIResource xmiResource = new XMIResourceImpl();
-			xmiResource.getContents().add(model);
+			if(postRequest(path, httpReq, httpResp, model)) {
+				
+				// Post succesful, update model
+				IPath prefPath = plugin.getStateLocation();
+				System.out.println(prefPath);
+				
+				// 
+				File modelStore = prefPath.append(username + ".modelwebserver").toFile();
+				if(!modelStore.exists()) 
+					modelStore.createNewFile();
+				
+				XMIResource xmiResource = new XMIResourceImpl();
+				xmiResource.getContents().add(model);
+				FileOutputStream out = new FileOutputStream(modelStore);
+				xmiResource.save(out, Collections.emptyMap());
+				out.close();
+			}
 			
-			OutputStream out = plugin.getBundle().getEntry(username + ".modelwebserver").openConnection().getOutputStream();
-			xmiResource.save(out, Collections.emptyMap());
-			out.close();*/
-			
-			System.out.println(plugin.getBundle().getEntry("/"));
-			File modelFile = new File(plugin.getBundle().getEntry("/").toString() + "/" + username + ".modelwebserver");
-			modelFile.createNewFile();
 		}
 		else{
 			writeResponse(httpResp, "Error -> La méthode "+method+" n'est pas supporté.",
