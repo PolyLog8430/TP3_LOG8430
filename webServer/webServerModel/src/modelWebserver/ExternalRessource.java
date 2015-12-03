@@ -5,7 +5,8 @@ package modelWebserver;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>External Ressource</b></em>'.
+ * A representation of the model object '<em><b>External Resource</b></em>'.
+ * an ExternalRessource object holds the information of an external resource URL.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -20,6 +21,7 @@ package modelWebserver;
  * @model
  * @generated
  */
+
 public interface ExternalRessource extends Ressource {
 	/**
 	 * Returns the value of the '<em><b>Title</b></em>' attribute.

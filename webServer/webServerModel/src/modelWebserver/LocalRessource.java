@@ -26,8 +26,7 @@ public interface LocalRessource extends Ressource {
 	 * Returns the value of the '<em><b>Permission</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Permission</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * Get the user permissions on this resource.
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Permission</em>' attribute.
@@ -41,6 +40,7 @@ public interface LocalRessource extends Ressource {
 	/**
 	 * Sets the value of the '{@link modelWebserver.LocalRessource#getPermission <em>Permission</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * Set the user permissions on this resource.
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Permission</em>' attribute.
 	 * @see #getPermission()
@@ -52,8 +52,7 @@ public interface LocalRessource extends Ressource {
 	 * Returns the value of the '<em><b>Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Path</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * Return the path of the resource.
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Path</em>' attribute.
@@ -67,6 +66,7 @@ public interface LocalRessource extends Ressource {
 	/**
 	 * Sets the value of the '{@link modelWebserver.LocalRessource#getPath <em>Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * Set the path of the resource.
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Path</em>' attribute.
 	 * @see #getPath()
@@ -78,8 +78,8 @@ public interface LocalRessource extends Ressource {
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * Return the type of the local resource.
+	 * The type indicates whether the resource is a file or a folder.
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
@@ -93,6 +93,7 @@ public interface LocalRessource extends Ressource {
 	/**
 	 * Sets the value of the '{@link modelWebserver.LocalRessource#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * Set the type of the local resource.
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' attribute.
 	 * @see #getType()

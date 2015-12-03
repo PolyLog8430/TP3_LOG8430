@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Model</b></em>'.
+ * The set
  * <!-- end-user-doc -->
  *
  * <p>

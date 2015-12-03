@@ -48,6 +48,11 @@ public class Activator extends AbstractUIPlugin {
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.
 	 * BundleContext)
 	 */
+	/**
+	 * Starts the authentication server.
+	 * @param context
+	 * @throws Exception
+	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
@@ -93,6 +98,11 @@ public class Activator extends AbstractUIPlugin {
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.
 	 * BundleContext)
 	 */
+	/**
+	 * stops the authentication server.
+	 * @param context
+	 * @throws Exception
+	 */
 	public void stop(BundleContext context) throws Exception {
 
 		XMIResource xmiResource = new XMIResourceImpl();
@@ -120,6 +130,11 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 
+	/**
+	 * create the requests handler, responsible for handling the authentication requests.
+	 * @param root
+	 * @return
+	 */
 	private Handler addEmfHandler(EObject root) {
 		return new EMFHandler(root);
 	}

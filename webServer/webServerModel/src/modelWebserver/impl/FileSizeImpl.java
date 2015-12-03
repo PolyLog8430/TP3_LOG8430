@@ -12,7 +12,7 @@ import modelWebserver.ModelWebserverPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>File Size</b></em>'.
+ * The implementation of the '<em><b>File Size</b></em>' command.
  * <!-- end-user-doc -->
  *
  * @generated

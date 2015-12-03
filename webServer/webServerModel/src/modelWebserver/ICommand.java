@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>ICommand</b></em>'.
+ * An abstract class for all commands to extends.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -31,8 +32,7 @@ public interface ICommand extends EObject {
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * This is the command name to appear to the end-user
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
@@ -46,6 +46,7 @@ public interface ICommand extends EObject {
 	/**
 	 * Sets the value of the '{@link modelWebserver.ICommand#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * Setting the command name.
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
@@ -57,8 +58,7 @@ public interface ICommand extends EObject {
 	 * Returns the value of the '<em><b>Ressource</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Ressource</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * get the ressource for which the command is called.
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ressource</em>' containment reference.
@@ -72,6 +72,7 @@ public interface ICommand extends EObject {
 	/**
 	 * Sets the value of the '{@link modelWebserver.ICommand#getRessource <em>Ressource</em>}' containment reference.
 	 * <!-- begin-user-doc -->
+	 * Set the ressource for which the command should be applied.
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Ressource</em>' containment reference.
 	 * @see #getRessource()
@@ -83,8 +84,7 @@ public interface ICommand extends EObject {
 	 * Returns the value of the '<em><b>Result</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Result</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * returns the result of the of the command.
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Result</em>' attribute.
@@ -98,6 +98,7 @@ public interface ICommand extends EObject {
 	/**
 	 * Sets the value of the '{@link modelWebserver.ICommand#getResult <em>Result</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * Set the result of the command
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Result</em>' attribute.
 	 * @see #getResult()
@@ -109,8 +110,7 @@ public interface ICommand extends EObject {
 	 * Returns the value of the '<em><b>Apply On Folder</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Apply On Folder</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * Whether the command applicable on Folders or not.
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Apply On Folder</em>' attribute.
@@ -124,6 +124,7 @@ public interface ICommand extends EObject {
 	/**
 	 * Sets the value of the '{@link modelWebserver.ICommand#isApplyOnFolder <em>Apply On Folder</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * set whether the command applicable on Folders or not.
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Apply On Folder</em>' attribute.
 	 * @see #isApplyOnFolder()
@@ -135,8 +136,7 @@ public interface ICommand extends EObject {
 	 * Returns the value of the '<em><b>Apply On File</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Apply On File</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * Whether the command applicable on Files or not.
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Apply On File</em>' attribute.
@@ -150,6 +150,7 @@ public interface ICommand extends EObject {
 	/**
 	 * Sets the value of the '{@link modelWebserver.ICommand#isApplyOnFile <em>Apply On File</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * Set whether the command applicable on Folders or not.
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Apply On File</em>' attribute.
 	 * @see #isApplyOnFile()
@@ -161,8 +162,7 @@ public interface ICommand extends EObject {
 	 * Returns the value of the '<em><b>Apply On URI</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Apply On URI</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * Whether the command applicable on URI or not.
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Apply On URI</em>' attribute.
@@ -176,6 +176,7 @@ public interface ICommand extends EObject {
 	/**
 	 * Sets the value of the '{@link modelWebserver.ICommand#isApplyOnURI <em>Apply On URI</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * Set whether the command applicable on Folders or not.
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Apply On URI</em>' attribute.
 	 * @see #isApplyOnURI()
@@ -189,8 +190,7 @@ public interface ICommand extends EObject {
 	 * The literals are from the enumeration {@link modelWebserver.CommandCodeResult}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Code Result</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * return the result of the command.
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Code Result</em>' attribute.
@@ -205,6 +205,7 @@ public interface ICommand extends EObject {
 	/**
 	 * Sets the value of the '{@link modelWebserver.ICommand#getCodeResult <em>Code Result</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * Set the result of the command
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Code Result</em>' attribute.
 	 * @see modelWebserver.CommandCodeResult
@@ -215,6 +216,8 @@ public interface ICommand extends EObject {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Execute the command on the resource specified by the given ressourceId.
+	 * Set the appropriate result value and the result code. 
 	 * <!-- end-user-doc -->
 	 * @model resourceIdDataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated

@@ -5,7 +5,7 @@ package modelWebserver;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Page Tile</b></em>'.
+ * The '<em><b>Page Tile</b></em>' command.
  * <!-- end-user-doc -->
  *
  *

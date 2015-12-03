@@ -5,7 +5,7 @@ package modelWebserver;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>File Size</b></em>'.
+ * The '<em><b>File Size</b></em>' command.
  * <!-- end-user-doc -->
  *
  *

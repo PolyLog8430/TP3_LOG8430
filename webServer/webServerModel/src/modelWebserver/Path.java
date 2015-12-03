@@ -5,7 +5,7 @@ package modelWebserver;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Path</b></em>'.
+ * The '<em><b>Path</b></em>' command.
  * <!-- end-user-doc -->
  *
  *

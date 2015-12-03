@@ -17,7 +17,7 @@ import modelWebserver.PageTile;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Page Tile</b></em>'.
+ * The implementation of the '<em><b>Page Tile</b></em>'command.
  * <!-- end-user-doc -->
  *
  * @generated

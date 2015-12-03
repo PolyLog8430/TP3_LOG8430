@@ -44,6 +44,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	/**
 	 * The cached value of the '{@link #getCommands() <em>Commands</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * The list of commands available for clients usage.
 	 * <!-- end-user-doc -->
 	 * @see #getCommands()
 	 * @generated
@@ -54,6 +55,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	/**
 	 * The cached value of the '{@link #getLocalResources() <em>Local Resources</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * Available local resources.
 	 * <!-- end-user-doc -->
 	 * @see #getLocalResources()
 	 * @generated
@@ -64,6 +66,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	/**
 	 * The cached value of the '{@link #getExternalResources() <em>External Resources</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * Available external ressources.
 	 * <!-- end-user-doc -->
 	 * @see #getExternalResources()
 	 * @generated
@@ -74,6 +77,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 	/**
 	 * The cached value of the '{@link #getResources() <em>Resources</em>}' reference list.
 	 * <!-- begin-user-doc -->
+	 * All available ressources.
 	 * <!-- end-user-doc -->
 	 * @see #getResources()
 	 * @generated
