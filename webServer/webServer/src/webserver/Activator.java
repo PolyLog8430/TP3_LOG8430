@@ -28,10 +28,11 @@ public class Activator extends AbstractUIPlugin {
 
 	// The shared instance
 	private static Activator plugin;
-
+	
 	private Server server;
-
-	private EObject root;
+	final private int port = 8080; 
+	
+	private EObject root;	// Public model 
 
 	/**
 	 * The constructor
@@ -48,7 +49,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	/**
 	 * The server start method.
-	 * Reads saved model or creates empty model.
+	 * Reads public model from xml and start server
 	 * 
 	 * @param context
 	 * @throws Exception
@@ -57,9 +58,10 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		
-		server = new Server(8080);
-		XMIResource xmiResource = new XMIResourceImpl();
+		server = new Server(port);
 		
+		// Get public model from bundle root or create new one
+		XMIResource xmiResource = new XMIResourceImpl();
 		URL modelEntry = plugin.getBundle().getEntry("model.modelwebserver");
 		try{
 			InputStream in = modelEntry.openStream();
@@ -71,8 +73,7 @@ public class Activator extends AbstractUIPlugin {
 			root = xmiResource.getContents().get(0);
 		}
 		catch(IOException e){
-			getLog().log(new Status(IStatus.WARNING,PLUGIN_ID,"Pas de modèle nommé model.modelwebserver trouvé, création d'un modèle vide", e));
-
+			getLog().log(new Status(IStatus.WARNING,PLUGIN_ID,"Pas de modèle nommé model.modelwebserver trouvé à la racine du projet, création d'un modèle vide", e));
 			root = ModelWebserverFactory.eINSTANCE.createModel();
 		}
 		
@@ -85,7 +86,7 @@ public class Activator extends AbstractUIPlugin {
 					server.join();
 					getLog().log(new Status(IStatus.OK,PLUGIN_ID,"Démarrage du web serveur"));
 				} catch (Exception e) {
-					getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, "Failed to start webserver"));
+					getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, "Echec lors du lancement du webserver"));
 				}
 			}
 		}).start();
@@ -105,7 +106,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public void stop(BundleContext context) throws Exception {
 
-		getLog().log(new Status(IStatus.OK,PLUGIN_ID,"Stopping webserver, save model in model.modelwebserver"));
+		getLog().log(new Status(IStatus.OK,PLUGIN_ID,"Arret du webserver en cours"));
 
 		XMIResource xmiResource = new XMIResourceImpl();
 		xmiResource.getContents().add(root);

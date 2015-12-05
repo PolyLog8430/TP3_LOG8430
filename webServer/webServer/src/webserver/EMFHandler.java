@@ -44,22 +44,21 @@ public class EMFHandler extends AbstractHandler {
 		this.root = root;
 		this.plugin = plugin;
 		
+		// Create hashmap and add public model to it
 		userModels = new HashMap<>();
 		userModels.put("public", root);
 	}
 
 	/**
-	 * Check authorization credentials
+	 * Check authorization credential
 	 * @param httpReq request
-	 * @return is authorized or not
+	 * @return String username if authorized, null if not
 	 */
 	private String getAuthenticateUser(HttpServletRequest httpReq){
 		String authorization = httpReq.getHeader("Authorization");
 		
-		if(authorization != null && authorization.startsWith("Custom")){
+		if(authorization != null && authorization.startsWith("Custom")){ // Authorization header from authentication server
 			String username = authorization.substring("Custom".length()).trim();
-			
-			//TODO compare username with resource ...
 			logToOSGI("User authorized : " + username);
 			return username;
 		}
@@ -68,17 +67,17 @@ public class EMFHandler extends AbstractHandler {
 	}
 	
 	/**
-	 * Search for a model associated to a username from the local hashmap, disc or create
-	 * an empty one if there is no model for the user
+	 * Search for a model associated to a username from the local hashmap, local plugin storage,
+	 * root project path or create an empty one if there is no model for the user
 	 * @param username
 	 * @return Model associated with username 
 	 */
 	private EObject getUserModel(String username) {
 		
 		if (userModels.containsKey(username)) { // Model already loaded in the hashmap 
-			logToOSGI("Modèle trouvé pour : " + username);
+			logToOSGI("Modèle déjà chargé pour : " + username);
 		}
-		else if (plugin.getBundle().getEntry(username + ".modelwebserver") != null) { // Model present in the bundle 
+		else if (plugin.getBundle().getEntry(username + ".modelwebserver") != null) { // Model present at the project root 
 			
 			XMIResource xmiResource = new XMIResourceImpl();
 			
@@ -88,12 +87,12 @@ public class EMFHandler extends AbstractHandler {
 				
 				xmiResource.load(in, Collections.emptyMap());
 				in.close();
-				logToOSGI("Modèle trouvé à : " + modelEntry.getPath());
+				logToOSGI("Modèle trouvé à : " + modelEntry.getPath() + " pour : " + username);
 				
 				userModels.put(username, xmiResource.getContents().get(0));
 			}
 			catch(IOException e){
-				
+				logToOSGI("Erreur lors du chargement du modèle pour : " + username + " à l'emplacement : " + modelEntry.getPath() + "\nStacktrace : " + e.toString());
 			}
 		}
 		else if (plugin.getStateLocation().append(username + ".modelwebserver").toFile().exists()) { // Model in plugin local storage from previous session
@@ -101,7 +100,6 @@ public class EMFHandler extends AbstractHandler {
 			File localStorageModel = plugin.getStateLocation().append(username + ".modelwebserver").toFile();
 			
 			XMIResource xmiResource = new XMIResourceImpl();
-			
 			try{
 				FileInputStream in = new FileInputStream(localStorageModel);
 				
@@ -112,7 +110,7 @@ public class EMFHandler extends AbstractHandler {
 				userModels.put(username, xmiResource.getContents().get(0));
 			}
 			catch(IOException e){
-				
+				logToOSGI("Erreur lors du chargement du modèle pour : " + username + " à l'emplacement : " + localStorageModel.getPath() + "\nStacktrace : " + e.toString());
 			}
 		}
 		else {	// No existant model for the user, create empty one 
@@ -157,7 +155,7 @@ public class EMFHandler extends AbstractHandler {
 				// find the feature
 				EStructuralFeature feature = eobject.eClass().getEStructuralFeature(fragment);
 				if(feature == null){
-					writeResponse(httpResp, "Error -> Classe specifie dans l'url non disponible dans le modele ", HttpServletResponse.SC_NOT_FOUND);
+					writeResponse(httpResp, "Erreur -> Classe specifie dans l'url non disponible dans le modele ", HttpServletResponse.SC_NOT_FOUND);
 					return;
 				}
 				
@@ -208,7 +206,7 @@ public class EMFHandler extends AbstractHandler {
 					requestedFeature = list.get(position);
 				}
 				else{
-					writeResponse(httpResp, "Error -> Position specifie dans l'url est non disponible dans le modele ", HttpServletResponse.SC_NOT_FOUND);
+					writeResponse(httpResp, "Erreur -> Position specifie dans l'url non disponible dans le modele ", HttpServletResponse.SC_NOT_FOUND);
 					return;
 				}
 			}
@@ -228,7 +226,8 @@ public class EMFHandler extends AbstractHandler {
 			//json += json = new JSONArray(((EList) requestedFeature).toArray()).toString();
 		}
 		else{
-			json = new JSONObject(requestedFeature).toString();
+			json += ((EObject) requestedFeature);
+			//json = new JSONObject(requestedFeature).toString();
 		}
 		
 		httpResp.setStatus(HttpServletResponse.SC_OK);
@@ -250,7 +249,6 @@ public class EMFHandler extends AbstractHandler {
 			throws IOException, ServletException {
 		
 		String[] fragments = path.split("/");
-		Object requestedFeature;
 
 		// Feature to add
 		EStructuralFeature feature = null;
@@ -267,7 +265,7 @@ public class EMFHandler extends AbstractHandler {
 
 		if (allBody.equals("")) {
 			// No body, send error
-			writeResponse(httpResp, "Error -> Body vide", HttpServletResponse.SC_PRECONDITION_FAILED);
+			writeResponse(httpResp, "Erreur -> Body vide", HttpServletResponse.SC_PRECONDITION_FAILED);
 			return false;
 		} else {
 			// Get Post information
@@ -276,7 +274,7 @@ public class EMFHandler extends AbstractHandler {
 			if (fragment.isEmpty()) {
 
 				// No url indication regarding the model fragment to add
-				writeResponse(httpResp, "Error -> Le type d'ajout desire n'a pas ete specifie dans l'url",
+				writeResponse(httpResp, "Erreur -> Le type d'ajout desire n'a pas ete specifie dans l'url",
 						HttpServletResponse.SC_BAD_REQUEST);
 				return false;
 			}
@@ -288,54 +286,49 @@ public class EMFHandler extends AbstractHandler {
 			feature = eobject.eClass().getEStructuralFeature(fragment);
 
 			if (feature == null) {
-				writeResponse(httpResp, "Error -> Classe specifie dans l'url non disponible dans le modele",
+				writeResponse(httpResp, "Erreur -> Classe specifie dans l'url non disponible dans le modele",
 						HttpServletResponse.SC_BAD_REQUEST);
 				return false;
 			}
 
 			eRef = (EReference) feature;
-			// call reflexively
-			logToOSGI("Requested feature Name  : " + feature.getName());
-			requestedFeature = eobject.eGet(feature);
-
 			ModelWebserverFactory modelFactory = ModelWebserverFactoryImpl.eINSTANCE;
 
 			// Instantiate object of requested class
 			EObject eObject = modelFactory.create(eRef.getEReferenceType());
-			logToOSGI("Instanciated  : " + eObject.toString());
 
 			// Parse json body and find keys
 			JSONObject json = null;
 			try {
 				json = new JSONObject(allBody);
 			} catch(JSONException e) {
-				writeResponse(httpResp, "Erreur de parsage du json. Le json : " + allBody + " est incorrect !", HttpServletResponse.SC_BAD_REQUEST);
+				writeResponse(httpResp, "Erreur -> Le format du json : " + allBody + " est incorrect !", HttpServletResponse.SC_BAD_REQUEST);
 				return false;
 			}
 			
+			// Get a printable list of class attributes to send to user as hint 
 			String availableFeatures = new String();
 			for (EStructuralFeature e : eObject.eClass().getEStructuralFeatures()) {
 				availableFeatures += e.getName() + " of type " + e.getEType().getName() + "\n";
 			}
 
+			// Iterate over json variable and find equivalent in the class
 			Iterator<String> iterator = json.keys();
 			LinkedList<String> validVariables = new LinkedList<String>(); 
-			
-			// Iterate over json variable and find equivalent in the class
 			while (iterator.hasNext()) {
 				String next = iterator.next();
 				
 				// No corresponding variable in the model class, exit
 				if(eObject.eClass().getEStructuralFeature(next) == null) {
-					writeResponse(httpResp, "Error -> Variable Json : " +  next + " is not a variable of : " + eObject.eClass().getInstanceClassName() +
-							"\nAvailable variables are : \n" + availableFeatures, HttpServletResponse.SC_BAD_REQUEST);
+					writeResponse(httpResp, "Erreur -> Variable Json : " +  next + " n'est pas un attribut de : " + eObject.eClass().getInstanceClassName() +
+							"\nLes attributs disponible pour cette classe sont : \n" + availableFeatures, HttpServletResponse.SC_BAD_REQUEST);
 					return false;
 				} else {
 					validVariables.add(next);
 				}
 			}
 			
-			// Fill object with json values
+			// At this stage we know json input is valid, fill the object with it
 			for(String var : validVariables) {
 				try {
 					eObject.eSet(eObject.eClass().getEStructuralFeature(var), json.getString(var));
@@ -345,13 +338,12 @@ public class EMFHandler extends AbstractHandler {
 			}
 			
 			// Everything ok, add object to model
-			
 			EObject mainDoc = (EObject) model;
 			EStructuralFeature listFeature = mainDoc.eClass().getEStructuralFeature(fragment);
 			EList list = (EList) mainDoc.eGet(listFeature);
 			list.add(eObject);
 			
-			writeResponse(httpResp, "Posted with success", HttpServletResponse.SC_CREATED);
+			writeResponse(httpResp, "Nouvelle entrée ajoutée dans le modèle avec succès !", HttpServletResponse.SC_CREATED);
 		}
 		return true;
 	}
@@ -374,6 +366,7 @@ public class EMFHandler extends AbstractHandler {
 	@Override
 	public void handle(String path, Request req, HttpServletRequest httpReq, HttpServletResponse httpResp)
 			throws IOException, ServletException {
+		
 		String method = httpReq.getMethod();
 		
 		EObject model;
@@ -398,7 +391,7 @@ public class EMFHandler extends AbstractHandler {
 				IPath prefPath = plugin.getStateLocation();
 				System.out.println(prefPath);
 				
-				// 
+				// Save updated model to plugin local storage
 				File modelStore = prefPath.append(username + ".modelwebserver").toFile();
 				if(!modelStore.exists()) 
 					modelStore.createNewFile();
@@ -412,7 +405,7 @@ public class EMFHandler extends AbstractHandler {
 			
 		}
 		else{
-			writeResponse(httpResp, "Error -> La méthode "+method+" n'est pas supporté.",
+			writeResponse(httpResp, "Erreur -> La méthode "+method+" n'est pas supporté.",
 					HttpServletResponse.SC_BAD_REQUEST);
 		}
 	}

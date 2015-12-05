@@ -67,7 +67,7 @@ public class EMFHandler extends AbstractHandler {
 		else { // Un-authorized
 			Activator.getDefault().getLog().log(new Status(Status.WARNING, Activator.PLUGIN_ID, "Unauthorized"));	
 			httpResp.setStatus(HttpServletResponse.SC_FORBIDDEN);
-			httpResp.getWriter().print("Bad credential");
+			httpResp.getWriter().print("Mauvais login / mot de passe");
 		}
 
 		httpResp.flushBuffer();
