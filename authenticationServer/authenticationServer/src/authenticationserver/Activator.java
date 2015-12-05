@@ -31,8 +31,6 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 	private Server server;
-	private File savedModel = new File("users.model");
-
 	private EObject root;
 
 	/**
@@ -61,6 +59,7 @@ public class Activator extends AbstractUIPlugin {
 		
 		XMIResource xmiResource = new XMIResourceImpl();
 
+		// Load users model
 		URL modelEntry = plugin.getBundle().getEntry("/users.modelAuthenticator");
 		try{
 			InputStream in = modelEntry.openStream();
@@ -72,9 +71,12 @@ public class Activator extends AbstractUIPlugin {
 			root = xmiResource.getContents().get(0);
 		}
 		catch(IOException e){
-			getLog().log(new Status(IStatus.WARNING,PLUGIN_ID,"Pas de modèle trouvé, création d'un modèle vide", e));
-
-			root = ModelAuthenticatorFactory.eINSTANCE.createModel();
+			getLog().log(new Status(IStatus.WARNING,PLUGIN_ID,"Pas de modèle trouvé, exit" + e.toString()));
+			
+			// Better crash here, creating an empty model would be useless (no users in it)
+			throw e;
+			
+			//root = ModelAuthenticatorFactory.eINSTANCE.createModel();
 		}
 		
 		server.setHandler(addEmfHandler(root));
@@ -104,19 +106,8 @@ public class Activator extends AbstractUIPlugin {
 	 * @throws Exception
 	 */
 	public void stop(BundleContext context) throws Exception {
-
-		XMIResource xmiResource = new XMIResourceImpl();
-		xmiResource.getContents().add(root);
-		try{
-			FileOutputStream out = new FileOutputStream(savedModel);
-			xmiResource.save(out, Collections.emptyMap());
-			out.close();
-		}
-		catch(IOException e){
-			getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, "Failed to save model data",e));
-		}
-		plugin = null;
 		
+		plugin = null;
 		super.stop(context);
 	}
 
