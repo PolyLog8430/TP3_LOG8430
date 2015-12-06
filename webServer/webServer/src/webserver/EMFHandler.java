@@ -41,7 +41,7 @@ public class EMFHandler extends AbstractHandler {
 	public EMFHandler(Activator plugin) {
 		this.plugin = plugin;
 		
-		// Create hashmap and add public model to it
+		// Create hashmap
 		userModels = new HashMap<>();
 	}
 
@@ -109,7 +109,7 @@ public class EMFHandler extends AbstractHandler {
 				logToOSGI("Erreur lors du chargement du modèle pour : " + username + " à l'emplacement : " + modelEntry.getPath() + "\nStacktrace : " + e.toString());
 			}
 		}
-		else {	// No existant model for the user, create empty one 
+		else {	// No existent model for the user, create empty one 
 			
 			logToOSGI("Pas de modèle pour le user " + username + " trouvé, création d'un modèle vide");
 			userModels.put(username, ModelWebserverFactory.eINSTANCE.createModel());
@@ -137,7 +137,7 @@ public class EMFHandler extends AbstractHandler {
 			String fragment = fragments[i];
 			if (fragment.isEmpty())
 				continue;
-			// should be avoided. inefficient
+			
 			int position;
 			try {
 				position = Integer.parseInt(fragment);
@@ -155,7 +155,6 @@ public class EMFHandler extends AbstractHandler {
 					return;
 				}
 				
-				// call reflexively
 				logToOSGI("Type de l'objet demandé par le client : " + feature.getName());
 				requestedFeature = eobject.eGet(feature);
 
@@ -166,7 +165,7 @@ public class EMFHandler extends AbstractHandler {
 						String[] args = filterURL.split("&");
 						String[][] filters = new String[args.length][2];
 						
-						// Extarct filters from query string into an array
+						// Extract filters from query string into an array
 						int j = 0;
 						for (String filter : args) {
 							String[] a = filter.split("=");
@@ -216,14 +215,11 @@ public class EMFHandler extends AbstractHandler {
 			for (Object o : (EList)requestedFeature) {
 				
 				EObject eo = (EObject) o;
-				//json += eo.getClass().getName() + " : ";
 				json += eo;
 			}
-			//json += json = new JSONArray(((EList) requestedFeature).toArray()).toString();
 		}
 		else{
 			json += ((EObject) requestedFeature);
-			//json = new JSONObject(requestedFeature).toString();
 		}
 		
 		httpResp.setStatus(HttpServletResponse.SC_OK);
@@ -275,10 +271,9 @@ public class EMFHandler extends AbstractHandler {
 				return false;
 			}
 
-			// match feature
 			EObject eobject = (EObject) model;
 
-			// find the class named "fragment" in the model
+			// Find the class named "fragment" in the model
 			feature = eobject.eClass().getEStructuralFeature(fragment);
 
 			if (feature == null) {
@@ -386,7 +381,7 @@ public class EMFHandler extends AbstractHandler {
 				
 				// Post succesful, update model
 				IPath prefPath = plugin.getStateLocation();
-				logToOSGI("Mis à jour du modèle de : " + username +" situé au chemin : " + prefPath);
+				logToOSGI("Mise à jour du modèle de : " + username +" situé au chemin : " + prefPath);
 				
 				// Save updated model to plugin local storage
 				File modelStore = prefPath.append(username + ".modelwebserver").toFile();
