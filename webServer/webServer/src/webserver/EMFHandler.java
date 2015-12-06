@@ -34,19 +34,15 @@ import modelWebserver.ModelWebserverFactory;
 import modelWebserver.impl.ModelWebserverFactoryImpl;
 
 public class EMFHandler extends AbstractHandler {
-
-	private final EObject root; 
 	
 	private Activator plugin;
 	private HashMap<String, EObject> userModels;
 	
-	public EMFHandler(EObject root, Activator plugin) {
-		this.root = root;
+	public EMFHandler(Activator plugin) {
 		this.plugin = plugin;
 		
 		// Create hashmap and add public model to it
 		userModels = new HashMap<>();
-		userModels.put("public", root);
 	}
 
 	/**
@@ -160,7 +156,7 @@ public class EMFHandler extends AbstractHandler {
 				}
 				
 				// call reflexively
-				logToOSGI("Requested feature Name  : " + feature.getName());
+				logToOSGI("Type de l'objet demandé par le client : " + feature.getName());
 				requestedFeature = eobject.eGet(feature);
 
 				// Get filtering parameters and apply it to feature
@@ -309,7 +305,7 @@ public class EMFHandler extends AbstractHandler {
 			// Get a printable list of class attributes to send to user as hint 
 			String availableFeatures = new String();
 			for (EStructuralFeature e : eObject.eClass().getEStructuralFeatures()) {
-				availableFeatures += e.getName() + " of type " + e.getEType().getName() + "\n";
+				availableFeatures += e.getName() + " de type " + e.getEType().getName() + "\n";
 			}
 
 			// Iterate over json variable and find equivalent in the class
@@ -333,7 +329,7 @@ public class EMFHandler extends AbstractHandler {
 				try {
 					eObject.eSet(eObject.eClass().getEStructuralFeature(var), json.getString(var));
 				} catch (JSONException e) {
-					logToOSGI("Unexpected error in json" + e);
+					logToOSGI("Erreur -> Parsage du json a crashé" + e);
 				}
 			}
 			
@@ -343,7 +339,7 @@ public class EMFHandler extends AbstractHandler {
 			EList list = (EList) mainDoc.eGet(listFeature);
 			list.add(eObject);
 			
-			writeResponse(httpResp, "Nouvelle entrée ajoutée dans le modèle avec succès !", HttpServletResponse.SC_CREATED);
+			writeResponse(httpResp, "Nouvelle entree ajoutee dans le modele avec succes !", HttpServletResponse.SC_CREATED);
 		}
 		return true;
 	}
@@ -356,7 +352,7 @@ public class EMFHandler extends AbstractHandler {
 	 * @throws IOException
 	 */
 	private void writeResponse(HttpServletResponse httpResp, String message, int statusCode) throws IOException {
-		logToOSGI("Sending : " + message + " with Status : " + statusCode);
+		logToOSGI("Réponse à la requête : " + message + " avec le status : " + statusCode);
 
 		httpResp.setStatus(statusCode);
 		httpResp.getWriter().print(message);
@@ -377,7 +373,8 @@ public class EMFHandler extends AbstractHandler {
 			logToOSGI("Accès par utilisateur authentifié : " + username);
 		}
 		else {
-			model = userModels.get("public");
+			username = "public"; // Used in case of post while not authenticated
+			model = getUserModel(username);
 			logToOSGI("Accès par utilisateur non authentifié, choix du modèle public");
 		}
 
@@ -389,7 +386,7 @@ public class EMFHandler extends AbstractHandler {
 				
 				// Post succesful, update model
 				IPath prefPath = plugin.getStateLocation();
-				System.out.println(prefPath);
+				logToOSGI("Mis à jour du modèle de : " + username +" situé au chemin : " + prefPath);
 				
 				// Save updated model to plugin local storage
 				File modelStore = prefPath.append(username + ".modelwebserver").toFile();
@@ -405,7 +402,7 @@ public class EMFHandler extends AbstractHandler {
 			
 		}
 		else{
-			writeResponse(httpResp, "Erreur -> La méthode "+method+" n'est pas supporté.",
+			writeResponse(httpResp, "Erreur -> La methode "+method+" n'est pas supportee.",
 					HttpServletResponse.SC_BAD_REQUEST);
 		}
 	}

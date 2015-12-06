@@ -1,22 +1,11 @@
 package webserver;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.util.Collections;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-
-import modelWebserver.ModelWebserverFactory;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -31,8 +20,6 @@ public class Activator extends AbstractUIPlugin {
 	
 	private Server server;
 	final private int port = 8080; 
-	
-	private EObject root;	// Public model 
 
 	/**
 	 * The constructor
@@ -59,37 +46,20 @@ public class Activator extends AbstractUIPlugin {
 		plugin = this;
 		
 		server = new Server(port);
-		
-		// Get public model from bundle root or create new one
-		XMIResource xmiResource = new XMIResourceImpl();
-		URL modelEntry = plugin.getBundle().getEntry("model.modelwebserver");
-		try{
-			InputStream in = modelEntry.openStream();
-			
-			xmiResource.load(in, Collections.emptyMap());
-			in.close();
-			getLog().log(new Status(IStatus.INFO,PLUGIN_ID,"Modèle trouvé à : " + modelEntry.getPath()));
-
-			root = xmiResource.getContents().get(0);
-		}
-		catch(IOException e){
-			getLog().log(new Status(IStatus.WARNING,PLUGIN_ID,"Pas de modèle nommé model.modelwebserver trouvé à la racine du projet, création d'un modèle vide", e));
-			root = ModelWebserverFactory.eINSTANCE.createModel();
-		}
-		
-		server.setHandler(addEmfHandler(root));
+		server.setHandler(addEmfHandler());
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					server.start();
 					server.join();
-					getLog().log(new Status(IStatus.OK,PLUGIN_ID,"Démarrage du web serveur"));
 				} catch (Exception e) {
-					getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, "Echec lors du lancement du webserver"));
+					
 				}
 			}
 		}).start();
+		
+		getLog().log(new Status(IStatus.OK,PLUGIN_ID,"Webserver demarré"));
 	}
 
 	/*
@@ -107,12 +77,7 @@ public class Activator extends AbstractUIPlugin {
 	public void stop(BundleContext context) throws Exception {
 
 		getLog().log(new Status(IStatus.OK,PLUGIN_ID,"Arret du webserver en cours"));
-
-		XMIResource xmiResource = new XMIResourceImpl();
-		xmiResource.getContents().add(root);
-		OutputStream out = plugin.getBundle().getEntry("model.modelwebserver").openConnection().getOutputStream();
-		xmiResource.save(out, Collections.emptyMap());
-		out.close();
+		
 		plugin = null;
 		super.stop(context);
 	}
@@ -131,7 +96,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param root root EMF object.
 	 * @return
 	 */
-	private Handler addEmfHandler(EObject root) {
-		return new EMFHandler(root, this);
+	private Handler addEmfHandler() {
+		return new EMFHandler(this);
 	}
 }
