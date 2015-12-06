@@ -73,24 +73,6 @@ public class EMFHandler extends AbstractHandler {
 		if (userModels.containsKey(username)) { // Model already loaded in the hashmap 
 			logToOSGI("Modèle déjà chargé pour : " + username);
 		}
-		else if (plugin.getBundle().getEntry(username + ".modelwebserver") != null) { // Model present at the project root 
-			
-			XMIResource xmiResource = new XMIResourceImpl();
-			
-			URL modelEntry = plugin.getBundle().getEntry(username + ".modelwebserver");
-			try{
-				InputStream in = modelEntry.openStream();
-				
-				xmiResource.load(in, Collections.emptyMap());
-				in.close();
-				logToOSGI("Modèle trouvé à : " + modelEntry.getPath() + " pour : " + username);
-				
-				userModels.put(username, xmiResource.getContents().get(0));
-			}
-			catch(IOException e){
-				logToOSGI("Erreur lors du chargement du modèle pour : " + username + " à l'emplacement : " + modelEntry.getPath() + "\nStacktrace : " + e.toString());
-			}
-		}
 		else if (plugin.getStateLocation().append(username + ".modelwebserver").toFile().exists()) { // Model in plugin local storage from previous session
 			
 			File localStorageModel = plugin.getStateLocation().append(username + ".modelwebserver").toFile();
@@ -101,12 +83,30 @@ public class EMFHandler extends AbstractHandler {
 				
 				xmiResource.load(in, Collections.emptyMap());
 				in.close();
-				logToOSGI("Modèle trouvé à : " + localStorageModel.getPath());
+				logToOSGI("Modèle pour " + username + " trouvé à : " + localStorageModel.getPath() + " à partir de la sauvegarde d'un précedent lancement du webserver");
 				
 				userModels.put(username, xmiResource.getContents().get(0));
 			}
 			catch(IOException e){
 				logToOSGI("Erreur lors du chargement du modèle pour : " + username + " à l'emplacement : " + localStorageModel.getPath() + "\nStacktrace : " + e.toString());
+			}
+		}
+		else if (plugin.getBundle().getEntry(username + ".modelwebserver") != null) { // Model present at the project root 
+			
+			XMIResource xmiResource = new XMIResourceImpl();
+			
+			URL modelEntry = plugin.getBundle().getEntry(username + ".modelwebserver");
+			try{
+				InputStream in = modelEntry.openStream();
+				
+				xmiResource.load(in, Collections.emptyMap());
+				in.close();
+				logToOSGI("Modèle pour " + username + " trouvé à : " + modelEntry.getPath() + " à la racine du bundle");
+				
+				userModels.put(username, xmiResource.getContents().get(0));
+			}
+			catch(IOException e){
+				logToOSGI("Erreur lors du chargement du modèle pour : " + username + " à l'emplacement : " + modelEntry.getPath() + "\nStacktrace : " + e.toString());
 			}
 		}
 		else {	// No existant model for the user, create empty one 
