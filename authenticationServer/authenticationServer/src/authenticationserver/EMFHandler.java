@@ -91,7 +91,6 @@ public class EMFHandler extends AbstractHandler {
 		connection.setRequestProperty("Authorization", "Custom "+username);
 		
 		if (req.getMethod().compareTo("GET") != 0) { // If the request isn't GET, copy its body 
-
 			connection.setDoOutput(true);
 			connection.setDoInput(true);
 			connection.setUseCaches(false);
@@ -111,9 +110,10 @@ public class EMFHandler extends AbstractHandler {
 			connection.getInputStream().close();
 			
 		} catch (IOException e) {
-			connection.disconnect();
-			resp.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);
+			
+			resp.setStatus(connection.getResponseCode());
 			IOUtil.fastCopy(connection.getErrorStream(), resp.getOutputStream());
+			connection.disconnect();
 			connection.getErrorStream().close();
 				
 		} finally {
